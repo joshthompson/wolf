@@ -1,22 +1,14 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
-	entry: './app/client/index.ts',
-	module: {
-		rules: [
-			{
-				test: /app\/client(.*)\.tsx?$/,
-				include: /app\/client(.*)\.ts?$/,
-				use: 'ts-loader',
-				// exclude: /node_modules/
-			}
-		]
+	entry: {
+		bundle: './app/client/index.js'
 	},
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js']
+		extensions: ['.js']
 	},
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, 'public/js')
 	}
-};
+}

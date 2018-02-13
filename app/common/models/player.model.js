@@ -1,12 +1,14 @@
 export class Player {
-	id: number
-	name: string
-	avatar: string
-	character: string = 'VILLAGER' // 'VILLAGER' | 'WEREWOLF'
-	alive: Boolean = true
-	token: string
-	constructor(data?: any) {
-		data = typeof data === 'string' ? {name: data} : (typeof data === 'object' ? data : {})
+	constructor(data) {
+		// Player Data
+		this.id
+		this.name
+		this.avatar
+		this.character = 'VILLAGER' // 'VILLAGER' | 'WEREWOLF'
+		this.alive = true
+		this.token
+		// Generic object
+		data = typeof data === 'string' ? {name} : (typeof data === 'object' ? data : {})
 		// Set ID
 		if (typeof data.id === 'number') this.id = data.id
 		// Set Name

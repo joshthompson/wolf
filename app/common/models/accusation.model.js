@@ -1,9 +1,9 @@
 import { Player } from './player.model'
 
 export class Accusation {
-	accuser: Player
-	accused: Player
-	constructor(data: any) {
+	constructor(data) {
+		this.accuser
+		this.accused
 		// Set Accuser
 		if (data.accuser instanceof Player) this.accuser = data.accuser
 		else this.accuser = new Player(data.accuser)

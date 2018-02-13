@@ -6,21 +6,25 @@ import { Action } from './action.model'
 import { EventEmitter } from 'events'
 
 export class WolfGame {
-	// Game data
-	private id: number
-	private created: Date = new Date()
-	private code: GameCode = new GameCode()
-	private players: Player[] = []
-	private status: string = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
-	private subStatus: string = null
-	private accusations: Accusation[] = []
-	private votes: Vote[] = []
-	private token: string
-	private history: Action[] = []
 
-	public event: EventEmitter = new EventEmitter();
+	constructor(data) {
 
-	public constructor(data?: any) {
+		// Game data
+		this.id = null
+		this.created = new Date()
+		// this.code = new GameCode()
+		this.players = []
+		this.status = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
+		this.subStatus = null
+		this.accusations = []
+		this.votes = []
+		this.token = null
+		this.history = []
+		
+		// Class data
+		this.event = new EventEmitter();
+
+		// Base data object
 		data = typeof data === 'object' ? data : {}
 		// Set ID
 		if (typeof data.id === 'number') this.id = data.id
@@ -33,7 +37,7 @@ export class WolfGame {
 		else if (typeof data.code === 'string') this.code = new GameCode(data.code)
 		// Set Players
 		if (data.players instanceof Array) {
-			data.players.forEach((player: any) => {
+			data.players.forEach((player) => {
 				if (player instanceof Player) this.players.push(player)
 				else this.players.push(new Player(player))
 			})
@@ -44,14 +48,14 @@ export class WolfGame {
 		if (typeof data.subStatus === 'string') this.subStatus = data.subStatus
 		// Set Accusations
 		if (data.accusations instanceof Array) {
-			data.accusations.forEach((accusation: any) => {
+			data.accusations.forEach((accusation) => {
 				if (accusation instanceof Accusation) this.accusations.push(accusation)
 				else this.accusations.push(new Accusation(accusation))
 			})
 		}
 		// Set Votes
 		if (data.votes instanceof Array) {
-			data.votes.forEach((vote: any) => {
+			data.votes.forEach((vote) => {
 				if (vote instanceof Vote) this.votes.push(vote)
 				else this.votes.push(new Vote(vote))
 			})
@@ -60,44 +64,44 @@ export class WolfGame {
 		if (typeof data.token === 'string') this.token = data.token
 		// Set History
 		if (data.history instanceof Array) {
-			data.history.forEach((action: any) => {
+			data.history.forEach((action) => {
 				if (history instanceof Vote) this.history.push(action)
 				else this.history.push(new Action(action))
 			})
 		}
 	}
 
-	private update():void {
+	update() {
 		this.event.emit('update');
 	}
 
-	private init() {}
-	private runDay() {}
-	private runNight() {}
-	private end() {}
+	// private init() {}
+	// private runDay() {}
+	// private runNight() {}
+	// private end() {}
 
-	private listen() {
-		// Listen for player_join
-		// Listen for player_change
-		// Listen for player_leave
-		// Listen for player_action
-	}
+	// private listen() {
+	// 	// Listen for player_join
+	// 	// Listen for player_change
+	// 	// Listen for player_leave
+	// 	// Listen for player_action
+	// }
 
-	private emitEvent() {
-		// Emit game_state
-		// Emit game_action
-	}
+	// private emitEvent() {
+	// 	// Emit game_state
+	// 	// Emit game_action
+	// }
 
-	public getId(): number {
-		return this.id
-	}
+	// public getId() {
+	// 	return this.id
+	// }
 
-	public setId(id: number): void {
-		this.id = id
-	}
+	// public setId(id) {
+	// 	this.id = id
+	// }
 
-	public setToken(token: string) {
-		this.token = token;
-	}
+	// public setToken(token) {
+	// 	this.token = token;
+	// }
 
 }

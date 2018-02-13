@@ -1,7 +1,7 @@
 export class Action {
-	private created: Date
-	private data: Object
-	constructor(data?: any) {
+	constructor(data) {
+		this.created
+		this.data
 		data = typeof data === 'object' ? data : {}
 		// Set Created
 		if (data.create instanceof Date) this.created = data.created

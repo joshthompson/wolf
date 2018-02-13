@@ -1,8 +1,8 @@
 import { Action } from './action.model'
 
 export class GameAction extends Action {
-	private player: Player
-	constructor(data?: any) {
+	constructor(data) {
+		this.player
 		data = typeof data === 'object' ? data : {}
 		super(data)
 		// Set Player

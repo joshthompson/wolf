@@ -1,9 +1,9 @@
 import { Player } from './player.model'
 
 export class Vote {
-	voter: Player
-	vote: Player
-	constructor(data: any) {
+	constructor(data) {
+		this.voter
+		this.vote
 		// Set Voter
 		if (data.voter instanceof Player) this.voter = data.voter
 		else this.voter = new Player(data.voter)
