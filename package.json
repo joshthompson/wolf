@@ -1,0 +1,24 @@
+{
+  "name": "wolf",
+  "description": "The Wolf Game",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.2",
+    "js-cookie": "^2.2.0",
+    "mongodb": "^3.0.2",
+    "socket.io": "^2.0.4",
+    "then-request": "^5.0.0",
+    "ts-node": "^4.1.0"
+  },
+  "devDependencies": {
+    "scss-loader": "0.0.1",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.7.1",
+    "webpack": "^3.11.0"
+  },
+  "scripts": {
+    "build": "webpack --watch",
+    "start": "nodemon app.js"
+  }
+}
