@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "webpack --watch",
+    "db": "mongod",
     "start": "nodemon app.js"
   }
 }

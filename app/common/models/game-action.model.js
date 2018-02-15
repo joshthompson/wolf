@@ -1,6 +1,6 @@
-import { Action } from './action.model'
+var Action = require('./action.model')
 
-export class GameAction extends Action {
+class GameAction extends Action {
 	constructor(data) {
 		this.player
 		data = typeof data === 'object' ? data : {}
@@ -10,3 +10,5 @@ export class GameAction extends Action {
 		else this.player = new Player(data.player)
 	}
 }
+
+module.exports = GameAction

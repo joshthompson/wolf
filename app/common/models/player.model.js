@@ -1,4 +1,4 @@
-export class Player {
+class Player {
 	constructor(data) {
 		// Player Data
 		this.id
@@ -23,3 +23,5 @@ export class Player {
 		if (typeof data.token === 'string') this.token = data.token
 	}
 }
+
+module.exports = Player

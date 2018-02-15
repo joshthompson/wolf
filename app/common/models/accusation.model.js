@@ -1,6 +1,6 @@
-import { Player } from './player.model'
+var Player = require('./player.model')
 
-export class Accusation {
+class Accusation {
 	constructor(data) {
 		this.accuser
 		this.accused
@@ -12,3 +12,5 @@ export class Accusation {
 		else this.accused = new Player(data.accused)
 	}
 }
+
+module.exports = Accusation

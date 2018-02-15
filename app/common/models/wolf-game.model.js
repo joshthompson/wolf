@@ -1,18 +1,17 @@
-import { GameCode } from './game-code.model'
-import { Player } from './player.model'
-import { Accusation } from './accusation.model'
-import { Vote } from './vote.model'
-import { Action } from './action.model'
-import { EventEmitter } from 'events'
+var GameCode = require('./game-code.model')
+var Player = require('./player.model')
+var Accusation = require('./accusation.model')
+var Vote = require('./vote.model')
+var Action = require('./action.model')
+var EventEmitter = require('events')
 
-export class WolfGame {
+class WolfGame {
 
 	constructor(data) {
 
 		// Game data
-		this.id = null
 		this.created = new Date()
-		// this.code = new GameCode()
+		this.code = new GameCode()
 		this.players = []
 		this.status = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
 		this.subStatus = null
@@ -91,17 +90,10 @@ export class WolfGame {
 	// 	// Emit game_state
 	// 	// Emit game_action
 	// }
-
-	// public getId() {
-	// 	return this.id
-	// }
-
-	// public setId(id) {
-	// 	this.id = id
-	// }
-
 	// public setToken(token) {
 	// 	this.token = token;
 	// }
 
 }
+
+module.exports = WolfGame

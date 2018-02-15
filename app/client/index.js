@@ -1,12 +1,50 @@
-import { WolfGame } from '../../app/common/models/wolf-game.model'
-// import { Player } from '../../app/common/models/player.model'
-// import { GameCode } from '../../app/common/models/game-code.model'
+import { WolfGame } from '../common/models/wolf-game.model'
+// import { Player } from '../common/models/player.model'
+// import { GameCode } from '../common/models/game-code.model'
 // import { EventEmitter } from 'events'
 
 var request = require('then-request')
 var Cookie = require('js-cookie')
 
-new WolfGame()
+// Sockets :D
+// socket.open()
+
+let WolfGameController = {
+
+	socket: null,
+
+	init: () => {
+		WolfGameController.setupSocket()
+		WolfGameController.setupDOMListeners()
+	},
+
+	setupDOMListeners: () => {
+		document.getElementById('create-btn').onclick = WolfGameController.createGame
+		document.getElementById('join-btn').onclick = WolfGameController.joinGame
+	},
+
+	setupSocket: () => {
+		WolfGameController.socket = io('http://localhost:3000')
+		WolfGameController.socket.on('flaps', WolfGameController.flaps)
+	},
+
+	createGame: () => {
+		WolfGameController.socket.emit('createGame', {asdas: 123123})
+		console.log('yeah yeah yeah')
+	},
+
+	joinGame: () => {
+		WolfGameController.socket.emit('joinGame', {
+			game: document.getElementById('game-code').value,
+			player: document.getElementById('player-name').value
+		})
+	}
+}
+
+WolfGameController.init()
+
+
+
 
 // // Game object
 // let game
@@ -32,18 +70,6 @@ new WolfGame()
 // 		game = new WolfGame(Cookie.getJSON('game'))
 // 		game.event.on('update', () => request('PUT', `/api/game/${game.getId()}`, {json: {game: game}}))
 // 		fetchUpdates()
-// 	}
-
-// 	// Create new game
-// 	document.getElementById('create-btn').onclick = (event) => {
-// 		game = new WolfGame()
-// 		request('POST', '/api/game', {json: {game: game}}).getBody('utf8').then(JSON.parse).done((g) => {
-// 			game.setId(g.id)
-// 			game.setToken(g.token)
-// 			fetchUpdates()
-// 		})
-// 		game.event.on('update', () => request('PUT', `/api/game/${game.getId()}`, {json: {game: game}}))
-// 		Cookie.set('game', game)
 // 	}
 
 // 	// Join game

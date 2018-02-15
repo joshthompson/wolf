@@ -285,9 +285,8 @@ function doResolve(fn, promise) {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
 class Player {
 	constructor(data) {
 		// Player Data
@@ -313,8 +312,8 @@ class Player {
 		if (typeof data.token === 'string') this.token = data.token
 	}
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Player;
 
+module.exports = Player
 
 
 /***/ }),
@@ -798,16 +797,55 @@ module.exports = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_common_models_wolf_game_model__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_models_wolf_game_model__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_models_wolf_game_model___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_models_wolf_game_model__);
 
-// import { Player } from '../../app/common/models/player.model'
-// import { GameCode } from '../../app/common/models/game-code.model'
+// import { Player } from '../common/models/player.model'
+// import { GameCode } from '../common/models/game-code.model'
 // import { EventEmitter } from 'events'
 
 var request = __webpack_require__(13)
 var Cookie = __webpack_require__(28)
 
-new __WEBPACK_IMPORTED_MODULE_0__app_common_models_wolf_game_model__["a" /* WolfGame */]()
+// Sockets :D
+// socket.open()
+
+let WolfGameController = {
+
+	socket: null,
+
+	init: () => {
+		WolfGameController.setupSocket()
+		WolfGameController.setupDOMListeners()
+	},
+
+	setupDOMListeners: () => {
+		document.getElementById('create-btn').onclick = WolfGameController.createGame
+		document.getElementById('join-btn').onclick = WolfGameController.joinGame
+	},
+
+	setupSocket: () => {
+		WolfGameController.socket = io('http://localhost:3000')
+		WolfGameController.socket.on('flaps', WolfGameController.flaps)
+	},
+
+	createGame: () => {
+		WolfGameController.socket.emit('createGame', {asdas: 123123})
+		console.log('yeah yeah yeah')
+	},
+
+	joinGame: () => {
+		WolfGameController.socket.emit('joinGame', {
+			game: document.getElementById('game-code').value,
+			player: document.getElementById('player-name').value
+		})
+	}
+}
+
+WolfGameController.init()
+
+
+
 
 // // Game object
 // let game
@@ -835,18 +873,6 @@ new __WEBPACK_IMPORTED_MODULE_0__app_common_models_wolf_game_model__["a" /* Wolf
 // 		fetchUpdates()
 // 	}
 
-// 	// Create new game
-// 	document.getElementById('create-btn').onclick = (event) => {
-// 		game = new WolfGame()
-// 		request('POST', '/api/game', {json: {game: game}}).getBody('utf8').then(JSON.parse).done((g) => {
-// 			game.setId(g.id)
-// 			game.setToken(g.token)
-// 			fetchUpdates()
-// 		})
-// 		game.event.on('update', () => request('PUT', `/api/game/${game.getId()}`, {json: {game: game}}))
-// 		Cookie.set('game', game)
-// 	}
-
 // 	// Join game
 // 	document.getElementById('join-btn').onclick = (event) => {
 // 		let player = new Player(document.getElementById('player-name').value)
@@ -866,31 +892,22 @@ new __WEBPACK_IMPORTED_MODULE_0__app_common_models_wolf_game_model__["a" /* Wolf
 
 /***/ }),
 /* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game_code_model__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_model__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accusation_model__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vote_model__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__action_model__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_events__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_events__);
-
-
-
-
-
-
+var GameCode = __webpack_require__(8)
+var Player = __webpack_require__(1)
+var Accusation = __webpack_require__(9)
+var Vote = __webpack_require__(10)
+var Action = __webpack_require__(11)
+var EventEmitter = __webpack_require__(12)
 
 class WolfGame {
 
 	constructor(data) {
 
 		// Game data
-		this.id = null
 		this.created = new Date()
-		// this.code = new GameCode()
+		this.code = new GameCode()
 		this.players = []
 		this.status = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
 		this.subStatus = null
@@ -900,7 +917,7 @@ class WolfGame {
 		this.history = []
 		
 		// Class data
-		this.event = new __WEBPACK_IMPORTED_MODULE_5_events__["EventEmitter"]();
+		this.event = new EventEmitter();
 
 		// Base data object
 		data = typeof data === 'object' ? data : {}
@@ -911,13 +928,13 @@ class WolfGame {
 		else if (typeof data.create === 'string') this.created = new Date(data.created)
 		else this.created = new Date()
 		// Set Code
-		if (data.code instanceof __WEBPACK_IMPORTED_MODULE_0__game_code_model__["a" /* GameCode */]) this.code = data.code
-		else if (typeof data.code === 'string') this.code = new __WEBPACK_IMPORTED_MODULE_0__game_code_model__["a" /* GameCode */](data.code)
+		if (data.code instanceof GameCode) this.code = data.code
+		else if (typeof data.code === 'string') this.code = new GameCode(data.code)
 		// Set Players
 		if (data.players instanceof Array) {
 			data.players.forEach((player) => {
-				if (player instanceof __WEBPACK_IMPORTED_MODULE_1__player_model__["a" /* Player */]) this.players.push(player)
-				else this.players.push(new __WEBPACK_IMPORTED_MODULE_1__player_model__["a" /* Player */](player))
+				if (player instanceof Player) this.players.push(player)
+				else this.players.push(new Player(player))
 			})
 		}
 		// Set Status
@@ -927,15 +944,15 @@ class WolfGame {
 		// Set Accusations
 		if (data.accusations instanceof Array) {
 			data.accusations.forEach((accusation) => {
-				if (accusation instanceof __WEBPACK_IMPORTED_MODULE_2__accusation_model__["a" /* Accusation */]) this.accusations.push(accusation)
-				else this.accusations.push(new __WEBPACK_IMPORTED_MODULE_2__accusation_model__["a" /* Accusation */](accusation))
+				if (accusation instanceof Accusation) this.accusations.push(accusation)
+				else this.accusations.push(new Accusation(accusation))
 			})
 		}
 		// Set Votes
 		if (data.votes instanceof Array) {
 			data.votes.forEach((vote) => {
-				if (vote instanceof __WEBPACK_IMPORTED_MODULE_3__vote_model__["a" /* Vote */]) this.votes.push(vote)
-				else this.votes.push(new __WEBPACK_IMPORTED_MODULE_3__vote_model__["a" /* Vote */](vote))
+				if (vote instanceof Vote) this.votes.push(vote)
+				else this.votes.push(new Vote(vote))
 			})
 		}
 		// Set Token
@@ -943,8 +960,8 @@ class WolfGame {
 		// Set History
 		if (data.history instanceof Array) {
 			data.history.forEach((action) => {
-				if (history instanceof __WEBPACK_IMPORTED_MODULE_3__vote_model__["a" /* Vote */]) this.history.push(action)
-				else this.history.push(new __WEBPACK_IMPORTED_MODULE_4__action_model__["a" /* Action */](action))
+				if (history instanceof Vote) this.history.push(action)
+				else this.history.push(new Action(action))
 			})
 		}
 	}
@@ -969,106 +986,106 @@ class WolfGame {
 	// 	// Emit game_state
 	// 	// Emit game_action
 	// }
-
-	// public getId() {
-	// 	return this.id
-	// }
-
-	// public setId(id) {
-	// 	this.id = id
-	// }
-
 	// public setToken(token) {
 	// 	this.token = token;
 	// }
 
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = WolfGame;
 
+module.exports = WolfGame
 
 
 /***/ }),
 /* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
 class GameCode {
+	
 	// private disallowed
-	// private length = 4
-	// private allowedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+	
 	constructor(code) {
-		this.code = code ? code : 'ABCD'
+		this.length = 4
+		this.code = code ? code : this.generate()
 	}
+
+	generate() {
+		let code = ''
+		let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+		while (code.length < this.length) {
+			code = code + chars[Math.floor(Math.random() * chars.length)]
+		}
+		return code
+	}
+
 	code() {
 		return this.code
 	}
+
 	set(code) {
 		this.code = code ? code.substr(0, 4) : null
-	} 
+	}
+
 	toString() {
 		return this.code
 	}
+
 	toJSON() {
 		return this.code
 	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = GameCode;
 
+}
+
+module.exports = GameCode
 
 
 /***/ }),
 /* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__player_model__ = __webpack_require__(1);
-
+var Player = __webpack_require__(1)
 
 class Accusation {
 	constructor(data) {
 		this.accuser
 		this.accused
 		// Set Accuser
-		if (data.accuser instanceof __WEBPACK_IMPORTED_MODULE_0__player_model__["a" /* Player */]) this.accuser = data.accuser
-		else this.accuser = new __WEBPACK_IMPORTED_MODULE_0__player_model__["a" /* Player */](data.accuser)
+		if (data.accuser instanceof Player) this.accuser = data.accuser
+		else this.accuser = new Player(data.accuser)
 		// Set Accused
-		if (data.accused instanceof __WEBPACK_IMPORTED_MODULE_0__player_model__["a" /* Player */]) this.accused = data.accused
-		else this.accused = new __WEBPACK_IMPORTED_MODULE_0__player_model__["a" /* Player */](data.accused)
+		if (data.accused instanceof Player) this.accused = data.accused
+		else this.accused = new Player(data.accused)
 	}
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Accusation;
 
+module.exports = Accusation
 
 
 /***/ }),
 /* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__player_model__ = __webpack_require__(1);
-
+var Player = __webpack_require__(1)
 
 class Vote {
 	constructor(data) {
 		this.voter
 		this.vote
 		// Set Voter
-		if (data.voter instanceof __WEBPACK_IMPORTED_MODULE_0__player_model__["a" /* Player */]) this.voter = data.voter
-		else this.voter = new __WEBPACK_IMPORTED_MODULE_0__player_model__["a" /* Player */](data.voter)
+		if (data.voter instanceof Player) this.voter = data.voter
+		else this.voter = new Player(data.voter)
 		// Set Vote
-		if (data.vote instanceof __WEBPACK_IMPORTED_MODULE_0__player_model__["a" /* Player */]) this.vote = data.vote
-		else this.vote = new __WEBPACK_IMPORTED_MODULE_0__player_model__["a" /* Player */](data.vote)
+		if (data.vote instanceof Player) this.vote = data.vote
+		else this.vote = new Player(data.vote)
 	}
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Vote;
 
+module.exports = Vote
 
 
 /***/ }),
 /* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
 class Action {
 	constructor(data) {
 		this.created
@@ -1082,8 +1099,8 @@ class Action {
 		this.data = data.data
 	}
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Action;
 
+module.exports = Action
 
 
 /***/ }),

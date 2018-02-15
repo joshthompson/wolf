@@ -1,4 +1,4 @@
-export class Action {
+class Action {
 	constructor(data) {
 		this.created
 		this.data
@@ -11,3 +11,5 @@ export class Action {
 		this.data = data.data
 	}
 }
+
+module.exports = Action
