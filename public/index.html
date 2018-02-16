@@ -1,14 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Werewolves</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+	<link rel="icon" type="image/png" href="/favicon.ico" />
+	<title>🐺</title>
 	<style type="text/css">
+		*, *:before, *:after {
+			box-sizing: border-box;
+		}
 		body {
 			text-align: center;
+			font-size: 14px;
+			margin: 0px;
+		}
+		input {
+			padding: 10px 20px;
+			line-height: 20px;
+			vertical-align: middle;
+			outline: none;
+			font-size: 14px;
+		}
+		button {
+			padding: 10px 20px;
+			font-size: 14px;
+			line-height: 20px;
+			vertical-align: middle;
+			color: white;
+			text-transform: uppercase;
+			background: #008DD4;
+			border: none;
+			cursor: pointer;
+		}
+		.sky {
+			background: #9BD0E2;
+			margin: -48px 0px 20px;
+			padding-top: 50px;
+		}
+		.ground {
+			background: #E2CA7D;
+			height: 100px;
+			margin: -50px 0px 0px;
 		}
 	</style>
 </head>
 <body>
+
+	<div class="sky">
+		<h1 style="font-size: 72px;">🐺</h1>
+		<h1 style="font-size: 82px; margin: -145px 0px 0px 0px;">🌙</h1>
+		<h1 style="font-size: 72px; margin: -40px 0px 0px 0px;">🌲🌲🌲🌲🌲🌲🌲</h1>
+		<h1 style="font-size: 72px; margin: -80px 0px 0px 0px;">🌲🌲🌲🌲🌲🌲🌲🌲</h1>
+		<div class="ground"></div>
+	</div>
 
 	<div><button id="create-btn">Create</button></div>
 	<hr />
@@ -18,17 +62,8 @@
 		<button id="join-btn">Join</button>
 	</div>
 
-
 	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-	<script type="text/javascript">
-		var socket = io('http://localhost:3000');
-		console.log(socket)
-		socket.on('flaps', (what) => {
-			// socket.open();
-			console.log('WHWHW', what)
-		});
-	</script>
-
 	<script type="text/javascript" src="js/bundle.js"></script>
+
 </body>
 </html>

@@ -60,14 +60,16 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 6:
 /***/ (function(module, exports) {
 
-throw new Error("Module parse failed: Unexpected token (10:8)\nYou may need an appropriate loader to handle this file type.\n| \n| // Game object\n| let game: WolfGame\n| \n| // Updates - TODO: Upgrade to data sockets");
+throw new Error("Module parse failed: Unexpected token (55:1)\nYou may need an appropriate loader to handle this file type.\n| \t}\n| \n| \tcreateGame: () => {\n| \t\tWolfGameController.socket.emit('createGame', {asdas: 123123})\n| \t\tconsole.log('yeah yeah yeah')");
 
 /***/ })
-/******/ ]);
+
+/******/ });
