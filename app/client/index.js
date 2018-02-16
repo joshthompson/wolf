@@ -26,43 +26,44 @@ let WolfGameController = {
 	},
 
 	setupSocket: () => {
-		WolfGameController.socket = io('http://localhost:3000')
+		WolfGameController.socket = io()
 		WolfGameController.setupSocketListeners()
 	},
 
 	setupSocketListeners: () => {
-		// Host events
-		WolfGameController.socket.on('gameCreated', WolfGameController.host.gameCreated)
-		// Client events
-		// Common events
-		WolfGameController.socket.on('updateState', WolfGameController.common.updatedState)
+		Object.keys(WolfGameController.host).forEach(event => WolfGameController.socket.on(event, WolfGameController.host[event]))
+		Object.keys(WolfGameController.client).forEach(event => WolfGameController.socket.on(event, WolfGameController.client[event]))
+		Object.keys(WolfGameController.common).forEach(event => WolfGameController.socket.on(event, WolfGameController.common[event]))
 	},
 
 	host: {
-		gameCreated: () => {}
+		createGame: () => WolfGameController.socket.emit('createGame'),
+		gameCreated: game => {
+			WolfGameController.game = game
+			console.log('game created', game)
+		},
+		gameCreateFail: error => console.error(error)
 	},
 
 	client: {
-		// todo
+		joinGame: () => WolfGameController.socket.emit('joinGame', {
+			game: document.getElementById('game-code').value,
+			player: document.getElementById('player-name').value
+		}),
+		gameJoined: game => {
+			WolfGameController.game = game
+			console.log('game joined', game)
+		},
+		gameJoinFail: error => console.log(error)
 	},
 
 	common: {
-		updateState: () => {
-
+		updateGame: game => {
+			WolfGameController.game = game
+			console.log('game updated', game)
 		}
 	}
 
-	createGame: () => {
-		WolfGameController.socket.emit('createGame', {asdas: 123123})
-		console.log('yeah yeah yeah')
-	},
-
-	joinGame: () => {
-		WolfGameController.socket.emit('joinGame', {
-			game: document.getElementById('game-code').value,
-			player: document.getElementById('player-name').value
-		})
-	}
 }
 
 WolfGameController.init()

@@ -3,7 +3,9 @@ var Player = require('./player.model')
 var Accusation = require('./accusation.model')
 var Vote = require('./vote.model')
 var Action = require('./action.model')
+
 var EventEmitter = require('events')
+var sha512 = require('js-sha512').sha512
 
 class WolfGame {
 
@@ -19,9 +21,10 @@ class WolfGame {
 		this.votes = []
 		this.token = null
 		this.history = []
+		this.host = null // Socket object
 		
 		// Class data
-		this.event = new EventEmitter();
+		this.event = new EventEmitter()
 
 		// Base data object
 		data = typeof data === 'object' ? data : {}
@@ -61,6 +64,7 @@ class WolfGame {
 		}
 		// Set Token
 		if (typeof data.token === 'string') this.token = data.token
+		else this.token = this.createToken()
 		// Set History
 		if (data.history instanceof Array) {
 			data.history.forEach((action) => {
@@ -68,10 +72,36 @@ class WolfGame {
 				else this.history.push(new Action(action))
 			})
 		}
+		// Set Host
+		if (data.host) this.host = data.host
 	}
 
 	update() {
-		this.event.emit('update');
+		this.host.emit('updateGame', {game: this})
+		this.players.forEach(player => player.updateGame())
+	}
+
+	createToken() {
+		return sha512(`wolf-game-${new Date()}-${Math.random()}`)
+	}
+
+	addPlayer(player) {
+		this.players.push(player)
+		this.update()
+	}
+
+	toJSON() {
+		return {
+			created: this.created,
+			code: this.code,
+			players: this.players.map(player => player.toJSON()),
+			status: this.status,
+			subStatus: this.subStatus,
+			accusations: this.accusations,
+			votes: this.votes,
+			token: this.token,
+			history: this.history
+		}
 	}
 
 	// private init() {}
@@ -91,7 +121,7 @@ class WolfGame {
 	// 	// Emit game_action
 	// }
 	// public setToken(token) {
-	// 	this.token = token;
+	// 	this.token = token
 	// }
 
 }

@@ -21,16 +21,27 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('createGame', () => {
-		let game = new WolfGame()
+		let game = new WolfGame({host: socket})
 		games[game.code] = game
-		console.clear()
-		console.log(games)
+		socket.emit('gameCreated', {game: game.toJSON()})
+		console.log(`game created: ${game.code}`)
 	})
 
 	socket.on('joinGame', data => {
-		games[data.game.toUpperCase()].players.push(new Player({name: data.name}))
-		console.clear()
-		console.log(games)
+		let game = games[data.game.toUpperCase()]
+		if (game) {
+			let player = new Player({
+				name: data.name,
+				game: game,
+				socket: socket
+			})
+			game.addPlayer(player)
+			socket.emit('gameJoined', {player: player.toJSON()})
+			console.log('game join: success')
+		} else {
+			socket.emit('gameJoinFail', {message: 'Couldn\'t find game'})
+			console.log('game join: fail')
+		}
 	})
 
 })
