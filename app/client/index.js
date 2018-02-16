@@ -12,6 +12,8 @@ var Cookie = require('js-cookie')
 let WolfGameController = {
 
 	socket: null,
+	token: null,
+	game: null,
 
 	init: () => {
 		WolfGameController.setupSocket()
@@ -19,14 +21,36 @@ let WolfGameController = {
 	},
 
 	setupDOMListeners: () => {
-		document.getElementById('create-btn').onclick = WolfGameController.createGame
-		document.getElementById('join-btn').onclick = WolfGameController.joinGame
+		document.getElementById('create-btn').onclick = WolfGameController.host.createGame
+		document.getElementById('join-btn').onclick = WolfGameController.client.joinGame
 	},
 
 	setupSocket: () => {
 		WolfGameController.socket = io('http://localhost:3000')
-		WolfGameController.socket.on('flaps', WolfGameController.flaps)
+		WolfGameController.setupSocketListeners()
 	},
+
+	setupSocketListeners: () => {
+		// Host events
+		WolfGameController.socket.on('gameCreated', WolfGameController.host.gameCreated)
+		// Client events
+		// Common events
+		WolfGameController.socket.on('updateState', WolfGameController.common.updatedState)
+	},
+
+	host: {
+		gameCreated: () => {}
+	},
+
+	client: {
+		// todo
+	},
+
+	common: {
+		updateState: () => {
+
+		}
+	}
 
 	createGame: () => {
 		WolfGameController.socket.emit('createGame', {asdas: 123123})

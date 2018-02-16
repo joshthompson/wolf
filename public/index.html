@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+	<link rel="icon" type="image/png" href="/favicon.ico" />
 	<title>🐺</title>
 	<style type="text/css">
 		*, *:before, *:after {
@@ -10,6 +12,7 @@
 		body {
 			text-align: center;
 			font-size: 14px;
+			margin: 0px;
 		}
 		input {
 			padding: 10px 20px;
@@ -29,14 +32,27 @@
 			border: none;
 			cursor: pointer;
 		}
+		.sky {
+			background: #9BD0E2;
+			margin: -48px 0px 20px;
+			padding-top: 50px;
+		}
+		.ground {
+			background: #E2CA7D;
+			height: 100px;
+			margin: -50px 0px 0px;
+		}
 	</style>
 </head>
 <body>
 
-	<h1 style="font-size: 72px;">🐺</h1>
-	<h1 style="font-size: 82px; margin: -145px 0px 0px 0px;">🌙</h1>
-	<h1 style="font-size: 72px; margin: -40px 0px 0px 0px;">🌲🌲🌲🌲🌲🌲🌲</h1>
-	<h1 style="font-size: 72px; margin: -80px 0px 0px 0px;">🌲🌲🌲🌲🌲🌲🌲🌲</h1>
+	<div class="sky">
+		<h1 style="font-size: 72px;">🐺</h1>
+		<h1 style="font-size: 82px; margin: -145px 0px 0px 0px;">🌙</h1>
+		<h1 style="font-size: 72px; margin: -40px 0px 0px 0px;">🌲🌲🌲🌲🌲🌲🌲</h1>
+		<h1 style="font-size: 72px; margin: -80px 0px 0px 0px;">🌲🌲🌲🌲🌲🌲🌲🌲</h1>
+		<div class="ground"></div>
+	</div>
 
 	<div><button id="create-btn">Create</button></div>
 	<hr />

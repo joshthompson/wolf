@@ -4,7 +4,7 @@ class GameCode {
 	
 	constructor(code) {
 		this.length = 4
-		this.code = code ? code : this.generate()
+		this.code = code ? code.toUpperCase() : this.generate()
 	}
 
 	generate() {
