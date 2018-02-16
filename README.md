@@ -15,6 +15,7 @@ Make sure you have node and npm installed
 Run `npm install`
 
 In one terminal window run `npm run build`
+
 In a second terminal run `npm run start`
 
 Go to `http://localhost:3000` in a modern browser
