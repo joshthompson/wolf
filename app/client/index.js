@@ -3,6 +3,9 @@ import { WolfGame } from '../common/models/wolf-game.model'
 // import { GameCode } from '../common/models/game-code.model'
 // import { EventEmitter } from 'events'
 
+import Vue from 'vue'
+import App from './app.vue'
+
 var request = require('then-request')
 var Cookie = require('js-cookie')
 
@@ -14,6 +17,7 @@ let WolfGameController = {
 	socket: null,
 	token: null,
 	game: null,
+	mode: null, // 'host' | 'player'
 
 	init: () => {
 		WolfGameController.setupSocket()
@@ -21,8 +25,8 @@ let WolfGameController = {
 	},
 
 	setupDOMListeners: () => {
-		document.getElementById('create-btn').onclick = WolfGameController.host.createGame
-		document.getElementById('join-btn').onclick = WolfGameController.client.joinGame
+		// document.getElementById('create-btn').onclick = WolfGameController.host.createGame
+		// document.getElementById('join-btn').onclick = WolfGameController.client.joinGame
 	},
 
 	setupSocket: () => {
@@ -40,7 +44,7 @@ let WolfGameController = {
 		createGame: () => WolfGameController.socket.emit('createGame'),
 		gameCreated: game => {
 			WolfGameController.game = game
-			console.log('game created', game)
+			WolfGameController.mode = 'host'
 		},
 		gameCreateFail: error => console.error(error)
 	},
@@ -52,6 +56,7 @@ let WolfGameController = {
 		}),
 		gameJoined: game => {
 			WolfGameController.game = game
+			WolfGameController.mode = 'player'
 			console.log('game joined', game)
 		},
 		gameJoinFail: error => console.log(error)
@@ -68,8 +73,12 @@ let WolfGameController = {
 
 WolfGameController.init()
 
-
-
+window.app = new Vue({
+	el: '#app',
+	data: WolfGameController,
+	template: '<app/>',
+	components: { App }
+})
 
 // // Game object
 // let game
