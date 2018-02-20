@@ -42,30 +42,27 @@ let WolfGameController = {
 
 	host: {
 		createGame: () => WolfGameController.socket.emit('createGame'),
-		gameCreated: game => {
-			WolfGameController.game = game
+		gameCreated: data => {
+			WolfGameController.game = data.game
 			WolfGameController.mode = 'host'
 		},
 		gameCreateFail: error => console.error(error)
 	},
 
 	client: {
-		joinGame: () => WolfGameController.socket.emit('joinGame', {
-			game: document.getElementById('game-code').value,
-			player: document.getElementById('player-name').value
-		}),
-		gameJoined: game => {
-			WolfGameController.game = game
+		joinGame: (code, name) => WolfGameController.socket.emit('joinGame', {game: code, player: name}),
+		gameJoined: data => {
+			WolfGameController.game = data.game
 			WolfGameController.mode = 'player'
-			console.log('game joined', game)
+			console.log('game joined', data.game)
 		},
 		gameJoinFail: error => console.log(error)
 	},
 
 	common: {
-		updateGame: game => {
-			WolfGameController.game = game
-			console.log('game updated', game)
+		updateGame: data => {
+			WolfGameController.game = data.game
+			console.log('game updated', data.game)
 		}
 	}
 
@@ -75,8 +72,8 @@ WolfGameController.init()
 
 window.app = new Vue({
 	el: '#app',
-	data: WolfGameController,
-	template: '<app/>',
+	data: { game: WolfGameController },
+	template: '<app :game="game" />',
 	components: { App }
 })
 

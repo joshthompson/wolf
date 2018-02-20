@@ -10,7 +10,8 @@
     "mongodb": "^3.0.2",
     "socket.io": "^2.0.4",
     "then-request": "^5.0.0",
-    "vue": "^2.5.13"
+    "vue": "^2.5.13",
+    "vue-style-loader": "^4.0.2"
   },
   "devDependencies": {
     "babel-core": "~6.23.1",

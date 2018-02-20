@@ -31,10 +31,11 @@ io.on('connection', (socket) => {
 		let game = games[data.game.toUpperCase()]
 		if (game) {
 			let player = new Player({
-				name: data.name,
+				name: data.player,
 				game: game,
 				socket: socket
 			})
+			console.log(player.toJSON())
 			game.addPlayer(player)
 			socket.emit('gameJoined', {player: player.toJSON()})
 			console.log('game join: success')

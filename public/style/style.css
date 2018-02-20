@@ -1,0 +1,50 @@
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+body {
+	text-align: center;
+	font-size: 14px;
+	margin: 0px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.view {
+	width: 100vw;
+	height: 100vw;
+}
+
+.form-view {
+	padding: 20px;
+	text-align: center;
+}
+
+
+input {
+	padding: 10px 20px;
+	line-height: 20px;
+	vertical-align: middle;
+	outline: none;
+	font-size: 14px;
+}
+button {
+	padding: 10px 20px;
+	font-size: 14px;
+	line-height: 20px;
+	vertical-align: middle;
+	color: white;
+	text-transform: uppercase;
+	background: #008DD4;
+	border: none;
+	cursor: pointer;
+}
+.sky {
+	background: #9BD0E2;
+	margin: -48px 0px 20px;
+	padding-top: 50px;
+}
+.ground {
+	background: #E2CA7D;
+	height: 100px;
+	margin: -50px 0px 0px;
+}
