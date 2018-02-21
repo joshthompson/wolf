@@ -6,7 +6,9 @@
 </script>
 
 <template>
-	<div id="play">
-		Play View
+	<div id="play" class="view">
+		<h1>Play View</h1>
+		<p>Welcome!</p>
+		<p>Please wait...</p>
 	</div>
 </template>

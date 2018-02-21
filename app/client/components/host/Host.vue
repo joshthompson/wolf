@@ -8,9 +8,8 @@
 </script>
 
 <template>
-	<div id="host">
-		<h1>Game Code: {{ game.game.code }}</h1>
-		<h1>Players: {{ game.game.players.length }}</h1>
+	<div id="host" class="view">
+		<h1>Join Game: {{ game.game.code }}</h1>
 
 		<avatar v-for="player in game.game.players" :player="player"></avatar>
 		<!-- <div class="sky">

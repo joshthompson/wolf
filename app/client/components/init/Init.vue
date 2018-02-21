@@ -18,15 +18,17 @@
 </script>
 
 <template>
-	<div id="init" class="view form-view">
-		<div>
-			<button @click="createGame()">Create</button>
-		</div>
-		<hr />
-		<div>
-			<input v-model="name" placeholder="player-name" />
-			<input v-model="code" placeholder="game-code" />
-			<button @click="joinGame()">Join</button>
+	<div id="init" class="view">
+		<h1>Wolf</h1>
+		<div class="form-view">
+			<div class="form-group">
+				<button @click="createGame()">Create New Game</button>
+			</div>
+			<div class="form-group">
+				<input v-model="name" placeholder="player-name" />
+				<input v-model="code" placeholder="game-code" />
+				<button @click="joinGame()">Join</button>
+			</div>
 		</div>
 	</div>
 </template>
