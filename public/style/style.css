@@ -1,0 +1,90 @@
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+body {
+	text-align: center;
+	font-size: 14px;
+	margin: 0px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.view {
+	width: 100vw;
+	height: 100vw;
+}
+
+.view > h1 {
+	margin: 0px;
+	padding: 15px 10px 10px;
+	text-align: center;
+	background: black;
+	color: white;
+}
+
+.form-view {
+	padding: 20px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.form-group {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-top: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	max-width: 450px;
+	width: 100%;
+	margin: 0px auto;
+}
+.form-group:nth-child(1) {
+	margin-top: 0px;
+	padding-top: 0px;
+	border-top: none;
+}
+.form-group > * {
+	margin-bottom: 5px;
+}
+
+#host {
+	background: #E2CA7D;
+}
+
+#host:before {
+	content: "";
+	background: #9BD0E2;
+	display: block;
+	height: 200px;
+	margin-bottom: -200px;
+}
+
+input {
+	padding: 10px 20px;
+	line-height: 20px;
+	vertical-align: middle;
+	outline: none;
+	font-size: 14px;
+	border: 1px solid #CCC;
+}
+button {
+	padding: 10px 20px;
+	font-size: 14px;
+	line-height: 20px;
+	vertical-align: middle;
+	color: white;
+	text-transform: uppercase;
+	background: #008DD4;
+	border: none;
+	cursor: pointer;
+}
+.sky {
+	background: #9BD0E2;
+	margin: -48px 0px 20px;
+	padding-top: 50px;
+}
+.ground {
+	background: #E2CA7D;
+	height: 100px;
+	margin: -50px 0px 0px;
+}

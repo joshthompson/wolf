@@ -14,7 +14,7 @@ class Player {
 		this.socket = null
 
 		// Generic object
-		data = typeof data === 'string' ? {name} : (typeof data === 'object' ? data : {})
+		data = typeof data === 'string' ? {name: data} : (typeof data === 'object' ? data : {})
 		// Set ID
 		if (typeof data.id === 'number') this.id = data.id
 		// Set Name
