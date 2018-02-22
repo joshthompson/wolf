@@ -18,15 +18,10 @@ let WolfGameController = {
 	token: null,
 	game: null,
 	mode: null, // 'host' | 'player'
+	player: null,
 
 	init: () => {
 		WolfGameController.setupSocket()
-		WolfGameController.setupDOMListeners()
-	},
-
-	setupDOMListeners: () => {
-		// document.getElementById('create-btn').onclick = WolfGameController.host.createGame
-		// document.getElementById('join-btn').onclick = WolfGameController.client.joinGame
 	},
 
 	setupSocket: () => {
@@ -54,6 +49,7 @@ let WolfGameController = {
 		gameJoined: data => {
 			WolfGameController.game = data.game
 			WolfGameController.mode = 'player'
+			WolfGameController.player = data.player
 			console.log('game joined', data.game)
 		},
 		gameJoinFail: error => console.log(error)

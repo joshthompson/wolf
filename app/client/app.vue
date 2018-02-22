@@ -2,7 +2,7 @@
 	import Init from './components/init/Init.vue';
 	import Host from './components/host/Host.vue';
 	import Play from './components/play/Play.vue';
-
+	
 	export default {
 		name: 'app',
 		props: ['game'],

@@ -10,7 +10,7 @@ body {
 
 .view {
 	width: 100vw;
-	height: 100vw;
+	height: 100vh;
 }
 
 .view > h1 {
@@ -19,6 +19,14 @@ body {
 	text-align: center;
 	background: black;
 	color: white;
+}
+
+input[placeholder="game-code"] {
+	text-transform: uppercase;
+}
+
+h1, h2 {
+	text-transform: uppercase;
 }
 
 .form-view {
@@ -67,6 +75,7 @@ input {
 	font-size: 14px;
 	border: 1px solid #CCC;
 }
+
 button {
 	padding: 10px 20px;
 	font-size: 14px;
@@ -78,13 +87,45 @@ button {
 	border: none;
 	cursor: pointer;
 }
+
 .sky {
 	background: #9BD0E2;
 	margin: -48px 0px 20px;
 	padding-top: 50px;
 }
+
 .ground {
 	background: #E2CA7D;
 	height: 100px;
 	margin: -50px 0px 0px;
 }
+
+.avatar {
+	display: inline-block;
+	padding: 20px;
+}
+
+.avatar .head {
+	width: 100px;
+	display: block;
+	margin: 0px auto;
+	position: relative;
+	z-index: 2;
+	transition: transform 0.5s linear;
+	text-transform: uppercase;
+}
+
+.avatar .head.left { transform: rotate(-5deg); }
+.avatar .head.right { transform: rotate(5deg); }
+
+.avatar .body {
+	width: 50px;
+	display: block;
+	margin: -30px auto 0px;
+	position: relative;
+	z-index: 1;
+}
+
+
+
+

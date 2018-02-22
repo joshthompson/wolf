@@ -2,9 +2,13 @@
 	export default {
 		name: 'init',
 		props: {
-			'game': Object,
-			'name': String,
-			'code': String
+			game: Object
+		},
+		data() {
+			return {
+				name: '',
+				code: ''
+			}
 		},
 		methods: {
 			createGame() {
@@ -26,7 +30,7 @@
 			</div>
 			<div class="form-group">
 				<input v-model="name" placeholder="player-name" />
-				<input v-model="code" placeholder="game-code" />
+				<input v-model="code" placeholder="game-code" autocomplete="off" autocorrect="off" spellcheck="false" />
 				<button @click="joinGame()">Join</button>
 			</div>
 		</div>
