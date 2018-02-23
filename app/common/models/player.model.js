@@ -46,6 +46,11 @@ class Player {
 		this.socket.emit('updateGame', this.game.toPublicJSON())
 	}
 
+	setName(name) {
+		this.name = name
+		this.update()
+	}
+
 	setAvatar(avatar) {
 		this.avatar = avatar
 		this.update()

@@ -22,10 +22,6 @@ body {
 	color: white;
 }
 
-input[placeholder="game-code"] {
-	text-transform: uppercase;
-}
-
 h1, h2, h3 {
 	text-transform: uppercase;
 }
@@ -90,14 +86,18 @@ button {
 	vertical-align: middle;
 	color: white;
 	text-transform: uppercase;
-	background: #008DD4;
+	background-color: rgba(0, 0, 0, 0.45);
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 	border: none;
 	cursor: pointer;
 }
+button:hover { background: rgba(0, 0, 0, 0.65); }
 
-button.green {
-	background-color: #7EB74A;
-}
+button.blue { background-color: #008DD4; }
+button.blue:hover { background-color: #0277B2; }
+
+button.green { background-color: #7EB74A; }
+button.green:hover { background-color: #628F39; }
 
 .sky {
 	background: #9BD0E2;

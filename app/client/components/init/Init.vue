@@ -38,7 +38,7 @@
 					<label>Name</label>
 					<input v-model="name" />
 				</div>
-				<button @click="joinGame()">Join</button>
+				<button @click="joinGame()" class="blue">Join</button>
 			</div>
 		</div>
 	</div>

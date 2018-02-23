@@ -54,7 +54,8 @@ let WolfGameController = {
 			WolfGameController.mode = 'player'
 			WolfGameController.player = data.player
 		},
-		// Select Avatar
+		// Change User
+		changeName: name => WolfGameController.socket.emit('changeName', name),
 		selectAvatar: avatar => WolfGameController.socket.emit('selectAvatar', avatar)
 	},
 

@@ -37,6 +37,10 @@ io.on('connection', (socket) => {
 			return socket.emit('gameError', {message: 'Couldn\'t find game'})
 		}
 
+		if (data.player.length < 2) {
+			return socket.emit('gameError', {message: 'Name can\'t be at least 2 characters'})
+		}
+
 		if (data.player.length > 20) {
 			return socket.emit('gameError', {message: 'Name can\'t be longer than 20 characters'})
 		}
@@ -53,6 +57,24 @@ io.on('connection', (socket) => {
 		})
 		game.addPlayer(player)
 		socket.emit('gameJoined', {game: game.toPublicJSON(), player: player.toPrivateJSON()})
+	})
+
+	socket.on('changeName', name => {
+		if (!game) {
+			return socket.emit('gameError', {message: 'Couldn\'t find game'})
+		}
+		if (!player) {
+			return socket.emit('gameError', {message: 'Couldn\'t find player'})
+		}
+		if (name.length < 2) {
+			return socket.emit('gameError', {message: 'Name can\'t be at least 2 characters'})
+		}
+
+		if (name.length > 20) {
+			return socket.emit('gameError', {message: 'Name can\'t be longer than 20 characters'})
+		}
+		player.setName(name)
+		game.update()
 	})
 
 	socket.on('selectAvatar', avatar => {

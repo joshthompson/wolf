@@ -1,13 +1,12 @@
 <script>
-	import Sprite from '../common/Sprite.vue';
 	export default {
 		name: 'SelectAvatar',
 		props: ['game'],
-		components: { Sprite },
 		methods: {
 			select(avatar) {
 				if (this.selectable(avatar)) {
 					this.game.client.selectAvatar(avatar)
+					this.$emit('set')
 				}
 			},
 			selectable(avatar) {
