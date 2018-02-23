@@ -26,13 +26,34 @@
 		<h1>Wolf</h1>
 		<div class="form-view">
 			<div class="form-group">
-				<button @click="createGame()">Create New Game</button>
+				<button @click="createGame()" class="green">Create New Game</button>
 			</div>
 			<div class="form-group">
-				<input v-model="name" placeholder="player-name" />
-				<input v-model="code" placeholder="game-code" autocomplete="off" autocorrect="off" spellcheck="false" />
+				<h3>Or Join A  Game</h3>
+				<div class="input">
+					<label>Room Code</label>
+					<input v-model="code" autocomplete="off" autocorrect="off" spellcheck="false" />
+				</div>
+				<div class="input">
+					<label>Name</label>
+					<input v-model="name" />
+				</div>
 				<button @click="joinGame()">Join</button>
 			</div>
 		</div>
 	</div>
 </template>
+
+<style lang="scss" scoped>
+	.input {
+		padding: 0px 0px 10px;
+		label {
+			margin-top: 20px;
+		}
+		label, input {
+			display: block;
+			width: 100%;
+			text-transform: uppercase;
+		}
+	}
+</style>

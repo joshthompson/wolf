@@ -15,8 +15,8 @@ class WolfGame {
 		this.created = new Date()
 		this.code = new GameCode()
 		this.players = []
-		this.status = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
-		this.subStatus = null
+		this.state = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
+		this.subState = null
 		this.accusations = []
 		this.votes = []
 		this.token = null
@@ -44,10 +44,10 @@ class WolfGame {
 				else this.players.push(new Player(player))
 			})
 		}
-		// Set Status
-		if (typeof data.status === 'string') this.status = data.status
-		// Set Sub Status
-		if (typeof data.subStatus === 'string') this.subStatus = data.subStatus
+		// Set State
+		if (typeof data.state === 'string') this.state = data.state
+		// Set Sub State
+		if (typeof data.subState === 'string') this.subState = data.subState
 		// Set Accusations
 		if (data.accusations instanceof Array) {
 			data.accusations.forEach((accusation) => {
@@ -77,7 +77,7 @@ class WolfGame {
 	}
 
 	update() {
-		this.host.emit('updateGame', {game: this})
+		this.host.emit('updateGame', this)
 		this.players.forEach(player => player.updateGame())
 	}
 
@@ -95,8 +95,8 @@ class WolfGame {
 			created: this.created,
 			code: this.code,
 			players: this.players.map(player => player.toJSON()),
-			status: this.status,
-			subStatus: this.subStatus,
+			state: this.state,
+			subState: this.subState,
 			accusations: this.accusations,
 			votes: this.votes,
 			token: this.token,

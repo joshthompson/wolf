@@ -6,9 +6,10 @@ class Player {
 		// Player Data
 		this.id
 		this.name
-		this.avatar
+		this.avatar = 'none'
 		this.character = 'VILLAGER' // 'VILLAGER' | 'WEREWOLF'
 		this.alive = true
+		this.state
 		this.token = null
 		this.game = null
 		this.socket = null
@@ -25,6 +26,8 @@ class Player {
 		if (typeof data.character === 'string') this.character = data.character
 		// Set Alive
 		if (typeof data.alive === 'boolean') this.alive = data.alive
+		// Set State
+		if (typeof data.state === 'string') this.state = data.state
 		// Set Character
 		if (typeof data.token === 'string') this.token = data.token
 		else this.token = this.createToken()
@@ -38,8 +41,22 @@ class Player {
 		return sha512(`wolf-game-${new Date()}-${Math.random()}`)
 	}
 
+	update() {
+		this.socket.emit('updatePlayer', this)
+	}
+
 	updateGame() {
-		this.socket.emit('updateGame', {game: this.game})
+		this.socket.emit('updateGame', this.game)
+	}
+
+	setAvatar(avatar) {
+		this.avatar = avatar
+		this.update()
+	}
+
+	setState(state) {
+		this.state = state
+		this.update()
 	}
 
 	toJSON() {
@@ -49,6 +66,7 @@ class Player {
 			avatar: this.avatar,
 			character: this.character,
 			alive: this.alive,
+			state: this.state,
 			token: this.token
 		}
 	}

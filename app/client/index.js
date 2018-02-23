@@ -41,25 +41,26 @@ let WolfGameController = {
 			WolfGameController.game = data.game
 			WolfGameController.mode = 'host'
 		},
-		gameCreateFail: error => console.error(error)
+		error: error => console.error(error)
 	},
 
 	client: {
+		// Generic
+		updatePlayer: player => WolfGameController.player = player,
+		// Join Game
 		joinGame: (code, name) => WolfGameController.socket.emit('joinGame', {game: code, player: name}),
 		gameJoined: data => {
 			WolfGameController.game = data.game
 			WolfGameController.mode = 'player'
 			WolfGameController.player = data.player
-			console.log('game joined', data.game)
 		},
-		gameJoinFail: error => console.log(error)
+		// Select Avatar
+		selectAvatar: avatar => WolfGameController.socket.emit('selectAvatar', avatar)
 	},
 
 	common: {
-		updateGame: data => {
-			WolfGameController.game = data.game
-			console.log('game updated', data.game)
-		}
+		updateGame: game => WolfGameController.game = game,
+		gameError: error => console.log(error)
 	}
 
 }
