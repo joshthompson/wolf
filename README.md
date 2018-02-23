@@ -10,7 +10,9 @@ The project is in early stages so currently is not playable but once it is I wil
 
 ## Install
 
-Make sure you have node and npm installed
+Make sure you have node and npm and nvm installed.
+
+We set the node version to 6.12.0 using nvm because it is compatible with `node-sass`
 
 Run `npm install`
 
