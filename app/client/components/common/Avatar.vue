@@ -25,7 +25,7 @@
 		<!-- <img class="head" src="/imgs/wolf.png" v-bind:class="{ right: headPos === 'right', left: headPos === 'left' }"/>
 		<img class="body" src="/imgs/body.png" /> -->
 		<img :src="`/imgs/avatars/${player.avatar}.png`" />
-		<h2>{{ player.name }}</h2>
+		<p>{{ player.name }}</p>
 	</div>
 </template>
 
@@ -33,6 +33,9 @@
 	.avatar {
 		display: inline-block;
 		padding: 20px;
+		font-size: small;
+		text-transform: uppercase;
+		
 		.head {
 			width: 100px;
 			display: block;

@@ -60,7 +60,10 @@ let WolfGameController = {
 
 	common: {
 		updateGame: game => WolfGameController.game = game,
-		gameError: error => console.log(error)
+		gameError: error => {
+			console.log(error)
+			alert(error.message)
+		}
 	}
 
 }

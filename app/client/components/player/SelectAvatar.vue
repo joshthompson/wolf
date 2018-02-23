@@ -6,7 +6,12 @@
 		components: { Sprite },
 		methods: {
 			select(avatar) {
-				this.game.client.selectAvatar(avatar)
+				if (this.selectable(avatar)) {
+					this.game.client.selectAvatar(avatar)
+				}
+			},
+			selectable(avatar) {
+				return !this.game.game.players.filter(player => player.avatar === avatar).length
 			}
 		}
 	}
@@ -16,7 +21,7 @@
 	<div id="SelectAvatar" class="view">
 		<h1>Select Avatar</h1>
 		<div class="avatars">
-			<div class="avatar" v-for="avatar in 20" @click="select(avatar)">
+			<div class="avatar" v-for="avatar in 20" @click="select(avatar)" :class="{ taken: !selectable(avatar)}">
 				<img :src="`/imgs/avatars/${avatar}.png`" />
 			</div>
 		</div>
@@ -34,8 +39,14 @@
 			width: 80px;
 			height: 100px;
 			margin: auto;
-			:hover {
+			cursor: pointer;
+			&:not(.taken):hover {
 				outline: 2px solid black;
+			}
+			&.taken {
+				opacity: 0.5;
+				cursor: not-allowed;
+				pointer-events: none;
 			}
 		}
 	}

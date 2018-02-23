@@ -15,6 +15,7 @@ class WolfGame {
 		this.created = new Date()
 		this.code = new GameCode()
 		this.players = []
+		this.minPlayers = 2
 		this.state = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
 		this.subState = null
 		this.accusations = []
@@ -77,7 +78,7 @@ class WolfGame {
 	}
 
 	update() {
-		this.host.emit('updateGame', this)
+		this.host.emit('updateGame', this.toPrivateJSON())
 		this.players.forEach(player => player.updateGame())
 	}
 
@@ -90,17 +91,34 @@ class WolfGame {
 		this.update()
 	}
 
-	toJSON() {
+	findPlayerByName(name) {
+		let filtered = this.players.filter(player => player.name === name)
+		return filtered ? filtered[0] : null
+	}
+
+	toPublicJSON() {
 		return {
 			created: this.created,
 			code: this.code,
-			players: this.players.map(player => player.toJSON()),
+			players: this.players.map(player => player.toPublicJSON()),
+			minPlayers: this.minPlayers,
+			state: this.state,
+			subState: this.subState,
+			accusations: this.accusations
+		}
+	}
+
+	toPrivateJSON() {
+		return {
+			created: this.created,
+			code: this.code,
+			players: this.players.map(player => player.toPublicJSON()),
+			minPlayers: this.minPlayers,
 			state: this.state,
 			subState: this.subState,
 			accusations: this.accusations,
 			votes: this.votes,
-			token: this.token,
-			history: this.history
+			token: this.token
 		}
 	}
 

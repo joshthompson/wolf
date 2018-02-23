@@ -26,42 +26,48 @@ io.on('connection', (socket) => {
 			state: 'SETUP'
 		})
 		games[game.code] = game
-		socket.emit('gameCreated', {game: game.toJSON()})
+		socket.emit('gameCreated', {game: game.toPrivateJSON()})
 		console.log(`game created: ${game.code}`)
 	})
 
 	socket.on('joinGame', data => {
 		game = games[data.game.toUpperCase()]
-		if (game) {
-			player = new Player({
-				name: data.player,
-				game: game,
-				state: 'SELECT_AVATAR',
-				socket: socket
-			})
-			console.log(player.toJSON())
-			game.addPlayer(player)
-			socket.emit('gameJoined', {game: game, player: player.toJSON()})
-			console.log('game join: success')
-		} else {
-			socket.emit('gameError', {message: 'Couldn\'t find game'})
-			console.log('game join: fail')
+		
+		if (!game) {
+			return socket.emit('gameError', {message: 'Couldn\'t find game'})
 		}
+
+		if (data.player.length > 20) {
+			return socket.emit('gameError', {message: 'Name can\'t be longer than 20 characters'})
+		}
+
+		if (game.findPlayerByName(data.player)) {
+			return socket.emit('gameError', {message: 'Choose a different name'})
+		}
+
+		player = new Player({
+			name: data.player,
+			game: game,
+			state: 'SELECT_AVATAR',
+			socket: socket
+		})
+		game.addPlayer(player)
+		socket.emit('gameJoined', {game: game.toPublicJSON(), player: player.toPrivateJSON()})
 	})
 
 	socket.on('selectAvatar', avatar => {
 		if (!game) {
-			socket.emit('gameError', {message: 'Couldn\'t find game'})
-			return
+			return socket.emit('gameError', {message: 'Couldn\'t find game'})
 		}
-		if (player) {
-			player.setAvatar(avatar)
-			player.setState('WAITING')
-			game.update()
-		} else {
-			socket.emit('gameError', {message: 'Couldn\'t find player'})
-			return
+		if (!player) {
+			return socket.emit('gameError', {message: 'Couldn\'t find player'})
 		}
+		if (game.players.filter(player => player.avatar === avatar).length) {
+			return socket.emit('gameError', {message: 'Please select a different avatar'})
+		}
+		player.setAvatar(avatar)
+		player.setState('READY')
+		game.update()
 	})
 
 })
@@ -85,6 +91,6 @@ Yb, \`88     88     d8'             IP'\`Yb IP'\`Y
     github.com/joshthompson/wolf          I8   8I
                                           I8, ,8'
     listening on *:3000                    "Y8P'
-	`)
+`)
 })
 app.use(express.static('public'))

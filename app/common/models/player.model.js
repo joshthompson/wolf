@@ -4,7 +4,6 @@ var sha512 = require('js-sha512').sha512
 class Player {
 	constructor(data) {
 		// Player Data
-		this.id
 		this.name
 		this.avatar = 'none'
 		this.character = 'VILLAGER' // 'VILLAGER' | 'WEREWOLF'
@@ -16,8 +15,6 @@ class Player {
 
 		// Generic object
 		data = typeof data === 'string' ? {name: data} : (typeof data === 'object' ? data : {})
-		// Set ID
-		if (typeof data.id === 'number') this.id = data.id
 		// Set Name
 		if (typeof data.name === 'string') this.name = data.name
 		// Set Avatar
@@ -42,11 +39,11 @@ class Player {
 	}
 
 	update() {
-		this.socket.emit('updatePlayer', this)
+		this.socket.emit('updatePlayer', this.toPrivateJSON())
 	}
 
 	updateGame() {
-		this.socket.emit('updateGame', this.game)
+		this.socket.emit('updateGame', this.game.toPublicJSON())
 	}
 
 	setAvatar(avatar) {
@@ -59,15 +56,23 @@ class Player {
 		this.update()
 	}
 
-	toJSON() {
+	toPrivateJSON() {
 		return {
-			id: this.id,
 			name: this.name,
 			avatar: this.avatar,
 			character: this.character,
 			alive: this.alive,
 			state: this.state,
 			token: this.token
+		}
+	}
+
+	toPublicJSON() {
+		return {
+			name: this.name,
+			avatar: this.avatar,
+			alive: this.alive,
+			state: this.state
 		}
 	}
 }
