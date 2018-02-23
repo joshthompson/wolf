@@ -11,15 +11,14 @@ body {
 .view {
 	width: 100vw;
 	height: 100vh;
-}
-
-.view > h1 {
-	font-size: 28px;
-	margin: 0px;
-	padding: 15px 10px 10px;
-	text-align: center;
-	background: black;
-	color: white;
+	& > h1 {
+		font-size: 28px;
+		margin: 0px;
+		padding: 15px 10px 10px;
+		text-align: center;
+		background: black;
+		color: white;
+	}
 }
 
 h1, h2, h3 {
@@ -45,26 +44,14 @@ h3 {
 	max-width: 450px;
 	width: 100%;
 	margin: 0px auto;
-}
-.form-group:nth-child(1) {
-	margin-top: 0px;
-	padding-top: 0px;
-	border-top: none;
-}
-.form-group > * {
-	margin-bottom: 5px;
-}
-
-#host {
-	background: #E2CA7D;
-}
-
-#host:before {
-	content: "";
-	background: #9BD0E2;
-	display: block;
-	height: 200px;
-	margin-bottom: -200px;
+	&:nth-child(1) {
+		margin-top: 0px;
+		padding-top: 0px;
+		border-top: none;
+	}
+	& > * {
+		margin-bottom: 5px;
+	}
 }
 
 input {
@@ -79,7 +66,7 @@ input {
     font-size: 24px;
 }
 
-button {
+.btn {
 	padding: 20px 30px;
 	font-size: 24px;
 	line-height: 20px;
@@ -90,24 +77,13 @@ button {
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 	border: none;
 	cursor: pointer;
-}
-button:hover { background: rgba(0, 0, 0, 0.65); }
-
-button.blue { background-color: #008DD4; }
-button.blue:hover { background-color: #0277B2; }
-
-button.green { background-color: #7EB74A; }
-button.green:hover { background-color: #628F39; }
-
-.sky {
-	background: #9BD0E2;
-	margin: -48px 0px 20px;
-	padding-top: 50px;
-}
-
-.ground {
-	background: #E2CA7D;
-	height: 100px;
-	margin: -50px 0px 0px;
+    border-radius: 0px;
+    appearance: none;
+    
+	&:hover { background: rgba(0, 0, 0, 0.65); }
+	&.blue { background-color: #008DD4; }
+	&.blue:hover { background-color: #0277B2; }
+	&.green { background-color: #7EB74A; }
+	&.green:hover { background-color: #628F39; }
 }
 

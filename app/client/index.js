@@ -1,16 +1,10 @@
 import { WolfGame } from '../common/models/wolf-game.model'
-// import { Player } from '../common/models/player.model'
-// import { GameCode } from '../common/models/game-code.model'
-// import { EventEmitter } from 'events'
-
+import io from 'socket.io-client'
 import Vue from 'vue'
 import App from './app.vue'
 
-var request = require('then-request')
-var Cookie = require('js-cookie')
-
-// Sockets :D
-// socket.open()
+import request from 'then-request'
+import Cookie from 'js-cookie'
 
 let WolfGameController = {
 

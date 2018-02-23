@@ -34,8 +34,8 @@
 			<p>Waiting for game to start</p>
 			<div class="form-view">
 				<div class="form-group">
-					<button @click="changeName()" class="blue">Change Name</button>
-					<button @click="changeAvatar()" class="blue">Change Avatar</button>
+					<button @click="changeName()" class="btn blue">Change Name</button>
+					<button @click="changeAvatar()" class="btn blue">Change Avatar</button>
 				</div>
 			</div>
 		</div>

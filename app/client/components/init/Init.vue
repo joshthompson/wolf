@@ -26,9 +26,9 @@
 		<h1>Wolf</h1>
 		<div class="form-view">
 			<div class="form-group">
-				<button @click="createGame()" class="green">Create New Game</button>
+				<button @click="createGame()" class="btn green">Create New Game</button>
 			</div>
-			<div class="form-group">
+			<form class="form-group" @submit="joinGame()" @submit.prevent>
 				<h3>Or Join A  Game</h3>
 				<div class="input">
 					<label>Room Code</label>
@@ -38,8 +38,8 @@
 					<label>Name</label>
 					<input v-model="name" />
 				</div>
-				<button @click="joinGame()" class="blue">Join</button>
-			</div>
+				<input type="submit" class="btn blue" value="Join" />
+			</form>
 		</div>
 	</div>
 </template>

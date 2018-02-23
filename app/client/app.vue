@@ -2,12 +2,11 @@
 	import Init from './components/init/Init.vue';
 	import Host from './components/host/Host.vue';
 	import Player from './components/player/Player.vue';
-	
 	export default {
 		name: 'app',
 		props: ['game'],
 		components: { Init, Host, Player }
-	};
+	}
 </script>
 
 <template>
@@ -17,3 +16,7 @@
 		<player :game="game" v-if="game.mode === 'player'"></player>
 	</div>
 </template>
+
+<style lang="scss">
+	@import 'style.scss';
+</style>

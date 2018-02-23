@@ -20,10 +20,10 @@
 	<div id="ChangeName" class="view">
 		<h1>Change Name</h1>
 		<div class="form-view">
-			<div class="form-group">
+			<form class="form-group"  @submit="change(name)" @submit.prevent>
 				<input v-model="name" />
-				<button @click="change(name)">Done</button>
-			</div>
+				<input type="submit" class="btn" value="Done" />
+			</form>
 		</div>
 	</div>
 </template>

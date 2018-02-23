@@ -15,7 +15,6 @@
 <template>
 	<div id="host" class="view">
 		<h1>Join Game: {{ game.game.code }}</h1>
-
 		<div class="forest">
 			<div class="trees">🌲🌲🌲🌲🌲🌲🌲</div>
 			<div class="trees">🌲🌲🌲🌲🌲🌲🌲🌲</div>
@@ -23,20 +22,22 @@
 		<div class="players">
 			<avatar v-for="player in game.game.players" :player="player"></avatar>
 		</div>
-
 		<p v-if="readyPlayers < game.game.minPlayers">You need at least {{ game.game.minPlayers }} players to join</p>
-		<button v-if="readyPlayers >= game.game.minPlayers">Start Game</button>
-		
-		<!-- <div class="sky">
-			<h1 style="font-size: 72px;">🐺</h1>
-			<h1 style="font-size: 82px; margin: -145px 0px 0px 0px;">🌙</h1>
-			<div class="ground"></div>
-		</div> -->
-
+		<button v-if="readyPlayers >= game.game.minPlayers" class="btn">Start Game</button>
 	</div>
 </template>
 
 <style lang="scss" scoped>
+	#host {
+		background: #E2CA7D;
+		&:before {
+			content: "";
+			background: #9BD0E2;
+			display: block;
+			height: 200px;
+			margin-bottom: -200px;
+		}
+	}
 	.forest {
 		margin-top: 80px;
 		.trees {
