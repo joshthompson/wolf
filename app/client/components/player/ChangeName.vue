@@ -22,7 +22,7 @@
 		<div class="form-view">
 			<form class="form-group"  @submit="change(name)" @submit.prevent>
 				<input v-model="name" />
-				<input type="submit" class="btn" value="Done" />
+				<input type="submit" class="btn blue" value="Done" />
 			</form>
 		</div>
 	</div>

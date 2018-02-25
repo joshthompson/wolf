@@ -9,13 +9,33 @@ import Cookie from 'js-cookie'
 let WolfGameController = {
 
 	socket: null,
-	token: null,
 	game: null,
 	mode: null, // 'host' | 'player'
 	player: null,
 
 	init: () => {
 		WolfGameController.setupSocket()
+		WolfGameController.recoverActiveGame()
+	},
+
+	recoverActiveGame: () => {
+		let gameData = Cookie.getJSON('game_data')
+		if (gameData) {
+			WolfGameController.socket.emit('recoverGame', gameData)
+		}
+	},
+
+	storeActiveGame: game => {
+		if (WolfGameController.game) {
+			Cookie.set('game_data', {
+				code: WolfGameController.game.code,
+				token: WolfGameController.player ? WolfGameController.player.token : WolfGameController.game.token
+			})
+		}
+	},
+
+	removeActiveGame: () => {
+		Cookie.remove('game_data')
 	},
 
 	setupSocket: () => {
@@ -34,7 +54,9 @@ let WolfGameController = {
 		gameCreated: data => {
 			WolfGameController.game = data.game
 			WolfGameController.mode = 'host'
+			WolfGameController.storeActiveGame()
 		},
+		startGame: () => WolfGameController.socket.emit('startGame'),
 		error: error => console.error(error)
 	},
 
@@ -47,6 +69,7 @@ let WolfGameController = {
 			WolfGameController.game = data.game
 			WolfGameController.mode = 'player'
 			WolfGameController.player = data.player
+			WolfGameController.storeActiveGame()
 		},
 		// Change User
 		changeName: name => WolfGameController.socket.emit('changeName', name),
@@ -55,61 +78,36 @@ let WolfGameController = {
 
 	common: {
 		updateGame: game => WolfGameController.game = game,
+		recoverGame: data => {
+			WolfGameController.mode = data.player ? 'player' : 'host'
+			WolfGameController.game = data.game
+			WolfGameController.player = data.player ? data.player : null
+		},
 		gameError: error => {
 			console.log(error)
-			alert(error.message)
+			WolfGameController.message(error.message)
+		},
+		gameEnded: () => {
+			if (WolfGameController.player) {
+				WolfGameController.message('Game has ended')
+			}
+			WolfGameController.removeActiveGame()
+			WolfGameController.mode = null
+			WolfGameController.game = null
+			WolfGameController.player = null
 		}
-	}
+	},
+	message: message => alert(message),
+	endGame: () => WolfGameController.socket.emit('endGame')
 
 }
 
 WolfGameController.init()
 
+// Init Vue App
 window.app = new Vue({
 	el: '#app',
 	data: { game: WolfGameController },
 	template: '<app :game="game" />',
 	components: { App }
 })
-
-// // Game object
-// let game
-
-// // Updates - TODO: Upgrade to data sockets
-// let fetchUpdates = (timeout) => {
-// 	if (game) {
-// 		timeout = timeout ? timeout : 10000
-// 		request('GET', `/api/game/${game.getId()}`).getBody('utf8').then(JSON.parse).done((g) => {
-// 			game = new WolfGame(g)
-// 			console.log('UPDATED', g)
-// 			setTimeout(fetchUpdates, timeout, timeout)
-// 		})
-// 	}
-// }
-
-// // Setup
-// let setupGame = () => {
-
-// 	// Is game in cookie... if so load (allows for refreshing)
-// 	let load = Cookie.getJSON('game')
-// 	if (load) {
-// 		game = new WolfGame(Cookie.getJSON('game'))
-// 		game.event.on('update', () => request('PUT', `/api/game/${game.getId()}`, {json: {game: game}}))
-// 		fetchUpdates()
-// 	}
-
-// 	// Join game
-// 	document.getElementById('join-btn').onclick = (event) => {
-// 		let player = new Player(document.getElementById('player-name').value)
-// 		let code = new GameCode(document.getElementById('game-code').value)
-// 		request('POST', `/api/game/${code}/join`, {json: {player: player}}).getBody('utf8').then(JSON.parse).done((g) => {
-// 			game = new WolfGame(g)
-// 			fetchUpdates()
-// 			console.log('JOINED', g)
-// 		})
-// 		Cookie.set('player', player)
-// 	}
-
-// }
-
-// setupGame()

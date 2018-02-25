@@ -30,6 +30,31 @@ io.on('connection', (socket) => {
 		console.log(`game created: ${game.code}`)
 	})
 
+	socket.on('recoverGame', data => {
+		game = games[data.code]
+		if (game) {
+			if (game.token === data.token) {
+				game.host = socket
+				return socket.emit('recoverGame', {game: game.toPrivateJSON()})
+			}
+			let players = game.players.filter(player => player.token === data.token)
+			if (players[0]) {
+				player = players[0]
+				player.socket = socket
+				return socket.emit('recoverGame', {game: game.toPublicJSON(), player: player.toPrivateJSON()})
+			}
+		}
+	})
+
+	socket.on('endGame', data => {
+		if (!game) {
+			return socket.emit('gameError', {message: 'Couldn\'t find game'})
+		}
+		game.end()
+		delete games[game.code]
+		delete game
+	})
+
 	socket.on('joinGame', data => {
 		game = games[data.game.toUpperCase()]
 		
@@ -57,6 +82,12 @@ io.on('connection', (socket) => {
 		})
 		game.addPlayer(player)
 		socket.emit('gameJoined', {game: game.toPublicJSON(), player: player.toPrivateJSON()})
+	})
+
+	socket.on('startGame', () => {
+		game.state = 'READY'
+		game.setupPlayerIdentities()
+		game.update()
 	})
 
 	socket.on('changeName', name => {

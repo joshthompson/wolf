@@ -30,6 +30,7 @@
 
 		<div v-if="state === 'NEUTRAL'" class="view">
 			<h1>{{ game.player.name }} </h1>
+			<h1>{{ game.player.character }} </h1>
 			<avatar :player="game.player"></avatar>
 			<p>Waiting for game to start</p>
 			<div class="form-view">

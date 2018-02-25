@@ -6,7 +6,7 @@ class Player {
 		// Player Data
 		this.name
 		this.avatar = 'none'
-		this.character = 'VILLAGER' // 'VILLAGER' | 'WEREWOLF'
+		this.character // 'VILLAGER' | 'WEREWOLF'
 		this.alive = true
 		this.state
 		this.token = null
@@ -54,6 +54,10 @@ class Player {
 	setAvatar(avatar) {
 		this.avatar = avatar
 		this.update()
+	}
+
+	setCharacter(character) {
+		this.character = character
 	}
 
 	setState(state) {

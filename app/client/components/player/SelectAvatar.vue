@@ -20,7 +20,7 @@
 	<div id="SelectAvatar" class="view">
 		<h1>Select Avatar</h1>
 		<div class="avatars">
-			<div class="avatar" v-for="avatar in 20" @click="select(avatar)" :class="{ taken: !selectable(avatar)}">
+			<div class="avatar" v-for="avatar in 21" @click="select(avatar)" :class="{ taken: !selectable(avatar)}">
 				<img :src="`/imgs/avatars/${avatar}.png`" />
 			</div>
 		</div>

@@ -96,6 +96,18 @@ class WolfGame {
 		return filtered ? filtered[0] : null
 	}
 
+	setupPlayerIdentities() {
+		let wolf = Math.floor(Math.random() * this.players.length)
+		this.players.forEach((player, index) => {
+			player.setCharacter(index === wolf ? 'WOLF' : 'VILLAGER')
+		})
+	}
+
+	end() {
+		this.host.emit('gameEnded')
+		this.players.forEach(player => player.socket.emit('gameEnded'))
+	}
+
 	toPublicJSON() {
 		return {
 			created: this.created,
@@ -121,26 +133,6 @@ class WolfGame {
 			token: this.token
 		}
 	}
-
-	// private init() {}
-	// private runDay() {}
-	// private runNight() {}
-	// private end() {}
-
-	// private listen() {
-	// 	// Listen for player_join
-	// 	// Listen for player_change
-	// 	// Listen for player_leave
-	// 	// Listen for player_action
-	// }
-
-	// private emitEvent() {
-	// 	// Emit game_state
-	// 	// Emit game_action
-	// }
-	// public setToken(token) {
-	// 	this.token = token
-	// }
 
 }
 

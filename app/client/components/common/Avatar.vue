@@ -35,7 +35,6 @@
 		padding: 20px;
 		font-size: small;
 		text-transform: uppercase;
-		
 		.head {
 			width: 100px;
 			display: block;
