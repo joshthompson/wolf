@@ -15,7 +15,7 @@ class WolfGame {
 		this.created = new Date()
 		this.code = new GameCode()
 		this.players = []
-		this.minPlayers = 2
+		this.minPlayers = 0//2 // testing ... should probably be 4
 		this.state = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
 		this.subState = null
 		this.accusations = []
