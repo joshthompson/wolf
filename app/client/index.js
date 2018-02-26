@@ -95,7 +95,8 @@ let WolfGameController = {
 			WolfGameController.mode = null
 			WolfGameController.game = null
 			WolfGameController.player = null
-		}
+		},
+		disconnect: () => WolfGameController.recoverActiveGame()
 	},
 	message: message => alert(message),
 	endGame: () => WolfGameController.socket.emit('endGame')

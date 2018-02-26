@@ -17,12 +17,21 @@ io.on('connection', (socket) => {
 	let player = null;
 
 	socket.on('disconnect', (reason) => {
-		console.log('a user disconnected')
+		if (game && !game.activeSockets()) {
+			setTimeout(() => {
+				if (!game.activeSockets()) {
+					// Remove inactive game
+					game.end()
+					delete games[game.code]
+					delete game
+				}
+			}, 3 * 1000)
+		}
 	})
 
 	socket.on('createGame', () => {
 		game = new WolfGame({
-			host: socket,
+			socket: socket,
 			state: 'SETUP'
 		})
 		games[game.code] = game
@@ -34,7 +43,7 @@ io.on('connection', (socket) => {
 		game = games[data.code]
 		if (game) {
 			if (game.token === data.token) {
-				game.host = socket
+				game.socket = socket
 				return socket.emit('recoverGame', {game: game.toPrivateJSON()})
 			}
 			let players = game.players.filter(player => player.token === data.token)
@@ -125,7 +134,7 @@ io.on('connection', (socket) => {
 
 })
 
-http.listen(3000, () => {
+http.listen(9653, () => {
 	console.log('\033c')
 	console.log(`
  ,ggg,      gg      ,gg
@@ -143,7 +152,7 @@ Yb, \`88     88     d8'             IP'\`Yb IP'\`Y
     Copyright 2018                        I8   8I
     github.com/joshthompson/wolf          I8   8I
                                           I8, ,8'
-    listening on *:3000                    "Y8P'
+    listening on *:9653                    "Y8P'
 `)
 })
 app.use(express.static('public'))

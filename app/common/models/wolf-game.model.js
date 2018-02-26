@@ -22,7 +22,7 @@ class WolfGame {
 		this.votes = []
 		this.token = null
 		this.history = []
-		this.host = null // Socket object
+		this.socket = null // Socket object
 		
 		// Class data
 		this.event = new EventEmitter()
@@ -73,12 +73,12 @@ class WolfGame {
 				else this.history.push(new Action(action))
 			})
 		}
-		// Set Host
-		if (data.host) this.host = data.host
+		// Set Socket
+		if (data.socket) this.socket = data.socket
 	}
 
 	update() {
-		this.host.emit('updateGame', this.toPrivateJSON())
+		this.socket.emit('updateGame', this.toPrivateJSON())
 		this.players.forEach(player => player.updateGame())
 	}
 
@@ -104,8 +104,14 @@ class WolfGame {
 	}
 
 	end() {
-		this.host.emit('gameEnded')
+		this.socket.emit('gameEnded')
 		this.players.forEach(player => player.socket.emit('gameEnded'))
+	}
+
+	activeSockets() {
+		let activeSockets = this.socket.connected ? 1 : 0
+		this.players.forEach(player => activeSockets += player.socket.connected ? 1 : 0)
+		return activeSockets
 	}
 
 	toPublicJSON() {

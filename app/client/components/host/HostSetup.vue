@@ -30,7 +30,6 @@
 	<div id="host-setup" class="view">
 		<h1>
 			<span>Join Game: {{ game.game.code }}</span>
-			<a @click="game.endGame()">X</a>
 		</h1>
 		<div class="forest">
 			<div class="trees">🌲🌲🌲🌲🌲🌲🌲</div>

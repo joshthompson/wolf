@@ -48,6 +48,14 @@
 - In the event of ties, their vote is the casting vote
 - Once dead they are a 'Ghost Mayor' and get a casting vote on ties
 - In the event of them being attacked during day their role is revealed and they are safe for that vote
+- Death triggers a by-election
+	- ????
+
+# Mayor (Alt)
+- Special event can trigger election
+	- Perhaps after X deaths
+	- After X days
+-
 
 # The Martyr
 - Can choose to protect a player at night (or players if harlot is with player)
