@@ -71,9 +71,9 @@ input {
 }
 
 .btn {
-	padding: 20px 30px;
+	padding: 10px 30px;
 	font-size: 24px;
-	line-height: 20px;
+	line-height: 30px;
 	vertical-align: middle;
 	color: white;
 	text-transform: uppercase;
@@ -82,7 +82,7 @@ input {
 	border: none;
 	cursor: pointer;
     border-radius: 0px;
-    appearance: none;
+    -webkit-appearance: none;
     
 	&:hover { background: rgba(0, 0, 0, 0.65); }
 	&.blue { background-color: #008DD4; }
