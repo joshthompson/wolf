@@ -1,4 +1,3 @@
-import { WolfGame } from '../common/models/wolf-game.model'
 import io from 'socket.io-client'
 import Vue from 'vue'
 import App from './app.vue'
