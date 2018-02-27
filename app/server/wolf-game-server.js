@@ -1,5 +1,5 @@
-var WolfGame = require('../common/models/wolf-game.model')
-var Player = require('../common/models/player.model')
+var WolfGame = require('./models/wolf-game.model')
+var Player = require('./models/player.model')
 
 class WolfGameSever {
 
@@ -70,10 +70,10 @@ class WolfGameSever {
 	}
 
 	endGame(data) {
-		if (!game) {
+		if (!this.game) {
 			return this.socket.emit('gameError', {message: 'Couldn\'t find game'})
 		}
-		game.end()
+		this.game.end()
 		delete this.games[this.game.code]
 		delete this //this.game
 	}
