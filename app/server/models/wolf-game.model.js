@@ -1,31 +1,29 @@
+var Game = require('./game.model')
 var GameCode = require('./game-code.model')
 var Player = require('./player.model')
 var Accusation = require('./accusation.model')
 var Vote = require('./vote.model')
 var Action = require('./action.model')
-
-var EventEmitter = require('events')
 var sha512 = require('js-sha512').sha512
 
-class WolfGame {
+class WolfGame extends Game {
 
 	constructor(data) {
+		super()
 
 		// Game data
 		this.created = new Date()
 		this.code = new GameCode()
 		this.players = []
-		this.minPlayers = 0//2 // testing ... should probably be 4
+		this.minPlayers = 1//2 // testing ... should probably be 4
 		this.state = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
+		this.day = 0 // First night (before game starts) is Night 0. Then Day X / Night X use this value
 		this.subState = null
 		this.accusations = []
 		this.votes = []
 		this.token = null
 		this.history = []
 		this.socket = null // Socket object
-		
-		// Class data
-		this.event = new EventEmitter()
 
 		// Base data object
 		data = typeof data === 'object' ? data : {}
@@ -106,6 +104,11 @@ class WolfGame {
 	end() {
 		this.socket.emit('gameEnded')
 		this.players.forEach(player => player.socket.emit('gameEnded'))
+	}
+
+	setState(state) {
+		this.state = state
+		this.players.forEach(player => player.setState(null))
 	}
 
 	activeSockets() {

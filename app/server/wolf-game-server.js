@@ -1,7 +1,7 @@
 var WolfGame = require('./models/wolf-game.model')
 var Player = require('./models/player.model')
 
-class WolfGameSever {
+class WolfGameServer {
 
 	constructor(socket, games) {
 		this.socket = socket
@@ -108,8 +108,16 @@ class WolfGameSever {
 	}
 
 	startGame() {
-		this.game.state = 'READY'
+		this.game.setState('INTRO')
 		this.game.setupPlayerIdentities()
+		this.game.update()
+	}
+
+	playerReady() {
+		this.player.setState('READY')
+		if (this.game.checkPlayersState('READY')) {
+			this.game.setState('NIGHT')
+		}
 		this.game.update()
 	}
 
@@ -148,4 +156,4 @@ class WolfGameSever {
 
 }
 
-module.exports = WolfGameSever
+module.exports = WolfGameServer

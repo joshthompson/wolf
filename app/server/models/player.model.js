@@ -4,12 +4,13 @@ var sha512 = require('js-sha512').sha512
 class Player {
 	constructor(data) {
 		// Player Data
-		this.name
-		this.avatar = 'none'
-		this.character // 'VILLAGER' | 'WEREWOLF'
+		this.name = null
+		this.avatar = null
+		this.character = null
 		this.alive = true
-		this.state
+		this.state = null
 		this.token = null
+		this.data = {}
 		this.game = null
 		this.socket = null
 
@@ -28,6 +29,8 @@ class Player {
 		// Set Character
 		if (typeof data.token === 'string') this.token = data.token
 		else this.token = this.createToken()
+		// Set Data
+		if (typeof data.data === 'object') this.data = data.data
 		// Set Game
 		if (data.game /* instanceof WolfGame */) this.game = data.game
 		// Set Socket
@@ -53,7 +56,6 @@ class Player {
 
 	setAvatar(avatar) {
 		this.avatar = avatar
-		this.update()
 	}
 
 	setCharacter(character) {
@@ -62,7 +64,6 @@ class Player {
 
 	setState(state) {
 		this.state = state
-		this.update()
 	}
 
 	toPrivateJSON() {
