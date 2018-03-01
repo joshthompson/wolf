@@ -1,16 +1,16 @@
-class GameCode {
+class RoomCode {
 	
 	// private disallowed
 	
 	constructor(code) {
 		this.length = 4
-		this.code = code ? code.toUpperCase() : this.generate()
+		this.code = code ? code.toUpperCase() : RoomCode.generate(this.length)
 	}
 
-	generate() {
+	static generate(length) {
 		let code = ''
 		let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-		while (code.length < this.length) {
+		while (code.length < length) {
 			code = code + chars[Math.floor(Math.random() * chars.length)]
 		}
 		return code
@@ -34,4 +34,4 @@ class GameCode {
 
 }
 
-module.exports = GameCode
+module.exports = RoomCode
