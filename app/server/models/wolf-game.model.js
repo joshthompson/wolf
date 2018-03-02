@@ -6,6 +6,15 @@ var Vote = require('./vote.model')
 var Action = require('./action.model')
 var sha512 = require('js-sha512').sha512
 
+// Roles
+var Cupid = require('./character/cupid.model')
+var Devil = require('./character/devil.model')
+var Elder = require('./character/elder.model')
+var Seer = require('./character/seer.model')
+var Villager = require('./character/villager.model')
+var Wolf = require('./character/wolf.model')
+
+// WolfGame
 class WolfGame extends Game {
 
 	constructor(data) {
@@ -77,7 +86,7 @@ class WolfGame extends Game {
 
 	update() {
 		this.socket.emit('updateGame', this.toPrivateJSON())
-		this.players.forEach(player => player.updateGame())
+		this.players.forEach(player => player.update())
 	}
 
 	createToken() {
@@ -97,7 +106,7 @@ class WolfGame extends Game {
 	setupPlayerIdentities() {
 		let wolf = Math.floor(Math.random() * this.players.length)
 		this.players.forEach((player, index) => {
-			player.setCharacter(index === wolf ? 'WOLF' : 'VILLAGER')
+			player.setCharacter(index === wolf ? new Wolf() : new Villager())
 		})
 	}
 

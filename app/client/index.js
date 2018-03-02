@@ -72,7 +72,8 @@ let WolfGameController = {
 		},
 		// Change User
 		changeName: name => WolfGameController.socket.emit('changeName', name),
-		selectAvatar: avatar => WolfGameController.socket.emit('selectAvatar', avatar)
+		selectAvatar: avatar => WolfGameController.socket.emit('selectAvatar', avatar),
+		setState: state => WolfGameController.socket.emit('setState', state)
 	},
 
 	common: {

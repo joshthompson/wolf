@@ -1,11 +1,13 @@
 class Character {
 
 	constructor(height, width) {
-		this.name = null
-	}
-
-	get icon() {
-		return '/imgs/characters/' + this.name.replace(/ /g, '-').toLowerCase() + '.png'
+		this.title = null
+		this.icon = null
+		this.description = null
+		this.team = null
+		this.hp = 1
+		this.max = null
+		this.votePower = 1
 	}
 
 	dayStart() {
@@ -30,6 +32,15 @@ class Character {
 
 	death() {
 		// What happens at death
+	}
+
+	toPublicJSON() {
+		return {
+			title: this.title,
+			team: this.team,
+			icon: this.icon,
+			description: this.description
+		}
 	}
 	
 }

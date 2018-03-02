@@ -128,7 +128,7 @@ class WolfGameServer {
 	}
 
 	changeName(name) {
-		if (!thiis.game) {
+		if (!this.game) {
 			return this.socket.emit('gameError', {message: 'Couldn\'t find game'})
 		}
 		if (!this.player) {

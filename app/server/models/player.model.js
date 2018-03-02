@@ -42,11 +42,8 @@ class Player {
 	}
 
 	update() {
-		this.socket.emit('updatePlayer', this.toPrivateJSON())
-	}
-
-	updateGame() {
 		this.socket.emit('updateGame', this.game.toPublicJSON())
+		this.socket.emit('updatePlayer', this.toPrivateJSON())
 	}
 
 	setName(name) {
@@ -70,7 +67,7 @@ class Player {
 		return {
 			name: this.name,
 			avatar: this.avatar,
-			character: this.character,
+			character: this.character ? this.character.toPublicJSON() : null,
 			alive: this.alive,
 			state: this.state,
 			token: this.token
