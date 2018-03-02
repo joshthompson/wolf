@@ -23,3 +23,7 @@ In one terminal window run `npm run build`
 In a second terminal run `npm run start`
 
 Go to `http://localhost:9653` in a modern browser
+
+## Planning
+
+I've made a simple planning document with some features and stuff [here](plan.md)
