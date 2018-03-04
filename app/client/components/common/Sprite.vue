@@ -18,5 +18,5 @@
 </script>
 
 <template>
-	<div v-bind:style="[style]"></div>
+	<div :style="[style]"></div>
 </template>

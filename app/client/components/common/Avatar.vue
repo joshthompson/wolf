@@ -11,7 +11,7 @@
 	<div class="avatar">
 		<img v-if="player.avatar" :src="`/imgs/avatars/${player.avatar}.png`" />
 		<Loader v-if="!player.avatar" class="loader"></Loader>
-		<p>{{ player.name }}</p>
+		<p class="name">{{ player.name }}</p>
 	</div>
 </template>
 

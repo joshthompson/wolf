@@ -104,6 +104,7 @@ class WolfGame extends Game {
 	}
 
 	setupPlayerIdentities() {
+		// Todo: replace with team balancer algorithm
 		let wolf = Math.floor(Math.random() * this.players.length)
 		this.players.forEach((player, index) => {
 			player.setCharacter(index === wolf ? new Wolf() : new Villager())

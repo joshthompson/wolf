@@ -9,7 +9,7 @@
 		components: { PlayerSetup, PlayerIntro, MessageView },
 		data() {
 			return {
-				states: ['SETUP', 'INTO']
+				states: ['SETUP', 'INTRO']
 			}
 		}
 	}

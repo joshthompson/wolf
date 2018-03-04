@@ -22,7 +22,7 @@
 	<div id="PlayerIntro" class="view">
 		<h1>{{ game.player.name }}</h1>
 		<h2>You are...</h2>
-		<h2>{{ game.player.character.title }}</h2>
+		<h2 class="role">{{ game.player.character.title }}</h2>
 		<h3>Team: {{ game.player.character.team }}</h3>
 		<img :src="icon" class="icon" />
 		<ul class="description">
@@ -33,6 +33,9 @@
 </template>
 
 <style lang="scss" scoped>
+	.role {
+		font-family: 'Permanent Marker', cursive;
+	}
 	.description {
 		text-align: left;
 	}

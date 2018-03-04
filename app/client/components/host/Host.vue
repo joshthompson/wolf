@@ -1,10 +1,16 @@
 <script>
 	import HostSetup from './HostSetup.vue';
+	import HostIntro from './HostIntro.vue';
 	import MessageView from '../common/MessageView.vue'
 	export default {
 		name: 'host',
 		props: ['game'],
-		components: { HostSetup, MessageView }
+		components: { HostSetup, HostIntro, MessageView },
+		data() {
+			return {
+				states: ['SETUP', 'INTRO']
+			}
+		}
 	}
 </script>
 
@@ -12,20 +18,28 @@
 	<div id="host" class="view">
 		<a @click="game.endGame()" class="endGameBtn">X</a>
 		<HostSetup v-if="game.game.state === 'SETUP'" :game="game"></HostSetup>
-		<MessageView v-if="game.game.state !== 'SETUP'" :title="'Error'" :message="`Unknown game state: ${game.game.state}`"></MessageView>
+		<HostIntro v-if="game.game.state === 'INTRO'" :game="game"></HostIntro>
+		<MessageView
+			v-if="!states.includes(game.game.state)"
+			:title="'Error'"
+			:message="`Unknown game state: ${game.game.state}`"
+		></MessageView>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 	.endGameBtn {
+		$margin: 10px;
+		$size: 32px;
 		float: right;
 		color: black;
 		background: white;
-		border-radius: 16px;
-		width: 32px;
-		height: 32px;
-		margin: 10px 10px 0px -32px;
+		border-radius: $size / 2;
+		width: $size;
+		height: $size;
+		margin: $margin $margin 0px (-$size - $margin);
 		line-height: 38px;
+		position: relative;
 		&:hover {
 			opacity: 0.85;
 		}
