@@ -14,11 +14,7 @@
 </script>
 
 <template>
-	<div id="host-setup" class="view">
-		<div class="forest">
-			<div class="trees">🌲🌲🌲🌲🌲🌲🌲</div>
-			<div class="trees">🌲🌲🌲🌲🌲🌲🌲🌲</div>
-		</div>
+	<div id="host-setup">
 		<div class="players">
 			<avatar v-for="player in game.game.players" :player="player"></avatar>
 		</div>

@@ -1,11 +1,10 @@
 <script>
-	import Village from './Village.vue';
 	import Avatar from '../common/Avatar.vue';
 	import Countdown from '../common/Countdown.vue';
 	export default {
 		name: 'HostSetup',
 		props: ['game'],
-		components: { Village, Avatar, Countdown },
+		components: { Avatar, Countdown },
 		data() {
 			return {
 				startCountdown: false
@@ -28,24 +27,17 @@
 </script>
 
 <template>
-	<div id="host-setup" class="view">
-		<Village>
-			<h1 slot="sky">Join Game: {{ game.game.code }}</h1>
-			<!-- <div class="forest">
-				<div class="trees">🌲🌲🌲🌲🌲🌲🌲</div>
-				<div class="trees">🌲🌲🌲🌲🌲🌲🌲🌲</div>
-			</div> -->
-			<div class="players">
-				<avatar v-for="player in game.game.players" :player="player"></avatar>
-			</div>
-			<p v-if="readyPlayers < game.game.minPlayers">You need at least {{ game.game.minPlayers }} players to join</p>
-
-			<div v-if="readyPlayers >= game.game.minPlayers">
-				<button v-if="startCountdown === false" class="btn" @click="startGame()">Start Game</button>
-				<countdown v-if="startCountdown" :value="startCountdown" :speed="1000" @complete="game.host.startGame()"></countdown>
-				<button v-if="startCountdown" class="btn" @click="cancelStartGame()">Cancel</button>
-			</div>
-		</Village>
+	<div id="host-setup">
+		<h1>Join Game: {{ game.game.code }}</h1>
+		<div class="players">
+			<avatar v-for="player in game.game.players" :player="player"></avatar>
+		</div>
+		<p v-if="readyPlayers < game.game.minPlayers">You need at least {{ game.game.minPlayers }} players to join</p>
+		<div v-if="readyPlayers >= game.game.minPlayers">
+			<button v-if="startCountdown === false" class="btn" @click="startGame()">Start Game</button>
+			<countdown v-if="startCountdown" :value="startCountdown" :speed="1000" @complete="game.host.startGame()"></countdown>
+			<button v-if="startCountdown" class="btn" @click="cancelStartGame()">Cancel</button>
+		</div>
 	</div>
 </template>
 
