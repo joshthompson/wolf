@@ -30,7 +30,7 @@
 	<div id="host-setup">
 		<h1>Join Game: {{ game.game.code }}</h1>
 		<div class="players">
-			<avatar v-for="player in game.game.players" :player="player"></avatar>
+			<avatar v-for="player in game.game.players" :player="player" class="village-object"></avatar>
 		</div>
 		<p v-if="readyPlayers < game.game.minPlayers">You need at least {{ game.game.minPlayers }} players to join</p>
 		<div v-if="readyPlayers >= game.game.minPlayers">

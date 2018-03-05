@@ -16,10 +16,9 @@
 <template>
 	<div id="host-setup">
 		<div class="players">
-			<avatar v-for="player in game.game.players" :player="player"></avatar>
+			<avatar v-for="player in game.game.players" :player="player" class="village-object"></avatar>
 		</div>
 		<p v-if="readyPlayers < game.game.minPlayers">You need at least {{ game.game.minPlayers }} players to join</p>
-
 		<div v-if="readyPlayers >= game.game.minPlayers">
 			<button v-if="startCountdown === false" class="btn" @click="startGame()">Start Game</button>
 			<countdown v-if="startCountdown" :value="startCountdown" :speed="1000" @complete="game.host.startGame()"></countdown>
@@ -27,6 +26,3 @@
 		</div>
 	</div>
 </template>
-
-<style lang="scss" scoped>
-</style>
