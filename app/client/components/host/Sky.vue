@@ -7,13 +7,19 @@
 				return window.innerWidth
 			},
 			myHeight() {
-				return window.innerHeight
+				return document.getElementById('skybox').clientHeight * 1.5
 			},
 			sun() {
-				let heightPercentage = Math.abs((this.time - 12) / 12)
+				let length = this.myHeight
+				let timeOffset = (this.time + 6) % 24
+				let percentage = timeOffset / 24
+				let center = {
+					x: window.innerWidth / 2,
+					y: length
+				}
 				return {
-					x: window.innerWidth / 2, // * Math.sin(this.time / 24),
-					y: window.innerHeight * 1.5 * heightPercentage
+					x: center.x + length * Math.cos(2 * Math.PI * percentage),
+					y: center.y + length * Math.sin(2 * Math.PI * percentage)
 				}
 			},
 		},
@@ -89,7 +95,6 @@
 					for (var i = 0; i < clouds.length; i++) {
 						clouds[i].style.left = Math.min(myWidth * (Math.pow(this.sun.y, 2) / Math.pow(this.myHeight / 2, 2)) * -1, 0);
 					}
-					//}
 
 					var stars = component.getElementsByClassName('star');
 					for (var i = 0; i < stars.length; i++) {
@@ -154,17 +159,31 @@
 	}
 
 	.water,
-	// .waterReflectionContainer,
-	// .waterReflectionMiddle,
 	.waterDistance,
-	// .darknessOverlaySky,
 	.darknessOverlay,
 	.oceanRippleContainer,
+	.waterReflectionContainer,
 	.oceanRipple {
 		display: none;
 	}
 
-	///////
+	.sky,
+	.horizon,
+	.horizonNight,
+	.sunSet,
+	.sunDay,
+	.darknessOverlaySky,
+	.starsContainer,
+	.sun {
+		height: 100% !important;
+	}
+
+	.waterReflectionContainer {
+		top: 100% !important;
+		height: 70vh !important;
+	}
+
+	// Original CSS (more or less)
 	.sun {
 		position: absolute;
 		top: 0px;
@@ -193,14 +212,24 @@
 	}
 	.moon {
 		position: absolute;
-		top: 100px;
+		top: 5vh;
 		left: 35%;
-		width: 100px;
-		height: 100px;
-		background: url('/imgs/moon.png');
-		background-size: 100px 100px;
+		width: 200px;
+		height: 200px;
+		background-size: 200px 200px;
+		background-image: url('/imgs/moon.png');
 		z-index: 10001;
 		opacity: 0;
+		@media screen and (max-height: 1000px) {
+		width: 100px;
+		height: 100px;
+		background-size: 100px 100px;
+		}
+		@media screen and (max-height: 600px) {
+			width: 50px;
+			height: 50px;
+			background-size: 50px 50px;
+		}
 	}
 	.sunSet {
 		position: absolute;
