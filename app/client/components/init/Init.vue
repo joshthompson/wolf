@@ -41,6 +41,10 @@
 				<input type="submit" class="btn blue" value="Join" />
 			</form>
 		</div>
+		<div class="notices">
+			<span>Wolf Game v0.1</span>
+			<a href="/credits.html" target="_blank">Credits</a>
+		</div>
 	</div>
 </template>
 
@@ -54,6 +58,21 @@
 			display: block;
 			width: 100%;
 			text-transform: uppercase;
+		}
+	}
+	.notices {
+		position: fixed;
+		bottom: 10px;
+		right: 10px;
+		font-size: 20px;
+		span {
+			color: #CCC;
+		}
+		a {
+			color: black;
+		}
+		span:after {
+			content: " •";
 		}
 	}
 </style>

@@ -22,10 +22,12 @@
 		},
 		computed: {
 			phase() {
-				if (this.time < 7 || this.time > 20) {
+				if (this.time < 6 || this.time > 20) {
 					return 'night'
 				} else if (this.time > 18) {
 					return 'sunset'
+				} else if (this.time < 7) {
+					return 'dawn'
 				} else {
 					return 'day'
 				}
@@ -50,6 +52,10 @@
 	<div id="village" :phase="phase">
 		<pre style="position: fixed; bottom: 0px; right: 20px; z-index: 1000;">{{timeStr}}</pre>
 		<div class="sky">
+			<div class="sky-layer day"></div>
+			<div class="sky-layer night"></div>
+			<div class="sky-layer dawn"></div>
+			<div class="sky-layer sunset"></div>
 			<div class="moon-sun">
 				<div class="moon" :style="{transform: `rotate(${moon}deg)`}">
 					<div :style="{transform: `rotate(${-moon}deg)`}"></div>
@@ -90,24 +96,54 @@
 		&[phase="sunset"] {
 			color: #000000;
 		}
-		&[phase="night"] {
+		&[phase="night"],
+		&[phase="dawn"] {
 			color: #FFFFFF;
 		}
 	}
 
 	.sky {
+
+		// Todo: use this guys sunrise/sunset css
+		// https://codepen.io/msaetre/pen/nlsJL
 		transition: background $transition linear;
 		position: relative;
 		z-index: 1;
-		height: 200px;
+		height: 30vh;
+
+		.sky-layer {
+			height: 30vh;
+			margin-bottom: -30vh;
+			opacity: 0;
+			transition: opacity $transition linear;
+
+			&.day {
+				@include gradient(#3EACCC, #A9FCFF);
+				[phase="day"] & { opacity: 1; }
+			}
+			&.sunset {
+				@include gradient(#FEC64B, #FEC64B);
+				[phase="sunset"] & { opacity: 1; }
+			}
+			&.night {
+				@include gradient(#000000, #2E2E44);
+				[phase="night"] & { opacity: 1; }
+			}
+			&.dawn {
+				@include dawn();
+				[phase="dawn"] & { opacity: 1; }
+			}
+		}
+
 		[phase="day"] & {
-			@include gradient(#3EACCC, #A9FCFF);
+			background: #3EACCC;
 		}
 		[phase="sunset"] & {
-			@include gradient(#FEC64B, #FEC64B);
+			background: #FEC64B;
 		}
-		[phase="night"] & {
-			@include gradient(#000000, #2E2E44);
+		[phase="night"] &,
+		[phase="dawn"] & {
+			background: #2E2E44;
 		}
 		.moon-sun {
 			height: 200px;
@@ -126,7 +162,7 @@
 			border-radius: 50px;
 			margin: 0px -100px 0px -50px;
 			animation: rotate 1s infinite;
-			transform-origin: 50px 300px;
+			transform-origin: 50px calc(30vh + 100px);
 		}
 		.moon > div {
 			display: inline-block;
@@ -164,7 +200,8 @@
 				height: 100px;
 			}
 		}
-		[phase="night"] &{
+		[phase="night"] &,
+		[phase="dawn"] & {
 			background: #002500;
 		}
 	}
@@ -175,7 +212,8 @@
 		[phase="sunset"] &  {
 			filter: saturate(200%) brightness(100%);
 		}
-		[phase="night"] & {
+		[phase="night"] &,
+		[phase="dawn"] & {
 			filter: saturate(50%) brightness(50%);
 		}
 	}
