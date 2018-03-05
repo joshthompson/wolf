@@ -5,7 +5,7 @@
 		name: 'Village',
 		data() {
 			return {
-				time: 16 // 0 - 24 hours of day
+				time: 9 // 0 - 24 hours of day
 			}
 		},
 		created() {
@@ -103,9 +103,6 @@
 	}
 
 	.sky {
-
-		// Todo: use this guys sunrise/sunset css
-		// https://codepen.io/msaetre/pen/nlsJL
 		transition: background $transition linear;
 		position: relative;
 		z-index: 1;
@@ -193,7 +190,6 @@
 		[phase="sunset"] &  {
 			background: #66CC66;
 		}
-
 		.forest {
 			margin-top: -50px;
 			.tree {
@@ -210,11 +206,17 @@
 		transition: $transition;
 		[phase="day"] &,
 		[phase="sunset"] &  {
-			filter: saturate(200%) brightness(100%);
+			filter: saturate(100%) brightness(100%);
+			&.tree {
+				filter: saturate(200%) brightness(100%);
+			}
 		}
 		[phase="night"] &,
 		[phase="dawn"] & {
-			filter: saturate(50%) brightness(50%);
+			filter: saturate(25%) brightness(50%);
+			&.tree {
+				filter: saturate(50%) brightness(50%);
+			}
 		}
 	}
 

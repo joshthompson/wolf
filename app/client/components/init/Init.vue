@@ -62,8 +62,8 @@
 	}
 	.notices {
 		position: fixed;
-		bottom: 10px;
-		right: 10px;
+		bottom: 20px;
+		right: 20px;
 		font-size: 20px;
 		span {
 			color: #CCC;

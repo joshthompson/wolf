@@ -9,7 +9,7 @@
 
 <template>
 	<div class="avatar">
-		<img v-if="player.avatar" :src="`/imgs/avatars/${player.avatar}.png`" />
+		<img v-if="player.avatar" :src="`/imgs/avatars/${player.avatar}.png`"/>
 		<Loader v-if="!player.avatar" class="loader"></Loader>
 		<p class="name">{{ player.name }}</p>
 	</div>
@@ -21,5 +21,9 @@
 		padding: 20px;
 		font-size: small;
 		text-transform: uppercase;
+		&.ghost img {
+			filter: saturate(0%) brightness(150%);
+			opacity: 0.8;
+		}
 	}
 </style>

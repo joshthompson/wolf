@@ -1,49 +1,171 @@
 <script>
 	export default {
 		name: 'Sky',
-		props: ['time']
+		props: ['time'],
+		computed: {
+			myWidth() {
+				return window.innerWidth
+			},
+			myHeight() {
+				return window.innerHeight
+			},
+			sun() {
+				let heightPercentage = Math.abs((this.time - 12) / 12)
+				return {
+					x: window.innerWidth / 2, // * Math.sin(this.time / 24),
+					y: window.innerHeight * 1.5 * heightPercentage
+				}
+			},
+		},
+		created() {
+			setTimeout(this.sunMove, 1)
+		},
+		methods: {
+			sunMove() {
+
+				let component = document.getElementById('skybox')
+				let sunEl = component.getElementsByClassName("sun")[0]
+				let sunDayEl = component.getElementsByClassName("sunDay")[0]
+				let sunSetEl = component.getElementsByClassName("sunSet")[0]
+				let waterReflectionContainerEl = component.getElementsByClassName("waterReflectionContainer")[0]
+				let waterReflectionMiddleEl = component.getElementsByClassName("waterReflectionMiddle")[0]
+				let waterEl = component.getElementsByClassName("water")[0]
+				let darknessOverlayEl = component.getElementsByClassName("darknessOverlay")[0]
+				let darknessOverlaySkyEl = component.getElementsByClassName("darknessOverlaySky")[0]
+				let moonEl = component.getElementsByClassName("moon")[0]
+				let horizonNightEl = component.getElementsByClassName("horizonNight")[0]
+				let starsContainerEl = component.getElementsByClassName("starsContainer")[0]
+				let waterDistanceEl = component.getElementsByClassName("waterDistance")[0]
+				let skyEl = component.getElementsByClassName("sky")[0]
+				let cloudEl = component.getElementsByClassName("cloud")[0]
+				let starEl = component.getElementsByClassName("star")[0]
+				let horizonEl = component.getElementsByClassName("horizon")[0]
+
+				sunEl.style.background = '-webkit-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(242,248,247,1) 0%,rgba(249,249,28,1) 3%,rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%,rgba(201,165,132,1) 30%,rgba(115,130,133,1) 51%,rgba(46,97,122,1) 85%,rgba(24,75,106,1) 100%)';
+				sunEl.style.background = '-moz-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(242,248,247,1) 0%,rgba(249,249,28,1) 3%,rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%,rgba(201,165,132,1) 30%,rgba(115,130,133,1) 51%,rgba(46,97,122,1) 85%,rgba(24,75,106,1) 100%)';
+				sunEl.style.background = '-ms-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(242,248,247,1) 0%,rgba(249,249,28,1) 3%,rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%,rgba(201,165,132,1) 30%,rgba(115,130,133,1) 51%,rgba(46,97,122,1) 85%,rgba(24,75,106,1) 100%)';
+
+				sunDayEl.style.background = '-webkit-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(252,255,251,0.9) 0%,rgba(253,250,219,0.4) 30%,rgba(226,219,197,0.01) 70%, rgba(226,219,197,0.0) 70%,rgba(201,165,132,0) 100%)';
+				sunDayEl.style.background = '-moz-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(252,255,251,0.9) 0%,rgba(253,250,219,0.4) 30%,rgba(226,219,197,0.01) 70%, rgba(226,219,197,0.0) 70%,rgba(201,165,132,0) 100%)';
+				sunDayEl.style.background = '-ms-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(252,255,251,0.9) 0%,rgba(253,250,219,0.4) 30%,rgba(226,219,197,0.01) 70%, rgba(226,219,197,0.0) 70%,rgba(201,165,132,0) 100%)';
+
+				sunSetEl.style.background = '-webkit-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(254,255,255,0.8) 5%,rgba(236,255,0,1) 10%,rgba(253,50,41,1) 25%, rgba(243,0,0,1) 40%,rgba(93,0,0,1) 100%)';
+				sunSetEl.style.background = '-moz-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(254,255,255,0.8) 5%,rgba(236,255,0,1) 10%,rgba(253,50,41,1) 25%, rgba(243,0,0,1) 40%,rgba(93,0,0,1) 100%)';
+				sunSetEl.style.background = '-ms-radial-gradient(' + this.sun.x + 'px ' + this.sun.y + 'px, circle, rgba(254,255,255,0.8) 5%,rgba(236,255,0,1) 10%,rgba(253,50,41,1) 25%, rgba(243,0,0,1) 40%,rgba(93,0,0,1) 100%)';
+
+				waterReflectionContainerEl.style.perspectiveOrigin = (this.sun.x / this.myWidth * 100).toString() + "% -15%";
+				waterReflectionMiddleEl.style.left = (this.sun.x - this.myWidth - (this.myWidth * .03)).toString() + "px";
+
+				var bodyWidth = component.clientWidth;
+
+				sunEl.style.width = (bodyWidth);
+				sunEl.style.left = '0px';
+				sunDayEl.style.width = (bodyWidth);
+				sunDayEl.style.left = '0px';
+
+				var sky = sunEl;
+				var water = waterEl;
+				var waterHeight = water.clientHeight;
+				var skyHeight = sky.clientHeight;
+				var skyRatio = this.sun.y / skyHeight;
+				var waterRatio = waterHeight / this.myHeight;
+				darknessOverlayEl.style.opacity = Math.min((this.sun.y - (this.myHeight / 2)) / (this.myHeight / 2), 1);
+				darknessOverlaySkyEl.style.opacity = Math.min((this.sun.y - (this.myHeight * 7 / 10)) / (this.myHeight - (this.myHeight * 7 / 10)), 1);
+				moonEl.style.opacity = Math.min((this.sun.y - (this.myHeight * 9 / 10)) / (this.myHeight - (this.myHeight * 9 / 10)), 1);
+				horizonNightEl.style.opacity = (this.sun.y - (this.myHeight * 4 / 5)) / (this.myHeight - (this.myHeight * 4 / 5));
+
+				starsContainerEl.style.opacity = (this.sun.y / this.myHeight - 0.6);
+
+				waterDistanceEl.style.opacity = (this.sun.y / this.myHeight + 0.6);
+				sunDayEl.style.opacity = (1 - this.sun.y / this.myHeight);
+				skyEl.style.opacity = Math.min((1 - this.sun.y / this.myHeight), 0.99);
+
+				sunSetEl.style.opacity = (this.sun.y / this.myHeight - 0.2);
+
+
+
+				if (this.sun.y > 0) {
+					var clouds = component.getElementsByClassName('cloud');
+					for (var i = 0; i < clouds.length; i++) {
+						clouds[i].style.left = Math.min(myWidth * (Math.pow(this.sun.y, 2) / Math.pow(this.myHeight / 2, 2)) * -1, 0);
+					}
+					//}
+
+					var stars = component.getElementsByClassName('star');
+					for (var i = 0; i < stars.length; i++) {
+						stars[i].style.opacity = (this.sun.y / this.myHeight - 0.6);
+					}
+
+
+					if (this.sun.y > this.myHeight / 2) {
+						sunEl.style.opacity = Math.min((this.myHeight - this.sun.y) / (this.myHeight / 2) + 0.2, 0.5);
+						horizonEl.style.opacity = (this.myHeight - this.sun.y) / (this.myHeight / 2) + 0.2;
+						waterReflectionMiddleEl.style.opacity = (this.myHeight - this.sun.y) / (this.myHeight / 2) - 0.1;
+					} else {
+						horizonEl.style.opacity = Math.min(this.sun.y / (this.myHeight / 2), 0.99);
+						sunEl.style.opacity = Math.min(this.sun.y / (this.myHeight / 2), 0.5);
+						waterReflectionMiddleEl.style.opacity = this.sun.y / (this.myHeight / 2) - 0.1;
+					}
+
+				}
+
+				setTimeout(this.sunMove, 50)
+			}
+		}
 	}
 </script>
 <template>
-	<div id="skybox" onmouseup="stopMove();" onresize="windowResize();" style="width: 100%; height: 100%; margin: 0; padding: 0">
-		<div id="starsContainer" onmousedown="startMove();" onmouseup="stopMove();">
-			<div id="stars" onmousedown="startMove();" onmouseup="stopMove();"></div>
+	<div id="skybox" style="width: 100%; height: 100%; margin: 0; padding: 0">
+		<div class="starsContainer">
+			<div class="stars"></div>
 		</div>
-		<div id="sun" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="sunDay" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="sunSet" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="sky" onmousedown="startMove();" onmouseup="stopMove();"></div>
+		<div class="sun"></div>
+		<div class="sunDay"></div>
+		<div class="sunSet"></div>
+		<div class="sky"></div>
 		<div class="star" style="left: 250px; top: 30px;"></div>
 		<div class="star" style="left: 300px; top: 25px;"></div>
 		<div class="star" style="right: 40px; top: 40px;"></div>
 		<div class="star" style="right: 80px; top: 45px;"></div>
 		<div class="star" style="right: 120px; top: 20px;"></div>
-		<div id="horizon" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="horizonNight" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="moon" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="mountainRange">
-			<div id="mountain" onmousedown="startMove();" onmouseup="stopMove();"></div>
+		<div class="horizon"></div>
+		<div class="horizonNight"></div>
+		<div class="moon"></div>
+		<div class="mountainRange">
+			<div class="mountain"></div>
 		</div>
-		<div id="division" onmousedown="startDraggingDivision();" onmouseup="stopMove();"></div>
-		<div id="water" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="waterReflectionContainer" onmousedown="startMove();" onmouseup="stopMove();">
-			<div id="waterReflectionMiddle" onmousedown="startMove();" onmouseup="stopMove();"></div>
+		<div class="water"></div>
+		<div class="waterReflectionContainer">
+			<div class="waterReflectionMiddle"></div>
 		</div>
-		<div id="waterDistance" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="darknessOverlaySky" onmousedown="startMove();" onmouseup="stopMove();"></div>
-		<div id="darknessOverlay"></div>
-		<div id="oceanRippleContainer"></div>
-		<div id="oceanRipple"></div>
+		<div class="waterDistance"></div>
+		<div class="darknessOverlaySky"></div>
+		<div class="darknessOverlay"></div>
+		<div class="oceanRippleContainer"></div>
+		<div class="oceanRipple"></div>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 	#skybox {
-		cursor: pointer;
 		overflow: hidden;
 		background-color: black;
+		height: 30vh;
 	}
-	#sun {
+
+	.water,
+	// .waterReflectionContainer,
+	// .waterReflectionMiddle,
+	.waterDistance,
+	// .darknessOverlaySky,
+	.darknessOverlay,
+	.oceanRippleContainer,
+	.oceanRipple {
+		display: none;
+	}
+
+	///////
+	.sun {
 		position: absolute;
 		top: 0px;
 		left: 0%;
@@ -56,7 +178,7 @@
 		z-index: 10;
 		opacity: 0.5;
 	}
-	#sunDay {
+	.sunDay {
 		position: absolute;
 		top: 0px;
 		left: 0px;
@@ -69,20 +191,18 @@
 		z-index: 999;
 		opacity: 0.5;
 	}
-	#moon {
+	.moon {
 		position: absolute;
-		top: 0px;
-		left: 0px;
-		width: 100%;
-		height: 50%;
-		background-repeat: no-repeat;
-		background: -webkit-radial-gradient(40% 55%, circle, rgba(249,249,250,1) -1%, rgba(189,255,254,1) 1%, rgba(8,49,78,1) 1%, rgba(8,26,56,1) 10%, rgba(4,16,46,1) 40%, rgba(2,8,13,1) 70%);
-		background: -moz-radial-gradient(40% 55%, circle, rgba(249,249,250,1) -1%, rgba(189,255,254,1) 1%, rgba(8,49,78,1) 1%, rgba(8,26,56,1) 10%, rgba(4,16,46,1) 40%, rgba(2,8,13,1) 70%);
-		background: -ms-radial-gradient(40% 55%, circle, rgba(249,249,250,1) -1%, rgba(189,255,254,1) 1%, rgba(8,49,78,1) 1%, rgba(8,26,56,1) 10%, rgba(4,16,46,1) 40%, rgba(2,8,13,1) 70%);
+		top: 100px;
+		left: 35%;
+		width: 100px;
+		height: 100px;
+		background: url('/imgs/moon.png');
+		background-size: 100px 100px;
 		z-index: 10001;
 		opacity: 0;
 	}
-	#sunSet {
+	.sunSet {
 		position: absolute;
 		top: 0px;
 		left: 0px;
@@ -95,8 +215,7 @@
 		z-index: 999;
 		opacity: 0.3;
 	}
-	#sky {
-		cursor: pointer;
+	.sky {
 		position: absolute;
 		top: 0px;
 		left: 0px;
@@ -109,7 +228,7 @@
 		background: linear-gradient(bottom, rgba(249,251,240,1) 10%, rgba(215,253,254,1) 20%, rgba(167,222,253,1) 40%, rgba(110,175,255,1) 100%);
 		opacity: 0.52;
 	}
-	#starsContainer {
+	.starsContainer {
 		-webkit-perspective: 350;
 		-moz-perspective: 350;
 		perspective: 350;
@@ -126,9 +245,9 @@
 		opacity: 0;
 		display:none;
 	}
-	#stars {
+	.stars {
 		background-repeat: repeat;
-		background: url(stars.jpg);
+		background: url('/imgs/stars.png');
 		position: absolute;
 		width: 200%;
 		height: 200%;
@@ -140,7 +259,7 @@
 		-moz-transform: rotateX(-90deg);
 		-ms-transform: rotateX(-90deg);
 	}
-	#mountainRange {
+	.mountainRange {
 		position: absolute;
 		left: 0px;
 		width: 100%;
@@ -198,7 +317,7 @@
 		-o-transform: rotate(-70deg);
 		content: '';
 	}
-	#mountain {
+	.mountain {
 		border-bottom: 100px solid #000;
 		border-right: 100px solid transparent;
 		border-width-right: 50%;
@@ -209,8 +328,7 @@
 		bottom: 50%;
 		z-index: 999;
 	}
-	#horizon {
-		cursor: pointer;
+	.horizon {
 		position: absolute;
 		top: 0px;
 		left: 0;
@@ -224,8 +342,7 @@
 		background: linear-gradient(bottom, rgba(212,87,43,0.9) 0%, rgba(246,149,52,0.8) 20%,rgba(24,75,106,0) 100%);
 		opacity: 0.99;
 	}
-	#horizonNight {
-		cursor: pointer;
+	.horizonNight {
 		position: absolute;
 		top: 0px;
 		left: 0;
@@ -239,7 +356,7 @@
 		background: linear-gradient(bottom, rgba(57,167,255,1) 0%, rgba(13,98,245,1) 20%,rgba(0,11,22,0.1) 60%);
 		opacity: 0;
 	}
-	#darknessOverlaySky {
+	.darknessOverlaySky {
 		background-color: #000;
 		opacity: 0;
 		position: absolute;
@@ -249,7 +366,7 @@
 		height: 50%;
 		z-index: 9999;
 	}
-	#darknessOverlay {
+	.darknessOverlay {
 		cursor: default;
 		background-color: #000;
 		opacity: 0;
@@ -260,7 +377,7 @@
 		height: 50%;
 		z-index: 99;
 	}
-	#waterDistance {
+	.waterDistance {
 		position: absolute;
 		bottom: 0px;
 		left: 0px;
@@ -272,7 +389,7 @@
 		background: -ms-linear-gradient(90deg, rgba(0,0,0,0.0) 10%,rgba(0,0,0,0.20) 44%,rgba(0,0,0,0.65) 95%,rgba(0,0,0,0.62) 100%);
 		z-index: 20;
 	}
-	#water {
+	.water {
 		overflow: hidden;
 		position: absolute;
 		bottom: 0px;
@@ -286,7 +403,7 @@
 		background: linear-gradient(bottom, rgba(0,25,45,1) 0%,rgba(14,71,117,1) 35%, rgba(26,126,174,1) 70%, rgba(62,168,220,1) 100%);
 		z-index: 10;
 	}
-	#waterReflectionContainer {
+	.waterReflectionContainer {
 		-webkit-perspective: 30;
 		perspective: 30;
 		-webkit-perspective-origin: 50% -12%;
@@ -299,7 +416,7 @@
 		height: 50%;
 		z-index: 25;
 	}
-	#waterReflectionMiddle {
+	.waterReflectionMiddle {
 		position: absolute;
 		top: 0px;
 		left: -50%;
@@ -313,7 +430,7 @@
 		opacity: 0.7;
 		-webkit-transform: rotateX(45deg);
 	}
-	#waterReflectionMiddleThin {
+	.waterReflectionMiddleThin {
 		position: absolute;
 		bottom: 0px;
 		left: 0px;
@@ -330,7 +447,7 @@
 		-ms-transform: rotateX(45deg);
 		transform: rotateX(45deg);
 	}
-	#division {
+	.division {
 		height: 5px;
 		width: 100%;
 		position: absolute;
@@ -340,14 +457,14 @@
 		z-index: 9999;
 		cursor: ns-resize;
 	}
-	#coor {
+	.coor {
 		position: absolute;
 		left: 0px;
 		top: 0px;
 		z-index: 999;
 		color: #fff;
 	}
-	#oceanRipple {
+	.oceanRipple {
 		background-image: repeating-linear-gradient(175deg,rgba(165,165,165,0.08) 43%, rgba(175,175,175,0.08) 45%, rgba(235,235,235,0.08) 49%, rgba(195,195,195,0.08) 50%, rgba(165,165,165,0.08) 54%);
 		opacity: 0.5;
 		position: absolute;

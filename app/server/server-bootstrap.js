@@ -7,7 +7,7 @@ var io = require('socket.io')(http)
 let games = {} // Stores all active games mapped to the room code
 io.on('connection', (socket) => new WolfGameServer(socket, games))
 
-let port = 8081;
+let port = process.env.PORT || 9653
 
 http.listen(port, () => {
 	console.log('\033c')
