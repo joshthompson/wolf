@@ -7,7 +7,9 @@ var io = require('socket.io')(http)
 let games = {} // Stores all active games mapped to the room code
 io.on('connection', (socket) => new WolfGameServer(socket, games))
 
-http.listen(9653, () => {
+let port = 8081;
+
+http.listen(port, () => {
 	console.log('\033c')
 	console.log(`
  ,ggg,      gg      ,gg
@@ -25,7 +27,7 @@ Yb, '88     88     d8'             IP''Yb IP''Y
      Copyright 2018                       I8   8I
      github.com/joshthompson/wolf         I8   8I
                                           I8, ,8'
-     listening on *:9653                   "Y8P'
+     listening on *:${port}                   "Y8P'
 `)
 })
 app.use(express.static('public'))
