@@ -5,16 +5,17 @@
 		components: { Sky },
 		data() {
 			return {
-				time: 9 // 0 - 24 hours of day
+				time: 20, // 0 - 24 hours of day
+				refresh: 25
 			}
 		},
 		created() {
-			setTimeout(this.timer, 10);
+			setTimeout(this.timer, this.refresh);
 		},
 		methods: {
 			timer() {
 				this.time = (this.time + 0.005) % 24
-				setTimeout(this.timer, 10);
+				setTimeout(this.timer, this.refresh);
 			},
 			addZero(n) {
 				return n < 10 ? '0' + n : n
@@ -40,7 +41,7 @@
 		<pre style="position: fixed; bottom: 0px; right: 20px; z-index: 1000;">{{timeStr}}</pre>
 		<div class="sky">
 			<div class="sky-layer">
-				<Sky :time="time"></Sky>
+				<Sky :time="time" :refresh="refresh"></Sky>
 			</div>
 			<div class="slot">
 				<slot name="sky"></slot>
@@ -53,6 +54,9 @@
 				<img src="/imgs/tree2.png" class="village-object tree" />
 				<img src="/imgs/tree2.png" class="village-object tree" />
 				<img src="/imgs/tree1.png" class="village-object tree" />
+				<img src="/imgs/tree3.png" class="village-object tree" />
+				<img src="/imgs/tree2.png" class="village-object tree" />
+				<img src="/imgs/tree3.png" class="village-object tree" />
 				<img src="/imgs/tree3.png" class="village-object tree" />
 				<img src="/imgs/tree2.png" class="village-object tree" />
 				<img src="/imgs/tree3.png" class="village-object tree" />
@@ -117,9 +121,10 @@
 		z-index: 3;
 		position: relative;
 		height: 70vh;
-		
 		.forest {
 			margin-top: -50px;
+			height: 100px;
+			overflow: hidden;
 			.tree {
 				height: 100px;
 			}
