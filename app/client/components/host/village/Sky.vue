@@ -137,7 +137,7 @@
 </template>
 
 <style lang="scss" scoped>
-	@import '../../style/mixins.scss';
+	@import '../../../style/mixins.scss';
 
 	$height: 30vh;
 

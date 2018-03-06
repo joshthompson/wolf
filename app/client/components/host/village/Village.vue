@@ -5,7 +5,7 @@
 		components: { Sky },
 		data() {
 			return {
-				time: 20, // 0 - 24 hours of day
+				time: 9, // 0 - 24 hours of day
 				refresh: 25
 			}
 		},
@@ -67,7 +67,7 @@
 </template>
 
 <style lang="scss">
-	@import '../../style/mixins.scss';
+	@import '../../../style/mixins.scss';
 	$transition: 5s;
 
 	#village {

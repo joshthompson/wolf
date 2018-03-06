@@ -1,5 +1,5 @@
 <script>
-	import Village from './Village.vue';
+	import Village from './village/Village.vue';
 	import HostSetup from './HostSetup.vue';
 	import HostIntro from './HostIntro.vue';
 	import MessageView from '../common/MessageView.vue'
