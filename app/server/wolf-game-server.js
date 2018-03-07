@@ -5,12 +5,15 @@ var Player = require('./models/player.model')
 class WolfGameServer {
 
 	constructor(socket, games) {
+		// Data
 		this.socket = socket
 		this.games = games
 		this.mode = null
 		this.game = null
 		this.player = null
 		this.setupSocket()
+		// Settings
+		this.inactiveGameTimeout = 60 * 1000
 	}
 
 	setupSocket() {
@@ -26,6 +29,8 @@ class WolfGameServer {
 		// Player
 		this.socket.on('changeName', (...args) => this.changeName(...args))
 		this.socket.on('selectAvatar', (...args) => this.selectAvatar(...args))
+		// Special
+		this.socket.on('requestStats', (...args) => this.requestStats(...args))
 	}
 
 	disconnect(reason) {
@@ -37,7 +42,7 @@ class WolfGameServer {
 					delete this.games[this.game.code]
 					delete this.game
 				}
-			}, 3 * 1000)
+			}, this.inactiveGameTimeout)
 		}
 	}
 

@@ -12,6 +12,7 @@ let WolfGameController = {
 	mode: null, // 'host' | 'player'
 	player: null,
 	stats: null,
+	recoverable: null,
 
 	init: () => {
 		WolfGameController.setupSocket()
@@ -64,7 +65,10 @@ let WolfGameController = {
 		// Generic
 		updatePlayer: player => WolfGameController.player = player,
 		// Join Game
-		joinGame: (code, name) => WolfGameController.socket.emit('joinGame', {game: code, player: name}),
+		joinGame: (code, name) => {
+			Cookie.set('player_name', name)
+			WolfGameController.socket.emit('joinGame', {game: code, player: name})
+		},
 		gameJoined: data => {
 			WolfGameController.game = data.game
 			WolfGameController.mode = 'player'
@@ -80,9 +84,17 @@ let WolfGameController = {
 	common: {
 		updateGame: game => WolfGameController.game = game,
 		recoverGame: data => {
-			WolfGameController.mode = data.player ? 'player' : 'host'
-			WolfGameController.game = data.game
-			WolfGameController.player = data.player ? data.player : null
+			if (data.player) {
+				WolfGameController.recoverable = data
+			} else {
+				WolfGameController.mode = 'host'
+				WolfGameController.game = data.game
+			}
+		},
+		recoverPlayerGame: () => {
+			WolfGameController.mode = 'player'
+			WolfGameController.game = WolfGameController.recoverable.game
+			WolfGameController.player = WolfGameController.recoverable.player
 		},
 		gameError: error => {
 			console.log(error)
@@ -97,7 +109,6 @@ let WolfGameController = {
 			WolfGameController.game = null
 			WolfGameController.player = null
 		},
-		disconnect: () => WolfGameController.recoverActiveGame()
 		disconnect: () => WolfGameController.recoverActiveGame(),
 		requestStats: () => {
 			console.log('requestStats')

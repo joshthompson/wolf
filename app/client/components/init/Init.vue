@@ -1,4 +1,5 @@
 <script>
+	import Cookie from 'js-cookie'
 	export default {
 		name: 'init',
 		props: {
@@ -10,12 +11,21 @@
 				code: ''
 			}
 		},
+		created() {
+			if (Cookie.get('player_name')) {
+				this.name = Cookie.get('player_name')
+			}
+			this.game.common.requestStats()
+		},
 		methods: {
 			createGame() {
 				this.game.host.createGame()
 			},
 			joinGame(name, code) {
 				this.game.client.joinGame(this.code, this.name)
+			},
+			recoverGame() {
+				this.game.common.recoverPlayerGame()
 			}
 		}
 	}
@@ -25,6 +35,9 @@
 	<div id="init" class="view">
 		<h1>Wolf</h1>
 		<div class="form-view">
+			<div class="form-group" v-if="game.recoverable">
+				<a class="btn blue" @click="recoverGame()">Recover Game</a>
+			</div>
 			<div class="form-group">
 				<button @click="createGame()" class="btn green">Create New Game</button>
 			</div>
@@ -42,6 +55,8 @@
 			</form>
 		</div>
 		<div class="notices">
+			<span v-if="game.stats">{{game.stats.activeGames}} Games</span>
+			<span v-if="game.stats">{{game.stats.activePlayers}} Players</span>
 			<span>Wolf Game v0.1</span>
 			<a href="/credits.html" target="_blank">Credits</a>
 		</div>
