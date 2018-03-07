@@ -110,14 +110,8 @@ let WolfGameController = {
 			WolfGameController.player = null
 		},
 		disconnect: () => WolfGameController.recoverActiveGame(),
-		requestStats: () => {
-			console.log('requestStats')
-			WolfGameController.socket.emit('requestStats')
-		},
-		stats: stats => {
-			console.log('stats', stats)
-			WolfGameController.stats = stats
-		}
+		requestStats: () => WolfGameController.socket.emit('requestStats'),
+		stats: stats => WolfGameController.stats = stats
 	},
 	message: message => alert(message),
 	endGame: () => WolfGameController.socket.emit('endGame')

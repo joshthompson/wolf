@@ -1,3 +1,4 @@
 node_modules/
 public/js/bundle.js
+public/js/bundle.prod.js
 npm-debug.log
