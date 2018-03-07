@@ -1,6 +1,6 @@
 # Wolf
  
-![Wolf Character](https://github.com/joshthompson/wolf/raw/master/public/imgs/avatars/21.png)
+![Wolf Character](https://github.com/joshthompson/wolf/raw/master/public/imgs/characters/wolf.png)
 
 Wolf is a social game built using node and web sockets based off Werewolves/Mafia (https://en.wikipedia.org/wiki/Mafia_(party_game))
 
