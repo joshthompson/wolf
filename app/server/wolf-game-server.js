@@ -160,6 +160,15 @@ class WolfGameServer {
 		this.game.update()
 	}
 
+	requestStats() {
+		let games = Object.keys(this.games) 
+		let players = games.map(game => this.games[game].players.length).reduce((a, b) => a + b, 0)
+		this.socket.emit('stats', {
+			activeGames: games.length,
+			activePlayers: players
+		})
+	}
+
 }
 
 module.exports = WolfGameServer

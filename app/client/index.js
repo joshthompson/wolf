@@ -11,6 +11,7 @@ let WolfGameController = {
 	game: null,
 	mode: null, // 'host' | 'player'
 	player: null,
+	stats: null,
 
 	init: () => {
 		WolfGameController.setupSocket()
@@ -97,6 +98,15 @@ let WolfGameController = {
 			WolfGameController.player = null
 		},
 		disconnect: () => WolfGameController.recoverActiveGame()
+		disconnect: () => WolfGameController.recoverActiveGame(),
+		requestStats: () => {
+			console.log('requestStats')
+			WolfGameController.socket.emit('requestStats')
+		},
+		stats: stats => {
+			console.log('stats', stats)
+			WolfGameController.stats = stats
+		}
 	},
 	message: message => alert(message),
 	endGame: () => WolfGameController.socket.emit('endGame')
