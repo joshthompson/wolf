@@ -2,21 +2,9 @@
 	import Sky from './Sky.vue';
 	export default {
 		name: 'Village',
+		props: ['time'],
 		components: { Sky },
-		data() {
-			return {
-				time: 9, // 0 - 24 hours of day
-				refresh: 25
-			}
-		},
-		created() {
-			setTimeout(this.timer, this.refresh);
-		},
 		methods: {
-			timer() {
-				this.time = (this.time + 0.005) % 24
-				setTimeout(this.timer, this.refresh);
-			},
 			addZero(n) {
 				return n < 10 ? '0' + n : n
 			}

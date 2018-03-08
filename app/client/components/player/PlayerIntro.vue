@@ -21,10 +21,15 @@
 <template>
 	<div id="PlayerIntro" class="view">
 		<h1>{{ game.player.name }}</h1>
+
 		<h2>You are...</h2>
 		<h2 class="role">{{ game.player.character.title }}</h2>
-		<h3>Team: {{ game.player.character.team }}</h3>
-		<img :src="icon" class="icon" />
+
+		<div class="icon">
+			<img :src="icon" />
+		</div>
+		<div class="team">Team: {{ game.player.character.team }}</div>
+
 		<ul class="description">
 			<li v-for="desc in description">{{ desc }}</li>
 		</ul>
@@ -40,6 +45,21 @@
 		text-align: left;
 	}
 	.icon {
-		width: 75px;
+		border: 2px solid black;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		margin: 0px auto -12px;
+		overflow: hidden;
+		img {
+			width: 85px;
+    		margin: 8px 10px 0px 10px;
+		}
+	}
+	.team {
+		background: #000000;
+		color: #FFFFFF;
+		display: inline-block;
+		padding: 5px 10px 2px;
 	}
 </style>

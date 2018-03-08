@@ -18,7 +18,7 @@
 <template>
 	<div id="host">
 		<a @click="game.endGame()" class="endGameBtn">X</a>
-		<Village>
+		<Village :time="game.game.time">
 			<HostSetup v-if="game.game.state === 'SETUP'" :game="game"></HostSetup>
 			<HostIntro v-if="game.game.state === 'INTRO'" :game="game"></HostIntro>
 			<MessageView

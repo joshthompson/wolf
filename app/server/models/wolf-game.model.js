@@ -33,6 +33,7 @@ class WolfGame extends Game {
 		this.token = null
 		this.history = []
 		this.socket = null // Socket object
+		this.time = 9 // Hour in day 0 - 24
 
 		// Base data object
 		data = typeof data === 'object' ? data : {}
