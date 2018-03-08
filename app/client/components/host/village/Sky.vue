@@ -9,26 +9,20 @@
 			height() {
 				return document.getElementById('skybox').clientHeight * 1.5
 			},
-			center() {
-				return {
-					x: window.innerWidth / 2,
-					y: this.height
-				}
-			},
 			sun() {
 				let timeOffset = (this.time + 6) % 24
 				let percentage = timeOffset / 24
 				return {
-					x: this.center.x + this.height * Math.cos(2 * Math.PI * percentage),
-					y: this.center.y + this.height * Math.sin(2 * Math.PI * percentage)
+					x: this.center().x + this.height * Math.cos(2 * Math.PI * percentage),
+					y: this.center().y + this.height * Math.sin(2 * Math.PI * percentage)
 				}
 			},
 			moon() {
 				let timeOffset = (this.time - 6) % 24
 				let percentage = timeOffset / 24
 				return {
-					x: this.center.x + this.height * Math.cos(2 * Math.PI * percentage),
-					y: this.center.y + this.height * Math.sin(2 * Math.PI * percentage)
+					x: this.center().x + this.height * Math.cos(2 * Math.PI * percentage),
+					y: this.center().y + this.height * Math.sin(2 * Math.PI * percentage)
 				}
 			}
 		},
@@ -36,6 +30,12 @@
 			setTimeout(this.sunMove, 1)
 		},
 		methods: {
+			center() {
+				return {
+					x: window.innerWidth / 2,
+					y: this.height
+				}
+			},
 			sunMove() {
 
 				let component = document.getElementById('skybox')

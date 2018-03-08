@@ -10,6 +10,29 @@ class RoomCode {
 	static generate(length) {
 		let code = ''
 		let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+		chars = [
+			'KEWL',
+			'WOLF',
+			'MOON',
+			'BITE',
+			'NICE',
+			'WERE',
+			'EYES',
+			'SEER',
+			'FOOL',
+			'YOYO',
+			'KNUT',
+			'MARI',
+			'ANAC',
+			'CARA',
+			'ANJO',
+			'DOOM',
+			'MNST',
+			'WOOO',
+			'BOOO',
+			'WEST',
+			'EAST'
+		]
 		while (code.length < length) {
 			code = code + chars[Math.floor(Math.random() * chars.length)]
 		}

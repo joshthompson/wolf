@@ -42,6 +42,7 @@
 			h2 {
 				margin: 0px 0px 20px;
 			}
+			
 			p {
 				margin: 20px 0px 0px;
 			}

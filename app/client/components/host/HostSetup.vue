@@ -28,7 +28,7 @@
 
 <template>
 	<div id="host-setup">
-		<h1>Join Game: {{ game.game.code }}</h1>
+		<h1>Game Code: {{ game.game.code }}</h1>
 		<div class="players">
 			<avatar v-for="player in game.game.players" :key="player.name" :player="player" class="village-object"></avatar>
 		</div>
