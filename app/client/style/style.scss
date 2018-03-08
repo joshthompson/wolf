@@ -36,18 +36,16 @@ h3 {
 .form-view {
 	padding: 20px;
 	text-align: center;
-	display: flex;
-	flex-direction: column;
 }
 
 .form-group {
-	padding: 20px 0px;
+	padding: 20px 0px 0px;
 	border-top: 1px solid black;
 	display: flex;
 	flex-direction: column;
 	max-width: 450px;
 	width: 100%;
-	margin: 0px auto;
+	margin: 20px auto 0px;
 	&:nth-child(1) {
 		margin-top: 0px;
 		padding-top: 0px;

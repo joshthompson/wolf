@@ -1,14 +1,17 @@
 <script>
 	import Cookie from 'js-cookie'
+	import PopOver from '../common/PopOver.vue'
 	export default {
 		name: 'init',
 		props: {
 			game: Object
 		},
+		components: { PopOver },
 		data() {
 			return {
 				name: '',
-				code: ''
+				code: '',
+				showStats: false
 			}
 		},
 		created() {
@@ -55,15 +58,26 @@
 			</form>
 		</div>
 		<div class="notices">
-			<span v-if="game.stats">{{game.stats.activeGames}} Games</span>
-			<span v-if="game.stats">{{game.stats.activePlayers}} Players</span>
 			<span>Wolf Game v0.1</span>
-			<a href="/credits.html" target="_blank">Credits</a>
+			<span><a @click="showStats = true">Stats</a></span>
+			<span><a href="/credits.html" target="_blank">Credits</a></span>
 		</div>
+		<PopOver :show="showStats" @hide="showStats = false">
+			<h2>Current Stats</h2>
+			<p v-if="game.stats">{{game.stats.activeGames}} Games</p>
+			<p v-if="game.stats">{{game.stats.activePlayers}} Players</p>
+		</PopOver>
 	</div>
 </template>
 
 <style lang="scss" scoped>
+	#init {
+		display: flex;
+		flex-direction: column;
+	}
+	.form-view {
+		flex-grow: 1;
+	}
 	.input {
 		padding: 0px 0px 10px;
 		label {
@@ -76,18 +90,22 @@
 		}
 	}
 	.notices {
-		position: fixed;
-		bottom: 20px;
-		right: 20px;
+		padding: 20px;
 		font-size: 20px;
-		span {
+		span, a {
 			color: #CCC;
 		}
 		a {
-			color: black;
+			text-decoration: underline;
+			&:hover {
+				color: #000000;
+			}
 		}
-		span:after {
-			content: " •";
+		& > *:before {
+			content: "• ";
+		}
+		& > *:nth-child(1):before {
+			content: "";
 		}
 	}
 </style>
