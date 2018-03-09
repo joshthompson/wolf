@@ -53,19 +53,19 @@
 				let skyEl = component.getElementsByClassName('sky')[0]
 				let horizonEl = component.getElementsByClassName('horizon')[0]
 
-				let sunRadialGradient = `${this.sun.x}px ${this.sun.y}px, circle, rgba(242,248,247,1) 0%,rgba(249,249,28,1) 3%,rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%,rgba(201,165,132,1) 30%,rgba(115,130,133,1) 51%,rgba(46,97,122,1) 85%,rgba(24,75,106,1) 100%`
+				let sunRadialGradient = `${this.sun.x}px ${this.sun.y}px, circle, rgba(242,248,247,1) 0%, rgba(249,249,28,1) 3%, rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%, rgba(201,165,132,1) 30%, rgba(115,130,133,1) 51%, rgba(46,97,122,1) 85%, rgba(24,75,106,1) 100%`
 				sunEl.style.background = `-webkit-radial-gradient(${sunRadialGradient})`
 				sunEl.style.background = `-moz-radial-gradient(${sunRadialGradient})`
 				sunEl.style.background = `-ms-radial-gradient(${sunRadialGradient})`
 				sunEl.style.background = `radial-gradient(${sunRadialGradient})`
 
-				let sunDayRadialGradient = `${this.sun.x}px ${this.sun.y}px, circle, rgba(252,255,251,0.9) 0%,rgba(253,250,219,0.4) 30%,rgba(226,219,197,0.01) 70%, rgba(226,219,197,0.0) 70%,rgba(201,165,132,0) 100%`
+				let sunDayRadialGradient = `${this.sun.x}px ${this.sun.y}px, circle, rgba(252,255,251,0.9) 0%, rgba(253,250,219,0.4) 30%, rgba(226,219,197,0.01) 70%, rgba(226,219,197,0.0) 70%, rgba(201,165,132,0) 100%`
 				sunDayEl.style.background = `-webkit-radial-gradient(${sunDayRadialGradient})`
 				sunDayEl.style.background = `-moz-radial-gradient(${sunDayRadialGradient})`
 				sunDayEl.style.background = `-ms-radial-gradient(${sunDayRadialGradient})`
 				sunDayEl.style.background = `radial-gradient(${sunDayRadialGradient})`
 
-				let sunSetRadialGradient = `${this.sun.x}px ${this.sun.y}px, circle, rgba(254,255,255,0.8) 5%,rgba(236,255,0,1) 10%,rgba(253,50,41,1) 25%, rgba(243,0,0,1) 40%,rgba(93,0,0,1) 100%`
+				let sunSetRadialGradient = `${this.sun.x}px ${this.sun.y}px, circle, rgba(254,255,255,0.8) 5%, rgba(236,255,0,1) 10%, rgba(253,50,41,1) 25%, rgba(243,0,0,1) 40%, rgba(93,0,0,1) 100%`
 				sunSetEl.style.background = `-webkit-radial-gradient(${sunSetRadialGradient})`
 				sunSetEl.style.background = `-moz-radial-gradient(${sunSetRadialGradient})`
 				sunSetEl.style.background = `-ms-radial-gradient(${sunSetRadialGradient})`
@@ -113,7 +113,7 @@
 	}
 </script>
 <template>
-	<div id="skybox" style="width: 100%; height: 100%; margin: 0; padding: 0">
+	<div id="skybox">
 		<div class="sun"></div>
 		<div class="sunDay"></div>
 		<div class="sunSet"></div>
@@ -177,16 +177,16 @@
 		width: 100%;
 		height: 50%;
 		background-repeat: no-repeat;
-		@include radialGradient(bottom, circle, rgba(242,248,247,1) 0%,rgba(249,249,28,1) 3%,rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%,rgba(201,165,132,1) 30%,rgba(115,130,133,1) 51%,rgba(46,97,122,1) 85%,rgba(24,75,106,1) 100%);
+		@include radialGradient(bottom, circle, rgba(242,248,247,1) 0%, rgba(249,249,28,1) 3%, rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%, rgba(201,165,132,1) 30%, rgba(115,130,133,1) 51%, rgba(46,97,122,1) 85%, rgba(24,75,106,1) 100%);
 		z-index: 10;
 		opacity: 0.5;
 		&.sunDay {
-			@include radialGradient(bottom, circle, rgba(252,255,251,0.9) 0%,rgba(253,250,219,0.4) 30%,rgba(226,219,197,0.01) 70%, rgba(226,219,197,0.0) 70%,rgba(201,165,132,0) 100%);
+			@include radialGradient(bottom, circle, rgba(252,255,251,0.9) 0%, rgba(253,250,219,0.4) 30%, rgba(226,219,197,0.01) 70%, rgba(226,219,197,0.0) 70%, rgba(201,165,132,0) 100%);
 			z-index: 999;
 			opacity: 0.5;
 		}
 		&.sunSet {
-			@include radialGradient(bottom, circle, rgba(254,255,255,0.8) 5%,rgba(236,255,0,1) 10%,rgba(253,50,41,1) 25%, rgba(243,0,0,1) 40%,rgba(93,0,0,1) 100%);
+			@include radialGradient(bottom, circle, rgba(254,255,255,0.8) 5%, rgba(236,255,0,1) 10%, rgba(253,50,41,1) 25%, rgba(243,0,0,1) 40%, rgba(93,0,0,1) 100%);
 			z-index: 999;
 			opacity: 0.3;
 		}
@@ -258,7 +258,7 @@
 		height: 50%;
 		background-repeat: no-repeat;
 		z-index: 5;
-		@include linearGradient(bottom, rgba(212,87,43,0.9) 0%, rgba(246,149,52,0.8) 20%,rgba(24,75,106,0) 100%);
+		@include linearGradient(bottom, rgba(212,87,43,0.9) 0%, rgba(246,149,52,0.8) 20%, rgba(24,75,106,0) 100%);
 		opacity: 0.99;
 		&.horizonNight {
 			z-index: 10000;
@@ -294,7 +294,7 @@
 		width: 100%;
 		height: 50%;
 		background-repeat: no-repeat;
-		@include linearGradient(90deg, rgba(0,0,0,0.0) 10%,rgba(0,0,0,0.20) 44%,rgba(0,0,0,0.65) 95%,rgba(0,0,0,0.62) 100%);
+		@include linearGradient(90deg, rgba(0,0,0,0.0) 10%, rgba(0,0,0,0.20) 44%, rgba(0,0,0,0.65) 95%, rgba(0,0,0,0.62) 100%);
 	}
 	.water {
 		overflow: hidden;
@@ -304,7 +304,7 @@
 		width: 100%;
 		height: 50%;
 		background-repeat: no-repeat;
-		@include linearGradient(bottom, rgba(0,25,45,1) 0%,rgba(14,71,117,1) 35%, rgba(26,126,174,1) 70%, rgba(62,168,220,1) 100%);
+		@include linearGradient(bottom, rgba(0,25,45,1) 0%, rgba(14,71,117,1) 35%, rgba(26,126,174,1) 70%, rgba(62,168,220,1) 100%);
 		z-index: 10;
 	}
 	.waterReflectionContainer {
@@ -325,7 +325,7 @@
 		width: 200%;
 		height: 55%;
 		background-repeat: no-repeat;
-		@include radialGradient(50% 0px, rgba(247,177,72,1) 3%,rgba(248,175,65,1) 6%,rgba(207,62,30,0.4) 35%,rgba(176,91,48,0.1) 45%,rgba(141,88,47,0.0) 60%,rgba(116,82,63,0.0) 70%,rgba(44,65,68,0.0) 80%,rgba(7,19,31,0.0) 100%);
+		@include radialGradient(50% 0px, rgba(247,177,72,1) 3%, rgba(248,175,65,1) 6%, rgba(207,62,30,0.4) 35%, rgba(176,91,48,0.1) 45%, rgba(141,88,47,0.0) 60%, rgba(116,82,63,0.0) 70%, rgba(44,65,68,0.0) 80%, rgba(7,19,31,0.0) 100%);
 		z-index: 999;
 		opacity: 0.7;
 		transform: rotateX(45deg);
@@ -337,7 +337,7 @@
 		width: 100%;
 		height: 100%;
 		background-repeat: no-repeat;
-		background: linear-gradient(left, rgba(69,70,61,0.0) 3%,rgba(216,100,38,0.10) 32%,rgba(252,176,48,0.35) 35%,rgba(253,215,79,1) 45%,rgba(253,254,225,1) 48%,rgba(253,254,225,1) 52%, rgba(024,194,214,1) 55%, rgba(034,204,234,0.10) 65%, rgba(034,204,234,0.10) 60%, rgba(034,204,234,0.0) 97%);
+		background: linear-gradient(left, rgba(69,70,61,0.0) 3%, rgba(216,100,38,0.10) 32%, rgba(252,176,48,0.35) 35%, rgba(253,215,79,1) 45%, rgba(253,254,225,1) 48%, rgba(253,254,225,1) 52%, rgba(024,194,214,1) 55%, rgba(034,204,234,0.10) 65%, rgba(034,204,234,0.10) 60%, rgba(034,204,234,0.0) 97%);
 		z-index: 999;
 		transform: rotateX(45deg);
 	}

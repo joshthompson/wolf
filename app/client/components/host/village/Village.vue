@@ -1,9 +1,10 @@
 <script>
-	import Sky from './Sky.vue';
+	import Sky from './Sky.vue'
+	import Ground from './Ground.vue'
 	export default {
 		name: 'Village',
 		props: ['time', 'refresh'],
-		components: { Sky },
+		components: { Sky, Ground },
 		methods: {
 			addZero(n) {
 				return n < 10 ? '0' + n : n
@@ -35,7 +36,7 @@
 				<slot name="sky"></slot>
 			</div>
 		</div>
-		<div class="ground"></div>
+		<Ground :time="time" :refresh="refresh"></Ground>
 		<div class="content">
 			<div class="forest">
 				<img src="/imgs/tree1.png" class="village-object tree" />
@@ -86,22 +87,6 @@
 		}
 		.slot {
 			position: relative;
-		}
-	}
-
-	.ground {
-		height: 70vh;
-		margin-bottom: -70vh;
-		position: relative;
-		z-index: 1;
-		transition: background $transition linear;
-		[phase="day"] &,
-		[phase="sunset"] &  {
-			background: #66CC66;
-		}
-		[phase="night"] &,
-		[phase="dawn"] & {
-			background: #002500;
 		}
 	}
 
