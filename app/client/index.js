@@ -14,6 +14,12 @@ let WolfGameController = {
 	stats: null,
 	recoverable: null,
 
+	time: 11,
+	timeStep: 1 / 60 / 10, // 6 seconds per game hour
+	refresh: 25,
+	timeTargetTimeout: null,
+
+
 	init: () => {
 		WolfGameController.setupSocket()
 		WolfGameController.recoverActiveGame()
@@ -33,6 +39,25 @@ let WolfGameController = {
 				token: WolfGameController.player ? WolfGameController.player.token : WolfGameController.game.token
 			})
 		}
+	},
+
+	updateTime: () => {
+		WolfGameController.time += WolfGameController.timeStep
+		WolfGameController.time %= 24
+		setTimeout(WolfGameController.updateTime, WolfGameController.refresh)
+	},
+
+	setTimeTarget: (target, timestamp) => {
+		let now = new Date().getTime()
+		let timeTo = timestamp - now
+		let steps = timeTo / WolfGameController.refresh
+		let time = target + (target < WolfGameController.time ? 24 : 0)
+		WolfGameController.timeStep = (time - WolfGameController.time) / steps
+		clearTimeout(WolfGameController.timeTargetTimeout) // Stops two targets interferring
+		WolfGameController.timeTargetTimeout = setTimeout(() => {
+			WolfGameController.timeStep = 0
+			WolfGameController.time = target
+		}, timeTo)
 	},
 
 	removeActiveGame: () => {
@@ -56,7 +81,9 @@ let WolfGameController = {
 			WolfGameController.game = data.game
 			WolfGameController.mode = 'host'
 			WolfGameController.storeActiveGame()
+			WolfGameController.updateTime()
 		},
+		setTimeTarget: data => WolfGameController.setTimeTarget(data.time, data.timestamp),
 		startGame: () => WolfGameController.socket.emit('startGame'),
 		error: error => console.error(error)
 	},

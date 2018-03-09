@@ -149,6 +149,7 @@ class WolfGame extends Game {
 			state: this.state,
 			subState: this.subState,
 			accusations: this.accusations,
+			time: this.time,
 			votes: this.votes,
 			token: this.token
 		}

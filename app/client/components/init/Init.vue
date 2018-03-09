@@ -1,17 +1,19 @@
 <script>
 	import Cookie from 'js-cookie'
 	import PopOver from '../common/PopOver.vue'
+	import Credits from './Credits.vue'
 	export default {
 		name: 'init',
 		props: {
 			game: Object
 		},
-		components: { PopOver },
+		components: { PopOver, Credits },
 		data() {
 			return {
 				name: '',
 				code: '',
-				showStats: false
+				showStats: false,
+				showCredits: false
 			}
 		},
 		created() {
@@ -60,12 +62,15 @@
 		<div class="notices">
 			<span>Wolf Game v0.1</span>
 			<span><a @click="showStats = true">Stats</a></span>
-			<span><a href="/credits.html" target="_blank">Credits</a></span>
+			<span><a @click="showCredits = true" target="_blank">Credits</a></span>
 		</div>
 		<PopOver :show="showStats" @hide="showStats = false">
 			<h2>Current Stats</h2>
 			<p v-if="game.stats">{{game.stats.activeGames}} Games</p>
 			<p v-if="game.stats">{{game.stats.activePlayers}} Players</p>
+		</PopOver>
+		<PopOver :show="showCredits" @hide="showCredits = false">
+			<Credits></Credits>
 		</PopOver>
 	</div>
 </template>

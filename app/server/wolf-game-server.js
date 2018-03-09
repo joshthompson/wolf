@@ -120,6 +120,7 @@ class WolfGameServer {
 
 	startGame() {
 		this.game.setState('INTRO')
+		this.socket.emit('setTimeTarget', {time: 0, timestamp: new Date().getTime() + 800})
 		this.game.setupPlayerIdentities()
 		this.game.update()
 	}

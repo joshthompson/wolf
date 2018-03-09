@@ -2,7 +2,7 @@
 	import Sky from './Sky.vue';
 	export default {
 		name: 'Village',
-		props: ['time'],
+		props: ['time', 'refresh'],
 		components: { Sky },
 		methods: {
 			addZero(n) {

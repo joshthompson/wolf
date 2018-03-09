@@ -1,6 +1,6 @@
 <script>
-	import Avatar from '../common/Avatar.vue';
-	import Countdown from '../common/Countdown.vue';
+	import Avatar from '../common/Avatar.vue'
+	import Countdown from '../common/Countdown.vue'
 	export default {
 		name: 'HostSetup',
 		props: ['game'],

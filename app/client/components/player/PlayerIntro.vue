@@ -33,7 +33,7 @@
 		<ul class="description">
 			<li v-for="desc in description">{{ desc }}</li>
 		</ul>
-		<button @click="gotIt()" class="btn blue">Got it!</button>
+		<button @click="gotIt()" class="btn">Got it!</button>
 	</div>
 </template>
 
@@ -51,6 +51,7 @@
 		border-radius: 50%;
 		margin: 0px auto -12px;
 		overflow: hidden;
+		background: #FFFFFF;
 		img {
 			width: 85px;
     		margin: 8px 10px 0px 10px;
