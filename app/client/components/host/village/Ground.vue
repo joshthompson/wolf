@@ -1,12 +1,10 @@
 <script>
 	export default {
 		name: 'Sky',
-		props: ['time', 'refresh'],
-		computed: {},
-		created() {},
-		methods: {}
+		props: ['time', 'refresh']
 	}
 </script>
+
 <template>
 	<div class="ground-container">
 		<div class="ground"></div>

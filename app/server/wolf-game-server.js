@@ -119,6 +119,11 @@ class WolfGameServer {
 	}
 
 	startGame() {
+
+		if (!this.game) {
+			return this.socket.emit('gameError', {message: 'Couldn\'t find game'})
+		}
+		
 		this.game.setState('INTRO')
 		this.socket.emit('setTimeTarget', {time: 0, timestamp: new Date().getTime() + 800})
 		this.game.setupPlayerIdentities()

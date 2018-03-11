@@ -1,10 +1,11 @@
 <script>
 	import Sky from './Sky.vue'
 	import Ground from './Ground.vue'
+	import Shadow from './Shadow.vue'
 	export default {
 		name: 'Village',
 		props: ['time', 'refresh'],
-		components: { Sky, Ground },
+		components: { Sky, Ground, Shadow },
 		methods: {
 			addZero(n) {
 				return n < 10 ? '0' + n : n
@@ -39,16 +40,16 @@
 		<Ground :time="time" :refresh="refresh"></Ground>
 		<div class="content">
 			<div class="forest">
-				<img src="/imgs/tree1.png" class="village-object tree" />
-				<img src="/imgs/tree2.png" class="village-object tree" />
-				<img src="/imgs/tree2.png" class="village-object tree" />
-				<img src="/imgs/tree1.png" class="village-object tree" />
-				<img src="/imgs/tree3.png" class="village-object tree" />
-				<img src="/imgs/tree2.png" class="village-object tree" />
-				<img src="/imgs/tree3.png" class="village-object tree" />
-				<img src="/imgs/tree3.png" class="village-object tree" />
-				<img src="/imgs/tree2.png" class="village-object tree" />
-				<img src="/imgs/tree3.png" class="village-object tree" />
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree1.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree1.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
+				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
 			</div>
 			<slot></slot>
 		</div>	
@@ -96,7 +97,7 @@
 		height: 70vh;
 		.forest {
 			margin-top: -50px;
-			height: 100px;
+			height: 187px; // 100px without shadow
 			overflow: hidden;
 			.tree {
 				height: 100px;

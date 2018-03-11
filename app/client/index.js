@@ -14,9 +14,9 @@ let WolfGameController = {
 	stats: null,
 	recoverable: null,
 
-	time: 11,
-	timeStep: 1 / 60 / 10, // 6 seconds per game hour
-	refresh: 25,
+	time: 8,
+	timeStep: 1 / 60 / 10 * 10, // 6 seconds per game hour
+	refresh: 50,
 	timeTargetTimeout: null,
 
 
