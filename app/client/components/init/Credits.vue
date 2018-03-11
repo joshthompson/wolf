@@ -24,6 +24,7 @@
 		<p>Vanessa Avila</p>
 		<p>Jasmine Rule</p>
 		<p>Jeremy Tan</p>
+		<p>Scott Boiko</p>
 
 		<h3>Attributions</h3>
 

@@ -96,15 +96,22 @@
 </script>
 
 <style lang="scss" scoped>
+	@import '../../../style/mixins.scss';
 	.shadow-container {
 		display: inline-block;
 		.original {
 			display: block;
+			position: relative;
+			z-index: 2;
 		}
 		.shadow {
 			display: block;
+			position: relative;
+			z-index: 1;
 			filter: brightness(0) blur(2px);
 			transform: scaleY(-1);
+			@include userSelect(none);
+			pointer-events: none;
 		}
 	}
 </style>
