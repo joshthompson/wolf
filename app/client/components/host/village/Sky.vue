@@ -42,14 +42,9 @@
 				let sunEl = component.getElementsByClassName('sun')[0]
 				let sunDayEl = component.getElementsByClassName('sunDay')[0]
 				let sunSetEl = component.getElementsByClassName('sunSet')[0]
-				let waterReflectionContainerEl = component.getElementsByClassName('waterReflectionContainer')[0]
-				let waterReflectionMiddleEl = component.getElementsByClassName('waterReflectionMiddle')[0]
-				let waterEl = component.getElementsByClassName('water')[0]
-				let darknessOverlayEl = component.getElementsByClassName('darknessOverlay')[0]
 				let darknessOverlaySkyEl = component.getElementsByClassName('darknessOverlaySky')[0]
 				let moonEl = component.getElementsByClassName('moon')[0]
 				let horizonNightEl = component.getElementsByClassName('horizonNight')[0]
-				let waterDistanceEl = component.getElementsByClassName('waterDistance')[0]
 				let skyEl = component.getElementsByClassName('sky')[0]
 				let horizonEl = component.getElementsByClassName('horizon')[0]
 
@@ -71,15 +66,11 @@
 				sunSetEl.style.background = `-ms-radial-gradient(${sunSetRadialGradient})`
 				sunSetEl.style.background = `radial-gradient(${sunSetRadialGradient})`
 
-				waterReflectionContainerEl.style.perspectiveOrigin = (this.sun.x / this.width * 100).toString() + '% -15%'
-				waterReflectionMiddleEl.style.left = (this.sun.x - this.width - (this.width * .03)).toString() + 'px'
-
 				sunEl.style.width = component.clientWidth
 				sunEl.style.left = '0px'
 				sunDayEl.style.width = component.clientWidth
 				sunDayEl.style.left = '0px'
 
-				darknessOverlayEl.style.opacity = Math.min((this.sun.y - (this.height / 2)) / (this.height / 2), 1)
 				darknessOverlaySkyEl.style.opacity = Math.min((this.sun.y - (this.height * 7 / 10)) / (this.height - (this.height * 7 / 10)), 1)
 
 				moonEl.style.opacity = Math.min((this.sun.y - (this.height * 9 / 10)) / (this.height - (this.height * 9 / 10)), 1)
@@ -88,7 +79,6 @@
 
 				horizonNightEl.style.opacity = (this.sun.y - (this.height * 4 / 5)) / (this.height - (this.height * 4 / 5))
 
-				waterDistanceEl.style.opacity = (this.sun.y / this.height + 0.6)
 				sunDayEl.style.opacity = (1 - this.sun.y / this.height)
 				skyEl.style.opacity = Math.min((1 - this.sun.y / this.height), 0.99)
 
@@ -98,11 +88,9 @@
 					if (this.sun.y > this.height / 2) {
 						sunEl.style.opacity = Math.min((this.height - this.sun.y) / (this.height / 2) + 0.2, 0.5)
 						horizonEl.style.opacity = (this.height - this.sun.y) / (this.height / 2) + 0.2
-						waterReflectionMiddleEl.style.opacity = (this.height - this.sun.y) / (this.height / 2) - 0.1
 					} else {
 						horizonEl.style.opacity = Math.min(this.sun.y / (this.height / 2), 0.99)
 						sunEl.style.opacity = Math.min(this.sun.y / (this.height / 2), 0.5)
-						waterReflectionMiddleEl.style.opacity = this.sun.y / (this.height / 2) - 0.1
 					}
 
 				}
@@ -123,16 +111,7 @@
 		<div class="moonContainer">
 			<div class="moon"></div>
 		</div>
-		<div class="mountainRange">
-			<div class="mountain"></div>
-		</div>
-		<div class="water"></div>
-		<div class="waterReflectionContainer">
-			<div class="waterReflectionMiddle"></div>
-		</div>
-		<div class="waterDistance"></div>
 		<div class="darknessOverlaySky"></div>
-		<div class="darknessOverlay"></div>
 	</div>
 </template>
 
@@ -147,13 +126,6 @@
 		height: $height;
 	}
 
-	.water,
-	.waterDistance,
-	.darknessOverlay,
-	.waterReflectionContainer {
-		display: none;
-	}
-
 	.sky,
 	.horizon,
 	.horizonNight,
@@ -163,12 +135,6 @@
 	.sun {
 		height: 100% !important;
 	}
-
-	.waterReflectionContainer {
-		top: 100% !important;
-		height: 70vh !important;
-	}
-
 	// Original CSS (more or less)
 	.sun, .sunDay, .sunSet {
 		position: absolute;
@@ -231,25 +197,6 @@
 		@include linearGradient(bottom, rgba(249,251,240,1) 10%, rgba(215,253,254,1) 20%, rgba(167,222,253,1) 40%, rgba(110,175,255,1) 100%);
 		opacity: 0.52;
 	}
-	.mountainRange {
-		position: absolute;
-		left: 0px;
-		width: 100%;
-		bottom: 50%;
-		display:none;
-		z-index: 999;
-	}
-	.mountain {
-		border-bottom: 100px solid #000;
-		border-right: 100px solid transparent;
-		border-width-right: 50%;
-		width: 0px;
-		height: 0px;
-		position: absolute;
-		left: 0px;
-		bottom: 50%;
-		z-index: 999;
-	}
 	.horizon, .horizonNight {
 		position: absolute;
 		top: 0px;
@@ -276,86 +223,5 @@
 		width: 100%;
 		height: 50%;
 		z-index: 9999;
-	}
-	.darknessOverlay {
-		background-color: #000;
-		opacity: 0;
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-		width: 100%;
-		height: 50%;
-		z-index: 99;
-	}
-	.waterDistance {
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-		width: 100%;
-		height: 50%;
-		background-repeat: no-repeat;
-		@include linearGradient(90deg, rgba(0,0,0,0.0) 10%, rgba(0,0,0,0.20) 44%, rgba(0,0,0,0.65) 95%, rgba(0,0,0,0.62) 100%);
-	}
-	.water {
-		overflow: hidden;
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-		width: 100%;
-		height: 50%;
-		background-repeat: no-repeat;
-		@include linearGradient(bottom, rgba(0,25,45,1) 0%, rgba(14,71,117,1) 35%, rgba(26,126,174,1) 70%, rgba(62,168,220,1) 100%);
-		z-index: 10;
-	}
-	.waterReflectionContainer {
-		perspective: 30;
-		perspective-origin: 50% -12%;
-		overflow: hidden;
-		position: absolute;
-		top: 50%;
-		left: -3%;
-		width: 103%;
-		height: 50%;
-		z-index: 25;
-	}
-	.waterReflectionMiddle {
-		position: absolute;
-		top: 0px;
-		left: -50%;
-		width: 200%;
-		height: 55%;
-		background-repeat: no-repeat;
-		@include radialGradient(50% 0px, rgba(247,177,72,1) 3%, rgba(248,175,65,1) 6%, rgba(207,62,30,0.4) 35%, rgba(176,91,48,0.1) 45%, rgba(141,88,47,0.0) 60%, rgba(116,82,63,0.0) 70%, rgba(44,65,68,0.0) 80%, rgba(7,19,31,0.0) 100%);
-		z-index: 999;
-		opacity: 0.7;
-		transform: rotateX(45deg);
-	}
-	.waterReflectionMiddleThin {
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-		width: 100%;
-		height: 100%;
-		background-repeat: no-repeat;
-		background: linear-gradient(left, rgba(69,70,61,0.0) 3%, rgba(216,100,38,0.10) 32%, rgba(252,176,48,0.35) 35%, rgba(253,215,79,1) 45%, rgba(253,254,225,1) 48%, rgba(253,254,225,1) 52%, rgba(024,194,214,1) 55%, rgba(034,204,234,0.10) 65%, rgba(034,204,234,0.10) 60%, rgba(034,204,234,0.0) 97%);
-		z-index: 999;
-		transform: rotateX(45deg);
-	}
-	.division {
-		height: 5px;
-		width: 100%;
-		position: absolute;
-		top: 50%;
-		bottom: 50%;
-		background-color: rgba(000,14,24,0.0);
-		z-index: 9999;
-		cursor: ns-resize;
-	}
-	.coor {
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		z-index: 999;
-		color: #fff;
 	}
 </style>
