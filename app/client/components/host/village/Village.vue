@@ -4,7 +4,7 @@
 	import Shadow from './Shadow.vue'
 	export default {
 		name: 'Village',
-		props: ['time', 'refresh'],
+		props: ['game'],
 		components: { Sky, Ground, Shadow },
 		methods: {
 			addZero(n) {
@@ -13,14 +13,14 @@
 		},
 		computed: {
 			phase() {
-				if (this.time < 6 || this.time > 17) {
+				if (this.game.time < 6 || this.game.time > 17) {
 					return 'night'
 				} else {
 					return 'day'
 				}
 			},
 			timeStr() {
-				return this.addZero(Math.floor(this.time)) + ":" + this.addZero(Math.floor((this.time % 1) * 60))
+				return this.addZero(Math.floor(this.game.time)) + ":" + this.addZero(Math.floor((this.game.time % 1) * 60))
 			}
 		}
 	}
@@ -31,25 +31,25 @@
 		<pre style="position: fixed; bottom: 0px; right: 20px; z-index: 1000;">{{timeStr}}</pre>
 		<div class="sky">
 			<div class="sky-layer">
-				<Sky :time="time" :refresh="refresh"></Sky>
+				<Sky :time="game.time" :refresh="game.refresh"></Sky>
 			</div>
 			<div class="slot">
 				<slot name="sky"></slot>
 			</div>
 		</div>
-		<Ground :time="time" :refresh="refresh"></Ground>
+		<Ground :time="game.time" :refresh="game.refresh"></Ground>
 		<div class="content">
 			<div class="forest">
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree1.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree1.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
-				<Shadow :time="time" :refresh="refresh" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree1.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree1.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
+				<Shadow :game="game" :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
 			</div>
 			<slot></slot>
 		</div>	

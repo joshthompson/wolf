@@ -17,8 +17,8 @@
 
 <template>
 	<div id="host">
-		<a @click="game.endGame()" class="endGameBtn">X</a>
-		<Village :time="game.time" :refresh="game.refresh">
+		<a @click="game.endGame()" class="endGameBtn"></a>
+		<Village :game="game">
 			<HostSetup v-if="game.game.state === 'SETUP'" :game="game"></HostSetup>
 			<HostIntro v-if="game.game.state === 'INTRO'" :game="game"></HostIntro>
 			<MessageView
@@ -31,17 +31,17 @@
 </template>
 
 <style lang="scss" scoped>
+	$margin: 10px;
+	$size: 32px;
 	.endGameBtn {
-		$margin: 10px;
-		$size: 32px;
+		display: inline-block;
+		background: url('/imgs/x.png');
 		float: right;
-		color: black;
-		background: white;
-		border-radius: $size / 2;
+		background-size: $size $size;
 		width: $size;
 		height: $size;
+		border-radius: $size / 2;
 		margin: $margin $margin 0px (-$size - $margin);
-		line-height: 38px;
 		position: relative;
 		z-index: 100;
 		&:hover {

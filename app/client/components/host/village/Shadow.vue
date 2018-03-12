@@ -17,7 +17,7 @@
 	}
 	export default {
 		name: 'Shadow',
-		props: ['time', 'refresh', 'offset'],
+		props: ['game', 'offset'],
 		data() {
 			return {
 				origin: `50% calc(100% - ${this.offset/2}px)`,
@@ -34,25 +34,25 @@
 				this.opacity = this._opacity()
 				this.scale = this._scale()
 				this.skew = this._skew()
-				setTimeout(this.update, this.refresh)
+				setTimeout(this.update, this.game.refresh)
 			},
 			_opacity() {
 				let opacity = 0
-				if (this.time >= 6.5 && this.time <= 17.5) {
-					opacity = 0.2 + Math.abs(12 - this.time) / 6.875 // Day time
-				} else if (this.time >= 6 && this.time <= 18) {
-					opacity = (1 - (Math.abs(12 - this.time) - 5)) / 0.5 // Sunrise / sunset
+				if (this.game.time >= 6.5 && this.game.time <= 17.5) {
+					opacity = 0.2 + Math.abs(12 - this.game.time) / 6.875 // Day time
+				} else if (this.game.time >= 6 && this.game.time <= 18) {
+					opacity = (1 - (Math.abs(12 - this.game.time) - 5)) / 0.5 // Sunrise / sunset
 				} else {
 					opacity = 0
 				}
 				return opacity / 4
 			},
 			_scale() {
-				let height = 0.5 + Math.abs(12 - this.time) / 12
+				let height = 0.5 + Math.abs(12 - this.game.time) / 12
 				return `scaleY(-${height})`
 			},
 			_skew() {
-				let deg = (12 - this.time) * -9
+				let deg = (12 - this.game.time) * -9
 				return `skew(${deg}deg, 0deg)`
 			}
 		},

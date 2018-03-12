@@ -38,11 +38,15 @@
 </template>
 
 <style lang="scss" scoped>
+	@import '../../style/mixins.scss';
 	.role {
 		font-family: 'Permanent Marker', cursive;
 	}
 	.description {
 		text-align: left;
+		padding: 10px 10px 10px 30px;
+		margin: 10px;
+		@include box();
 	}
 	.icon {
 		border: 2px solid black;
