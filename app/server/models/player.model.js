@@ -83,6 +83,7 @@ class Player {
 
 	toPublicJSON() {
 		return {
+			id: this.id,
 			name: this.name,
 			avatar: this.avatar,
 			alive: this.alive,

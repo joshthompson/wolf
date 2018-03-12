@@ -38,7 +38,7 @@
 </template>
 
 <style lang="scss" scoped>
-	@import '../../style/mixins.scss';
+	@import '../../../style/mixins.scss';
 	.role {
 		font-family: 'Permanent Marker', cursive;
 	}

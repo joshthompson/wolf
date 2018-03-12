@@ -1,5 +1,5 @@
 <script>
-	import Avatar from '../common/Avatar.vue';
+	import Avatar from '../../common/Avatar.vue';
 	import ChangeName from './ChangeName.vue';
 	import SelectAvatar from './SelectAvatar.vue';
 	export default {

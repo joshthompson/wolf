@@ -1,7 +1,7 @@
 <script>
 	import SelectAvatar from './SelectAvatar.vue';
 	import PlayerReady from './PlayerReady.vue';
-	import MessageView from '../common/MessageView.vue';
+	import MessageView from '../../common/MessageView.vue';
 	export default {
 		name: 'PlayerSetup',
 		props: ['game'],
