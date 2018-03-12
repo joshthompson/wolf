@@ -27,7 +27,7 @@ class RoomCode {
 			'CARA',
 			'ANJO',
 			'DOOM',
-			'MNST',
+			'MIST',
 			'WOOO',
 			'BOOO',
 			'WEST',

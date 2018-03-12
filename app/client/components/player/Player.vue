@@ -15,7 +15,7 @@
 </script>
 
 <template>
-	<div id="player" :colour="game.player.id % 3">
+	<div id="player" :colour="game.player.id % 5">
 		<PlayerSetup :game="game" v-if="game.game.state === 'SETUP'"></PlayerSetup>
 		<PlayerIntro :game="game" v-if="game.game.state === 'INTRO'"></PlayerIntro>
 		<MessageView
@@ -30,4 +30,6 @@
 	#player[colour='0'] { background: #35D835; }
 	#player[colour='1'] { background: #2BA8CE; }
 	#player[colour='2'] { background: #DBDE2C; }
+	#player[colour='3'] { background: #CA5321; }
+	#player[colour='4'] { background: #8D21CA; }
 </style>
