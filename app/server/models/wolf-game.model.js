@@ -112,6 +112,16 @@ class WolfGame extends Game {
 		})
 	}
 
+	checkPlayersState(state) {
+		let result = true
+		this.players.forEach(player => {
+			if (player.state !== state) {
+				result = false
+			}
+		})
+		return true
+	}
+
 	end() {
 		this.socket.emit('gameEnded')
 		this.players.forEach(player => player.socket.emit('gameEnded'))

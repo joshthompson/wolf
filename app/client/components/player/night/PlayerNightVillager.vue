@@ -6,5 +6,9 @@
 </script>
 
 <template>
-	<div id="PlayerNightVillager"></div>
+	<div id="PlayerNightVillager">
+		Night time villager stuff
+		- Random question / tasks
+		- Dream
+	</div>
 </template>

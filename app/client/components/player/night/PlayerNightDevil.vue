@@ -6,5 +6,8 @@
 </script>
 
 <template>
-	<div id="PlayerNightDevil"></div>
+	<div id="PlayerNightDevil">
+		Night time devil stuff
+		- Same as villager
+	</div>
 </template>

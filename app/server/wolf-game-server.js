@@ -26,9 +26,15 @@ class WolfGameServer {
 		// Host
 		this.socket.on('startGame', (...args) => this.startGame(...args))
 		this.socket.on('endGame', (...args) => this.endGame(...args))
-		// Player
+		// Player Setup
 		this.socket.on('changeName', (...args) => this.changeName(...args))
 		this.socket.on('selectAvatar', (...args) => this.selectAvatar(...args))
+		// Player Intro
+		this.socket.on('playerReady', (...args) => this.playerReady(...args))
+		// Voting
+		this.socket.on('vote', (...args) => this.vote(...args))
+		this.socket.on('accuse', (...args) => this.accuse(...args))
+		this.socket.on('withdrawAccusation', (...args) => this.withdrawAccusation(...args))
 		// Special
 		this.socket.on('requestStats', (...args) => this.requestStats(...args))
 	}
@@ -125,15 +131,22 @@ class WolfGameServer {
 		}
 		
 		this.game.setState('INTRO')
-		this.socket.emit('setTimeTarget', {time: 0, timestamp: new Date().getTime() + 800})
+		this.socket.emit('setTimeTarget', {time: 22, timestamp: new Date().getTime() + 800})
 		this.game.setupPlayerIdentities()
 		this.game.update()
 	}
 
 	playerReady() {
+		if (!this.game) {
+			return this.socket.emit('gameError', {message: 'Couldn\'t find game'})
+		}
+		if (!this.player) {
+			return this.socket.emit('gameError', {message: 'Couldn\'t find player'})
+		}
 		this.player.setState('READY')
 		if (this.game.checkPlayersState('READY')) {
 			this.game.setState('NIGHT')
+			this.socket.emit('setTimeTarget', {time: 0, timestamp: new Date().getTime() + 800})
 		}
 		this.game.update()
 	}
@@ -179,6 +192,25 @@ class WolfGameServer {
 			activePlayers: players
 		})
 	}
+
+	vote(player) {
+		if (!this.game) {
+			return this.socket.emit('gameError', {message: 'Couldn\'t find game'})
+		}
+	}
+
+	accuse(player) {
+		if (!this.game) {
+			return this.socket.emit('gameError', {message: 'Couldn\'t find game'})
+		}
+	}
+
+	withdrawAccusation() {
+		if (!this.game) {
+			return this.socket.emit('gameError', {message: 'Couldn\'t find game'})
+		}
+	}
+
 
 }
 

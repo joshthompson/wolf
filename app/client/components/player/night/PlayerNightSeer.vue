@@ -6,5 +6,8 @@
 </script>
 
 <template>
-	<div id="PlayerNightSeer"></div>
+	<div id="PlayerNightSeer">
+		Night time seer stuff
+		- Choose player to reveal identity
+	</div>
 </template>

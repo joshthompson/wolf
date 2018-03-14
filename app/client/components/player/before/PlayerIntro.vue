@@ -4,7 +4,7 @@
 		props: ['game'],
 		methods: {
 			gotIt() {
-				this.game.client.setState('READY')
+				this.game.client.playerReady()
 			}
 		},
 		computed: {
@@ -21,19 +21,21 @@
 <template>
 	<div id="PlayerIntro" class="view">
 		<h1>{{ game.player.name }}</h1>
-
-		<h2>You are...</h2>
-		<h2 class="role">{{ game.player.character.title }}</h2>
-
-		<div class="icon">
-			<img :src="icon" />
+		<div v-if="game.player.state !== 'READY'">
+			<h2>You are...</h2>
+			<h2 class="role">{{ game.player.character.title }}</h2>
+			<div class="icon">
+				<img :src="icon" />
+			</div>
+			<div class="team">Team: {{ game.player.character.team }}</div>
+			<ul class="description">
+				<li v-for="desc in description">{{ desc }}</li>
+			</ul>
+			<button @click="gotIt()" class="btn">Got it!</button>
 		</div>
-		<div class="team">Team: {{ game.player.character.team }}</div>
-
-		<ul class="description">
-			<li v-for="desc in description">{{ desc }}</li>
-		</ul>
-		<button @click="gotIt()" class="btn">Got it!</button>
+		<div v-if="game.player.state === 'READY'">
+			<p>Waiting for other players</p>
+		</div>
 	</div>
 </template>
 
