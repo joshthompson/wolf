@@ -36,6 +36,7 @@ class Character {
 
 	toPublicJSON() {
 		return {
+			type: this.type,
 			title: this.title,
 			team: this.team,
 			icon: this.icon,

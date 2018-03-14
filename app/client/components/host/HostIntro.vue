@@ -10,8 +10,9 @@
 
 <template>
 	<div id="host-setup">
+		<h1>Check your device</h1>
 		<div class="players">
-			<avatar :player="player" class="village-object"></avatar>
+			<avatar v-for="player in game.game.players" :key="player.id" :player="player" class="village-object"></avatar>
 		</div>
 	</div>
 </template>

@@ -4,6 +4,7 @@ class Cupid extends Character {
 
 	constructor(player) {
 		super(player)
+		this.type = 'cupid'
 		this.title = 'Cupid'
 		this.icon = '/imgs/characters/cupid.png'
 		this.team = 'Villagers'

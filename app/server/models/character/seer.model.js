@@ -4,6 +4,7 @@ class Seer extends Character {
 
 	constructor(player) {
 		super(player)
+		this.type = 'seer'
 		this.title = 'A Seer'
 		this.icon = '/imgs/characters/seer.png'
 		this.team = 'Villagers'

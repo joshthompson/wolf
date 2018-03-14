@@ -4,6 +4,7 @@ class Wolf extends Character {
 
 	constructor(player) {
 		super(player)
+		this.type = 'wolf'
 		this.title = 'A Werewolf'
 		this.icon = '/imgs/characters/wolf.png'
 		this.team = 'Werewolves'

@@ -6,9 +6,10 @@
 </script>
 
 <template>
-	<div id="PlayerNightCupid">
-		Night time cupid stuff
-		- First night, pick lovers
-		- After lovers are picked act like villager
+	<div id="PlayerNightCupid" class="view">
+		<h1>Night</h1>
+		<p>Night time cupid stuff</p>
+		<p>- First night, pick lovers</p>
+		<p>- After lovers are picked act like villager</p>
 	</div>
 </template>

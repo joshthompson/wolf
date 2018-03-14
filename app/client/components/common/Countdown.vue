@@ -32,9 +32,3 @@
 		{{ timer }}
 	</div>
 </template>
-
-<style lang="scss">
-	.countdown {
-		font-size: 72px;
-	}
-</style>

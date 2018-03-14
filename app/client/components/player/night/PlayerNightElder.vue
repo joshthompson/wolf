@@ -6,8 +6,9 @@
 </script>
 
 <template>
-	<div id="PlayerNightElder">
-		Night time elder stuff
-		- Same as villager
+	<div id="PlayerNightElder" class="view">
+		<h1>Night</h1>
+		<p>Night time elder stuff</p>
+		<p>- Same as villager</p>
 	</div>
 </template>

@@ -6,10 +6,11 @@
 </script>
 
 <template>
-	<div id="PlayerNightWolf">
-		Night time wolf stuff
-		- Pick someone to kill
-		- Wait for see other wolf votes
-		- Agree?
+	<div id="PlayerNightWolf" class="view">
+		<h1>Night</h1>
+		<p>Night time wolf stuff</p>
+		<p>- Pick someone to kill</p>
+		<p>- Wait for see other wolf votes</p>
+		<p>- Agree?</p>
 	</div>
 </template>

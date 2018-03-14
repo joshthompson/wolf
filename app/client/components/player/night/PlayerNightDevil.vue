@@ -6,8 +6,9 @@
 </script>
 
 <template>
-	<div id="PlayerNightDevil">
-		Night time devil stuff
-		- Same as villager
+	<div id="PlayerNightDevil" class="view">
+		<h1>Night</h1>
+		<p>Night time devil stuff</p>
+		<p>- Same as villager</p>
 	</div>
 </template>

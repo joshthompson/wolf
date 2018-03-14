@@ -21,11 +21,11 @@
 
 <template>
 	<div id="PlayerNight">
-		<PlayerNightCupid :game="game"></PlayerNightCupid>
-		<PlayerNightDevil :game="game"></PlayerNightDevil>
-		<PlayerNightElder :game="game"></PlayerNightElder>
-		<PlayerNightSeer :game="game"></PlayerNightSeer>
-		<PlayerNightVillager :game="game"></PlayerNightVillager>
-		<PlayerNightWolf :game="game"></PlayerNightWolf>
+		<PlayerNightCupid    :game="game" v-if="game.player.character.type === 'cupid'"></PlayerNightCupid>
+		<PlayerNightDevil    :game="game" v-if="game.player.character.type === 'devil'"></PlayerNightDevil>
+		<PlayerNightElder    :game="game" v-if="game.player.character.type === 'elder'"></PlayerNightElder>
+		<PlayerNightSeer     :game="game" v-if="game.player.character.type === 'seer'"></PlayerNightSeer>
+		<PlayerNightVillager :game="game" v-if="game.player.character.type === 'villager'"></PlayerNightVillager>
+		<PlayerNightWolf     :game="game" v-if="game.player.character.type === 'wolf'"></PlayerNightWolf>
 	</div>
 </template>

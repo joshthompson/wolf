@@ -4,6 +4,7 @@ class Elder extends Character {
 
 	constructor(player) {
 		super(player)
+		this.type = 'elder'
 		this.title = 'The Village Elder'
 		this.icon = '/imgs/characters/elder.png'
 		this.team = 'Villagers'

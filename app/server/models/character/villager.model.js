@@ -4,6 +4,7 @@ class Villager extends Character {
 
 	constructor(player) {
 		super()
+		this.type = 'villager'
 		this.title = 'A Villager'
 		this.icon = null // Use regular avatar icon
 		this.team = 'Villagers'

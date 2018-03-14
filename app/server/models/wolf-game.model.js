@@ -146,7 +146,8 @@ class WolfGame extends Game {
 			minPlayers: this.minPlayers,
 			state: this.state,
 			subState: this.subState,
-			accusations: this.accusations
+			accusations: this.accusations,
+			day: this.day
 		}
 	}
 
@@ -159,6 +160,7 @@ class WolfGame extends Game {
 			state: this.state,
 			subState: this.subState,
 			accusations: this.accusations,
+			day: this.day,
 			time: this.time,
 			votes: this.votes,
 			token: this.token
