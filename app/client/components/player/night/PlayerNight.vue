@@ -1,4 +1,5 @@
 <script>
+	import TitleCard from '../../common/TitleCard.vue'
 	import PlayerNightCupid from './PlayerNightCupid.vue'
 	import PlayerNightDevil from './PlayerNightDevil.vue'
 	import PlayerNightElder from './PlayerNightElder.vue'
@@ -9,6 +10,7 @@
 		name: 'PlayerNight',
 		props: ['game'],
 		components: {
+			TitleCard,
 			PlayerNightCupid,
 			PlayerNightDevil,
 			PlayerNightElder,
@@ -21,6 +23,7 @@
 
 <template>
 	<div id="PlayerNight">
+		<TitleCard :text="`Night ${game.game.day + 1}`"></TitleCard>
 		<PlayerNightCupid    :game="game" v-if="game.player.character.type === 'cupid'"></PlayerNightCupid>
 		<PlayerNightDevil    :game="game" v-if="game.player.character.type === 'devil'"></PlayerNightDevil>
 		<PlayerNightElder    :game="game" v-if="game.player.character.type === 'elder'"></PlayerNightElder>

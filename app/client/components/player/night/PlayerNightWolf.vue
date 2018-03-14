@@ -8,6 +8,8 @@
 <template>
 	<div id="PlayerNightWolf" class="view">
 		<h1>Night</h1>
+
+		<!-- <PlayerList :players=""></PlayerList> -->
 		<p>Night time wolf stuff</p>
 		<p>- Pick someone to kill</p>
 		<p>- Wait for see other wolf votes</p>

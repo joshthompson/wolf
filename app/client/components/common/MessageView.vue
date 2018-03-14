@@ -12,7 +12,7 @@
 	</div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	p {
 		font-size: 32px;
 		padding: 20px;

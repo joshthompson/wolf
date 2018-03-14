@@ -119,7 +119,7 @@ class WolfGame extends Game {
 				result = false
 			}
 		})
-		return true
+		return result
 	}
 
 	end() {
