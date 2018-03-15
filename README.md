@@ -8,7 +8,7 @@ It allows you to host from one browswer window and then have every player connec
 
 ## Project
 
-The project is in early stages so currently is not playable but once it is I will put a link to a hosted version.
+To see the project an alpha version of the project visit https://www.joshthompson.co.uk/wolf
 
 ## Install
 
