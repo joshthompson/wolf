@@ -7,7 +7,7 @@
 
 <template>
 	<div id="PlayerNightWolf" class="view">
-		<h1>Night</h1>
+		<h1>Night {{ game.game.day + 1 }}</h1>
 
 		<!-- <PlayerList :players=""></PlayerList> -->
 		<p>Night time wolf stuff</p>

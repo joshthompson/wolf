@@ -7,7 +7,6 @@ class WolfGameHostCommon {
 	endGame(data) {
 		this.server.game.end()
 		delete this.server.games[this.server.game.code]
-		delete this.server
 	}
 
 }

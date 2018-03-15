@@ -30,6 +30,8 @@
 <style lang="scss" scoped>
 	.title-card {
 		position: fixed;
+		top: 0px;
+		left: 0px;
 		width: 100vw;
 		height: 100vh;
 		z-index: 20000;
@@ -50,5 +52,8 @@
 		&.remove {
 			display: none;
 		}
+		
+		font-family: 'Permanent Marker', cursive;
+		color: #EEC74A;
 	}
 </style>
