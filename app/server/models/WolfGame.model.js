@@ -3,7 +3,7 @@ var RoomCode = require('./RoomCode.model')
 var Player = require('./Player.model')
 var Accusation = require('./Accusation.model')
 var Vote = require('./Vote.model')
-var Action = require('./action.model')
+var Action = require('./Action.model')
 var sha512 = require('js-sha512').sha512
 
 // Roles
