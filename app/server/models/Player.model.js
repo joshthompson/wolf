@@ -1,4 +1,4 @@
-var WolfGame = require('./wolf-game.model')
+var WolfGame = require('./WolfGame.model')
 var sha512 = require('js-sha512').sha512
 
 class Player {

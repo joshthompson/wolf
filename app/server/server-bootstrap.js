@@ -1,4 +1,4 @@
-var WolfGameServer = require('./wolf-game-server')
+var WolfGameServer = require('./WolfGameServer')
 var express = require('express')
 var app = express()
 var http = require('http').Server(app)

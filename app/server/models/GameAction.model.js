@@ -1,4 +1,4 @@
-var Action = require('./action.model')
+var Action = require('./Action.model')
 
 class GameAction extends Action {
 	constructor(data) {

@@ -1,18 +1,18 @@
-var Game = require('./game.model')
-var RoomCode = require('./room-code.model')
-var Player = require('./player.model')
-var Accusation = require('./accusation.model')
-var Vote = require('./vote.model')
+var Game = require('./Game.model')
+var RoomCode = require('./RoomCode.model')
+var Player = require('./Player.model')
+var Accusation = require('./Accusation.model')
+var Vote = require('./Vote.model')
 var Action = require('./action.model')
 var sha512 = require('js-sha512').sha512
 
 // Roles
-var Cupid = require('./character/cupid.model')
-var Devil = require('./character/devil.model')
-var Elder = require('./character/elder.model')
-var Seer = require('./character/seer.model')
-var Villager = require('./character/villager.model')
-var Wolf = require('./character/wolf.model')
+var Cupid = require('./character/Cupid.model')
+var Devil = require('./character/Devil.model')
+var Elder = require('./character/Elder.model')
+var Seer = require('./character/Seer.model')
+var Villager = require('./character/Villager.model')
+var Wolf = require('./character/Wolf.model')
 
 // WolfGame
 class WolfGame extends Game {

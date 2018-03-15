@@ -1,4 +1,4 @@
-var Character = require('./character.model')
+var Character = require('./Character.model')
 
 class Elder extends Character {
 

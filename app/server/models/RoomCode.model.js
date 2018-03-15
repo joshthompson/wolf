@@ -31,7 +31,16 @@ class RoomCode {
 			'WOOO',
 			'BOOO',
 			'WEST',
-			'EAST'
+			'EAST',
+			'FOUL',
+			'HUND',
+			'EVIL',
+			'VARG', // Swedish
+			'LOBO', // Portuguese
+			'LLOP', // Catalan
+			'HUNT', // Estonian
+			'LUPO', // Esperanto
+			'KURT' // Turkish
 		]
 		while (code.length < length) {
 			code = code + chars[Math.floor(Math.random() * chars.length)]

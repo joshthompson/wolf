@@ -1,4 +1,4 @@
-var Player = require('./player.model')
+var Player = require('./Player.model')
 
 class Accusation {
 	constructor(data) {
