@@ -26,4 +26,4 @@ Go to `http://localhost:9653` in a modern browser
 
 ## Planning
 
-I've made a simple planning document with some features and stuff [here](plan.md)
+I've made a simple planning document with some features and stuff [here](design/plan.md)
