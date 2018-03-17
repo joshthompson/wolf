@@ -4,9 +4,6 @@
 	import Credits from './Credits.vue'
 	export default {
 		name: 'init',
-		props: {
-			game: Object
-		},
 		components: { PopOver, Credits },
 		data() {
 			return {
@@ -20,17 +17,17 @@
 			if (Cookie.get('player_name')) {
 				this.name = Cookie.get('player_name')
 			}
-			this.game.common.requestStats()
+			this.$root.game.common.requestStats()
 		},
 		methods: {
 			createGame() {
-				this.game.host.createGame()
+				this.$root.game.host.createGame()
 			},
 			joinGame(name, code) {
-				this.game.client.joinGame(this.code, this.name)
+				this.$root.game.client.joinGame(this.code, this.name)
 			},
 			recoverGame() {
-				this.game.common.recoverPlayerGame()
+				this.$root.game.common.recoverPlayerGame()
 			}
 		}
 	}
@@ -40,7 +37,7 @@
 	<div id="init" class="view">
 		<h1>Wolf</h1>
 		<div class="form-view">
-			<div class="form-group" v-if="game.recoverable">
+			<div class="form-group" v-if="$root.game.recoverable">
 				<a class="btn blue" @click="recoverGame()">Recover Game</a>
 			</div>
 			<div class="form-group">
@@ -66,8 +63,8 @@
 		</div>
 		<PopOver :show="showStats" @hide="showStats = false">
 			<h2>Current Stats</h2>
-			<p v-if="game.stats">{{game.stats.activeGames}} Games</p>
-			<p v-if="game.stats">{{game.stats.activePlayers}} Players</p>
+			<p v-if="$root.game.stats">{{$root.game.stats.activeGames}} Games</p>
+			<p v-if="$root.game.stats">{{$root.game.stats.activePlayers}} Players</p>
 		</PopOver>
 		<PopOver :show="showCredits" @hide="showCredits = false">
 			<Credits></Credits>

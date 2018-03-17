@@ -156,6 +156,6 @@ WolfGameController.init()
 window.app = new Vue({
 	el: '#app',
 	data: { game: WolfGameController },
-	template: '<app :game="game" />',
+	template: '<app />',
 	components: { App }
 })

@@ -8,7 +8,6 @@
 	import PlayerNightWolf from './PlayerNightWolf.vue'
 	export default {
 		name: 'PlayerNight',
-		props: ['game'],
 		components: {
 			TitleCard,
 			PlayerNightCupid,
@@ -17,6 +16,11 @@
 			PlayerNightSeer,
 			PlayerNightVillager,
 			PlayerNightWolf
+		},
+		computed: {
+			game() {
+				return this.$root.game
+			}
 		}
 	}
 </script>
@@ -24,11 +28,11 @@
 <template>
 	<div id="PlayerNight">
 		<TitleCard :text="`Night ${game.game.day + 1}`"></TitleCard>
-		<PlayerNightCupid    :game="game" v-if="game.player.character.type === 'cupid'"></PlayerNightCupid>
-		<PlayerNightDevil    :game="game" v-if="game.player.character.type === 'devil'"></PlayerNightDevil>
-		<PlayerNightElder    :game="game" v-if="game.player.character.type === 'elder'"></PlayerNightElder>
-		<PlayerNightSeer     :game="game" v-if="game.player.character.type === 'seer'"></PlayerNightSeer>
-		<PlayerNightVillager :game="game" v-if="game.player.character.type === 'villager'"></PlayerNightVillager>
-		<PlayerNightWolf     :game="game" v-if="game.player.character.type === 'wolf'"></PlayerNightWolf>
+		<PlayerNightCupid    v-if="game.player.character.type === 'cupid'"></PlayerNightCupid>
+		<PlayerNightDevil    v-if="game.player.character.type === 'devil'"></PlayerNightDevil>
+		<PlayerNightElder    v-if="game.player.character.type === 'elder'"></PlayerNightElder>
+		<PlayerNightSeer     v-if="game.player.character.type === 'seer'"></PlayerNightSeer>
+		<PlayerNightVillager v-if="game.player.character.type === 'villager'"></PlayerNightVillager>
+		<PlayerNightWolf     v-if="game.player.character.type === 'wolf'"></PlayerNightWolf>
 	</div>
 </template>

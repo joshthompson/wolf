@@ -1,7 +1,6 @@
 <script>
 	export default {
-		name: 'Sky',
-		props: ['time', 'refresh']
+		name: 'Sky'
 	}
 </script>
 

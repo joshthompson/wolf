@@ -1,7 +1,6 @@
 <script>
 	export default {
 		name: 'Sky',
-		props: ['time', 'refresh'],
 		computed: {
 			width() {
 				return window.innerWidth
@@ -24,6 +23,12 @@
 					x: this.center().x + this.height * Math.cos(2 * Math.PI * percentage),
 					y: this.center().y + this.height * Math.sin(2 * Math.PI * percentage)
 				}
+			},
+			time() {
+				return this.$root.game.time
+			},
+			refresh() {
+				return this.$root.game.refresh
 			}
 		},
 		created() {

@@ -1,16 +1,15 @@
 <script>
 	export default {
 		name: 'SelectAvatar',
-		props: ['game'],
 		methods: {
 			select(avatar) {
 				if (this.selectable(avatar)) {
-					this.game.client.selectAvatar(avatar)
+					this.$root.game.client.selectAvatar(avatar)
 					this.$emit('set')
 				}
 			},
 			selectable(avatar) {
-				return !this.game.game.players.filter(player => player.avatar === avatar).length
+				return !this.$root.game.game.players.filter(player => player.avatar === avatar).length
 			}
 		}
 	}

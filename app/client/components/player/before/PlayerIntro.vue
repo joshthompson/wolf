@@ -1,7 +1,6 @@
 <script>
 	export default {
 		name: 'PlayerIntro',
-		props: ['game'],
 		methods: {
 			gotIt() {
 				this.game.client.playerReady()
@@ -13,6 +12,9 @@
 			},
 			icon() {
 				return this.game.player.character.icon || `/imgs/avatars/${this.game.player.avatar}.png`
+			},
+			game() {
+				return this.$root.game
 			}
 		}
 	}

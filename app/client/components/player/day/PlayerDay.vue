@@ -3,7 +3,6 @@
 	import PlayerVote from './PlayerVote.vue'
 	export default {
 		name: 'PlayerDay',
-		props: ['game'],
 		components: { PlayerAccusation, PlayerVote }
 	}
 </script>

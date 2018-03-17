@@ -4,7 +4,6 @@
 	import SelectAvatar from './SelectAvatar.vue';
 	export default {
 		name: 'PlayerReady',
-		props: ['game'],
 		components: { Avatar, ChangeName, SelectAvatar },
 		data() {
 			return {
@@ -29,8 +28,8 @@
 	<div id="SelectAvatar">
 
 		<div v-if="state === 'NEUTRAL'" class="view">
-			<h1>{{ game.player.name }} </h1>
-			<avatar :player="game.player"></avatar>
+			<h1>{{ $root.game.player.name }} </h1>
+			<avatar :player="$root.game.player"></avatar>
 			<p>Waiting for game to start</p>
 			<div class="form-view">
 				<div class="form-group">
@@ -40,8 +39,8 @@
 			</div>
 		</div>
 
-		<ChangeName v-if="state === 'CHANGING_NAME'" :game="game" @changed="neutral()"></ChangeName>
-		<SelectAvatar v-if="state === 'CHANGING_AVATAR'" :game="game" @set="neutral()"></SelectAvatar>
+		<ChangeName v-if="state === 'CHANGING_NAME'" @changed="neutral()"></ChangeName>
+		<SelectAvatar v-if="state === 'CHANGING_AVATAR'" @set="neutral()"></SelectAvatar>
 
 	</div>
 </template>

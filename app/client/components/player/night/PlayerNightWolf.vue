@@ -1,15 +1,15 @@
 <script>
+	import PlayerList from '../../common/PlayerList.vue'
 	export default {
 		name: 'PlayerNightWolf',
-		props: ['game']
+		components: { PlayerList }
 	}
 </script>
 
 <template>
 	<div id="PlayerNightWolf" class="view">
-		<h1>Night {{ game.game.day + 1 }}</h1>
-
-		<!-- <PlayerList :players=""></PlayerList> -->
+		<h1>Night {{ $root.game.game.day + 1 }}</h1>
+		<PlayerList :players="$root.game.game.players"></PlayerList>
 		<p>Night time wolf stuff</p>
 		<p>- Pick someone to kill</p>
 		<p>- Wait for see other wolf votes</p>

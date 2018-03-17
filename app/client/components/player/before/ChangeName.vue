@@ -1,15 +1,14 @@
 <script>
 	export default {
 		name: 'ChangeName',
-		props: ['game'],
 		data() {
 			return {
-				name: this.game.player.name
+				name: this.$root.game.player.name
 			}
 		},
 		methods: {
 			change(name) {
-				this.game.client.changeName(name)
+				this.$root.game.client.changeName(name)
 				this.$emit('changed')
 			}
 		}

@@ -25,6 +25,7 @@ class WolfGame extends Game {
 		this.code = new RoomCode()
 		this.players = []
 		this.minPlayers = 1//2 // testing ... should probably be 4
+		this.maxPlayers = 20
 		this.state = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
 		this.day = 0 // First night (before game starts) is Night 0. Then Day X / Night X use this value
 		this.subState = null

@@ -3,7 +3,6 @@
 	import Countdown from '../common/Countdown.vue'
 	export default {
 		name: 'HostSetup',
-		props: ['game'],
 		components: { Avatar, Countdown },
 		data() {
 			return {
@@ -13,6 +12,9 @@
 		computed: {
 			readyPlayers() {
 				return this.game.game.players.filter(player => player.state === 'READY').length
+			},
+			game() {
+				return this.$root.game
 			}
 		},
 		methods: {

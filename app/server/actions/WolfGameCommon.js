@@ -45,6 +45,12 @@ class WolfGameCommon {
 		if (!this.server.game) {
 			return this.server.socket.emit('gameError', {message: 'Couldn\'t find game'})
 		}
+		if (this.server.game.players.length >= this.server.game.maxPlayers) {
+			return this.server.socket.emit('gameError', {message: 'Cannot join game, too many players'})
+		}
+		if (this.server.game.state !== 'SETUP') {
+			return this.server.socket.emit('gameError', {message: 'Game has already started'})
+		}
 		if (data.player.length < 2) {
 			return this.server.socket.emit('gameError', {message: 'Name can\'t be at least 2 characters'})
 		}

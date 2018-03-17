@@ -6,7 +6,6 @@
 	import MessageView from '../common/MessageView.vue'
 	export default {
 		name: 'host',
-		props: ['game'],
 		components: { Village, HostSetup, HostIntro, HostNight, MessageView },
 		data() {
 			return {
@@ -18,15 +17,15 @@
 
 <template>
 	<div id="host">
-		<a @click="game.endGame()" class="endGameBtn"></a>
-		<Village :game="game">
-			<HostSetup v-if="game.game.state === 'SETUP'" :game="game"></HostSetup>
-			<HostIntro v-if="game.game.state === 'INTRO'" :game="game"></HostIntro>
-			<HostNight v-if="game.game.state === 'NIGHT'" :game="game"></HostNight>
+		<a @click="$root.game.endGame()" class="endGameBtn"></a>
+		<Village>
+			<HostSetup v-if="$root.game.game.state === 'SETUP'"></HostSetup>
+			<HostIntro v-if="$root.game.game.state === 'INTRO'"></HostIntro>
+			<HostNight v-if="$root.game.game.state === 'NIGHT'"></HostNight>
 			<MessageView
-				v-if="!states.includes(game.game.state)"
+				v-if="!states.includes($root.game.game.state)"
 				:title="'Error'"
-				:message="`Unknown game state: ${game.game.state}`"
+				:message="`Unknown game state: ${$root.game.game.state}`"
 			></MessageView>
 		</Village>
 	</div>

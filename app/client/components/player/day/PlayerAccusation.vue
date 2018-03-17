@@ -1,7 +1,6 @@
 <script>
 	export default {
 		name: 'PlayerAccusation',
-		props: ['game'],
 		data() {
 			return {
 				accusation: null
@@ -10,11 +9,11 @@
 		method: {
 			accuse(player) {
 				this.accusation = player
-				this.game.client.accuse(player)
+				this.$root.game.client.accuse(player)
 			},
 			withdraw() {
 				this.accusation = null
-				this.game.client.withrawAccusation()
+				this.$root.game.client.withrawAccusation()
 			}
 		}
 	}
@@ -22,11 +21,16 @@
 
 <template>
 	<div id="PlayerAccusation" class="view">
-		<h1>{{ game.player.name }}</h1>
+		<h1>{{ $root.game.player.name }}</h1>
 
 		<div v-if="!accusation">
 			<h2>Make an accusations</h2>
-			<button @click="accuse(player)" class="btn" v-for="player in game.game.players" :key="player.id">{{ player.name }}</button>
+			<button
+				class="btn"
+				v-for="player in $root.game.game.players"
+				:key="player.id"
+				@click="accuse(player)"
+			>{{ player.name }}</button>
 		</div>
 
 		<div v-if="accusation">

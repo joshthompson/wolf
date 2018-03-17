@@ -17,7 +17,7 @@
 	}
 	export default {
 		name: 'Shadow',
-		props: ['game', 'offset'],
+		props: ['offset'],
 		data() {
 			return {
 				origin: `50% calc(100% - ${this.offset/2}px)`,
@@ -28,6 +28,11 @@
 		},
 		created() {
 			this.update()
+		},
+		computed: {
+			game() {
+				return this.$root.game
+			}
 		},
 		methods: {
 			update() {
