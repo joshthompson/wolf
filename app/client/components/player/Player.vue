@@ -22,15 +22,15 @@
 
 <template>
 	<div id="Player" :colour="game.player.id % 5">
-		<PlayerSetup v-if="game.game.state === 'SETUP'"></PlayerSetup>
-		<PlayerIntro v-if="game.game.state === 'INTRO'"></PlayerIntro>
-		<PlayerNight v-if="game.game.state === 'NIGHT'"></PlayerNight>
-		<PlayerDay v-if="game.game.state === 'DAY'"></PlayerDay>
+		<PlayerSetup v-if="game.game.state === 'SETUP'" />
+		<PlayerIntro v-if="game.game.state === 'INTRO'" />
+		<PlayerNight v-if="game.game.state === 'NIGHT'" />
+		<PlayerDay v-if="game.game.state === 'DAY'" />
 		<MessageView
 			v-if="!states.includes(game.game.state)"
 			:title="'Error'"
 			:message="`Unknown game state: ${game.game.state}`"
-		></MessageView>
+		/>
 	</div>
 </template>
 

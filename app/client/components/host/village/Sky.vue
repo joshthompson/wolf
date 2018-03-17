@@ -42,8 +42,10 @@
 				}
 			},
 			sunMove() {
-
 				let component = document.getElementById('skybox')
+				if (!component) {
+					return false
+				}
 				let sunEl = component.getElementsByClassName('sun')[0]
 				let sunDayEl = component.getElementsByClassName('sunDay')[0]
 				let sunSetEl = component.getElementsByClassName('sunSet')[0]

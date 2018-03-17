@@ -1,9 +1,9 @@
 <script>
-	import Avatar from '../common/Avatar.vue'
-	import Countdown from '../common/Countdown.vue'
+	import PlayerAvatar from '../common/PlayerAvatar.vue'
+	import CountdownTimer from '../common/CountdownTimer.vue'
 	export default {
 		name: 'HostSetup',
-		components: { Avatar, Countdown },
+		components: { PlayerAvatar, CountdownTimer },
 		data() {
 			return {
 				startCountdown: false
@@ -32,10 +32,21 @@
 	<div id="host-setup">
 		
 		<h1 v-if="!startCountdown">Game Code: {{ game.game.code }}</h1>
-		<h1 v-if="startCountdown"><countdown :value="startCountdown" :speed="1000" @complete="game.host.startGame()"></countdown></h1>
+		<h1 v-if="startCountdown">
+			<CountdownTimer
+				:value="startCountdown"
+				:speed="1000"
+				@complete="game.host.startGame()"
+			/>
+		</h1>
 		
 		<div class="players">
-			<avatar v-for="player in game.game.players" :key="player.id" :player="player" class="village-object"></avatar>
+			<PlayerAvatar
+				v-for="player in game.game.players"
+				:key="player.id"
+				:player="player"
+				class="village-object"
+			/>
 		</div>
 		<p v-if="readyPlayers < game.game.minPlayers">You need at least {{ game.game.minPlayers }} players to join</p>
 		<div v-if="readyPlayers >= game.game.minPlayers">

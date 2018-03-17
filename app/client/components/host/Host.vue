@@ -19,14 +19,14 @@
 	<div id="host">
 		<a @click="$root.game.endGame()" class="endGameBtn"></a>
 		<Village>
-			<HostSetup v-if="$root.game.game.state === 'SETUP'"></HostSetup>
-			<HostIntro v-if="$root.game.game.state === 'INTRO'"></HostIntro>
-			<HostNight v-if="$root.game.game.state === 'NIGHT'"></HostNight>
+			<HostSetup v-if="$root.game.game.state === 'SETUP'" />
+			<HostIntro v-if="$root.game.game.state === 'INTRO'" />
+			<HostNight v-if="$root.game.game.state === 'NIGHT'" />
 			<MessageView
 				v-if="!states.includes($root.game.game.state)"
 				:title="'Error'"
 				:message="`Unknown game state: ${$root.game.game.state}`"
-			></MessageView>
+			/>
 		</Village>
 	</div>
 </template>

@@ -13,7 +13,7 @@
 <template>
 	<div class="pop-over" @click="hide()" v-if="show">
 		<div class="pop-over-inner">
-			<slot></slot>
+			<slot />
 		</div>
 	</div>
 </template>

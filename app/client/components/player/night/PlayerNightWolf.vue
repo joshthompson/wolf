@@ -9,7 +9,7 @@
 <template>
 	<div id="PlayerNightWolf" class="view">
 		<h1>Night {{ $root.game.game.day + 1 }}</h1>
-		<PlayerList :players="$root.game.game.players"></PlayerList>
+		<PlayerList :players="$root.game.game.players" />
 		<p>Night time wolf stuff</p>
 		<p>- Pick someone to kill</p>
 		<p>- Wait for see other wolf votes</p>

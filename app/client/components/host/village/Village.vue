@@ -36,7 +36,7 @@
 				<Sky />
 			</div>
 			<div class="slot">
-				<slot name="sky"></slot>
+				<slot name="sky" />
 			</div>
 		</div>
 		<Ground />
@@ -53,7 +53,7 @@
 				<Shadow :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
 				<Shadow :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
 			</div>
-			<slot></slot>
+			<slot />
 		</div>	
 	</div>
 </template>

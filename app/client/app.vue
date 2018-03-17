@@ -10,9 +10,9 @@
 
 <template>
 	<div id="app">
-		<init   v-if="$root.game.mode === null"></init>
-		<host   v-if="$root.game.mode === 'host'"></host>
-		<player v-if="$root.game.mode === 'player'"></player>
+		<init   v-if="$root.game.mode === null" />
+		<host   v-if="$root.game.mode === 'host'" />
+		<player v-if="$root.game.mode === 'player'" />
 	</div>
 </template>
 

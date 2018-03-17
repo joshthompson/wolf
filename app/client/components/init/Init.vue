@@ -1,10 +1,10 @@
 <script>
 	import Cookie from 'js-cookie'
 	import PopOver from '../common/PopOver.vue'
-	import Credits from './Credits.vue'
+	import TheCredits from './TheCredits.vue'
 	export default {
 		name: 'init',
-		components: { PopOver, Credits },
+		components: { PopOver, TheCredits },
 		data() {
 			return {
 				name: '',
@@ -67,7 +67,7 @@
 			<p v-if="$root.game.stats">{{$root.game.stats.activePlayers}} Players</p>
 		</PopOver>
 		<PopOver :show="showCredits" @hide="showCredits = false">
-			<Credits></Credits>
+			<TheCredits />
 		</PopOver>
 	</div>
 </template>

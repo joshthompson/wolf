@@ -1,6 +1,6 @@
 <script>
 	export default {
-		name: 'Countdown',
+		name: 'CountdownTimer',
 		props: ['value', 'speed'],
 		data() {
 			return {

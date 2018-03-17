@@ -1,7 +1,7 @@
 <script>
 	import Loader from './Loader.vue'
 	export default {
-		name: 'avatar',
+		name: 'PlayerAvatar',
 		props: ['player'],
 		components: { Loader }
 	}
@@ -9,8 +9,8 @@
 
 <template>
 	<div class="avatar">
-		<img v-if="player.avatar" :src="`/imgs/avatars/${player.avatar}.png`"/>
-		<Loader v-if="!player.avatar" class="loader"></Loader>
+		<img v-if="player.avatar" :src="`/imgs/avatars/${player.avatar}.png`" />
+		<Loader v-if="!player.avatar" class="loader" />
 		<p class="name">{{ player.name }}</p>
 	</div>
 </template>

@@ -9,7 +9,7 @@
 
 <template>
 	<div id="PlayerDay">
-		<PlayerAccusation></PlayerAccusation>
-		<PlayerVote></PlayerVote>
+		<PlayerAccusation />
+		<PlayerVote />
 	</div>
 </template>

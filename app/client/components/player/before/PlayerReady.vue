@@ -1,10 +1,10 @@
 <script>
-	import Avatar from '../../common/Avatar.vue';
-	import ChangeName from './ChangeName.vue';
-	import SelectAvatar from './SelectAvatar.vue';
+	import PlayerAvatar from '../../common/PlayerAvatar.vue'
+	import ChangeName from './ChangeName.vue'
+	import SelectAvatar from './SelectAvatar.vue'
 	export default {
 		name: 'PlayerReady',
-		components: { Avatar, ChangeName, SelectAvatar },
+		components: { PlayerAvatar, ChangeName, SelectAvatar },
 		data() {
 			return {
 				state: 'NEUTRAL'
@@ -29,7 +29,7 @@
 
 		<div v-if="state === 'NEUTRAL'" class="view">
 			<h1>{{ $root.game.player.name }} </h1>
-			<avatar :player="$root.game.player"></avatar>
+			<PlayerAvatar :player="$root.game.player" />
 			<p>Waiting for game to start</p>
 			<div class="form-view">
 				<div class="form-group">
@@ -39,11 +39,8 @@
 			</div>
 		</div>
 
-		<ChangeName v-if="state === 'CHANGING_NAME'" @changed="neutral()"></ChangeName>
-		<SelectAvatar v-if="state === 'CHANGING_AVATAR'" @set="neutral()"></SelectAvatar>
+		<ChangeName v-if="state === 'CHANGING_NAME'" @changed="neutral()" />
+		<SelectAvatar v-if="state === 'CHANGING_AVATAR'" @set="neutral()" />
 
 	</div>
 </template>
-
-<style lang="scss" scoped>
-</style>

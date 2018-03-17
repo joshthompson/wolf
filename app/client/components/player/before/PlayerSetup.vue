@@ -10,8 +10,8 @@
 
 <template>
 	<div id="PlayerSetup">
-		<SelectAvatar v-if="$root.game.player.state === 'SELECT_AVATAR'"></SelectAvatar>
-		<PlayerReady v-if="$root.game.player.state === 'READY'"></PlayerReady>
+		<SelectAvatar v-if="$root.game.player.state === 'SELECT_AVATAR'" />
+		<PlayerReady v-if="$root.game.player.state === 'READY'" />
 		<!-- <MessageView
 			v-if="$root.game.player.state === 'READY'"
 			:title="$root.game.player.name"
