@@ -2,10 +2,11 @@
 	export default {
 		name: 'PlayerList',
 		props: {
-			text: String,
-			seconds: {
-				default: 3,
-				type: Number
+			players: Array
+		},
+		methods: {
+			select(player) {
+				this.$emit('select', player)
 			}
 		}
 	}
@@ -13,6 +14,29 @@
 
 <template>
 	<div class="title-card">
-		<h1>{{ text }}</h1>
+		<ul>
+			<li v-for="player in players">
+				<a @click="select(player)" class="btn">
+					{{ player.name }}
+				</a>
+			</li>
+		</ul>
 	</div>
 </template>
+
+<style lang="scss" scoped>
+	ul {
+		list-style-type: none;
+		padding: 0px 20px;
+		li {
+			display: block;
+			margin-top: 5px;
+			&:nth-child(1) {
+				margin-top: 0px;
+			}
+			a {
+				display: block;
+			}
+		}
+	}
+</style>

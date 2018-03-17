@@ -46,7 +46,7 @@
 			<form class="form-group" @submit="joinGame()" @submit.prevent>
 				<h3>Or Join A  Game</h3>
 				<div class="input">
-					<label>Room Code</label>
+					<label>Game Code</label>
 					<input v-model="code" autocomplete="off" autocorrect="off" spellcheck="false" />
 				</div>
 				<div class="input">
