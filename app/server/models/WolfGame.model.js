@@ -124,6 +124,7 @@ class WolfGame extends Game {
 	}
 
 	end() {
+		console.log(`Game ended: ${this.code}`)
 		this.socket.emit('gameEnded')
 		this.players.forEach(player => player.socket.emit('gameEnded'))
 	}

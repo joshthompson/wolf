@@ -16,6 +16,7 @@ class WolfGameCommon {
 					this.server.game.end()
 					delete this.server.games[this.server.game.code]
 					delete this.server.game
+
 				}
 			}, this.server.inactiveGameTimeout)
 		}
