@@ -1,5 +1,7 @@
 import io from 'socket.io-client'
 import Vue from 'vue'
+import VueResource from 'vue-resource'
+
 import App from './app.vue'
 
 import request from 'then-request'
@@ -153,6 +155,7 @@ let WolfGameController = {
 WolfGameController.init()
 
 // Init Vue App
+Vue.use(VueResource)
 window.app = new Vue({
 	el: '#app',
 	data: { game: WolfGameController },

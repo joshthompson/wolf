@@ -1,14 +1,12 @@
 <script>
-	// import ButtonList from './ButtonList.vue' // TODO: Update to use button list
 	export default {
-		name: 'PlayerList',
-		// components: { ButtonList },
+		name: 'ButtonList',
 		props: {
-			players: Array
+			options: Array
 		},
 		methods: {
-			select(player) {
-				this.$emit('select', player)
+			select(option) {
+				this.$emit('select', option)
 			}
 		}
 	}
@@ -16,10 +14,8 @@
 
 <template>
 	<ul>
-		<li v-for="player in players">
-			<a @click="select(player)" class="btn">
-				{{ player.name }}
-			</a>
+		<li v-for="option in options">
+			<a @click="select(option)" class="btn" v-html="option"></a>
 		</li>
 	</ul>
 </template>
