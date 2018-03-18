@@ -1,5 +1,5 @@
 var WolfGame = require('./models/WolfGame.model')
-var RoomCode = require('./models/RoomCode.model')
+var GameCode = require('./models/GameCode.model')
 var Player = require('./models/Player.model')
 var WolfGameHost = require('./actions/WolfGameHost')
 var WolfGamePlayer = require('./actions/WolfGamePlayer')

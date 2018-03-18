@@ -1,5 +1,5 @@
 var WolfGame = require('../models/WolfGame.model')
-var RoomCode = require('../models/RoomCode.model')
+var GameCode = require('../models/GameCode.model')
 var Player = require('../models/Player.model')
 
 class WolfGameCommon {
@@ -76,11 +76,10 @@ class WolfGameCommon {
 			socket: this.server.socket,
 			state: 'SETUP'
 		})
-		while (typeof this.server.games[this.server.game.code] !== 'undefined') {
-			// Prepare for very unlikely chance we have more room than codes
-			let length = Math.max(4, Math.log(Object.keys(this.server.games).length * 2) * Math.LOG10E + 1)
-			this.server.game.code = RoomCode.generate(length)
-		}
+		let length = 4
+		do {
+			this.server.game.code = new GameCode(length++)
+		} while (typeof this.server.games[this.server.game.code] !== 'undefined')
 		this.server.games[this.server.game.code] = this.server.game
 		this.server.socket.emit('gameCreated', {game: this.server.game.toPrivateJSON()})
 		console.log(`Game created: ${this.server.game.code}`)

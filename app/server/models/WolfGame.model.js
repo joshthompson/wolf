@@ -1,5 +1,5 @@
 var Game = require('./Game.model')
-var RoomCode = require('./RoomCode.model')
+var GameCode = require('./GameCode.model')
 var Player = require('./Player.model')
 var Accusation = require('./Accusation.model')
 var Vote = require('./Vote.model')
@@ -22,7 +22,7 @@ class WolfGame extends Game {
 
 		// Game data
 		this.created = new Date()
-		this.code = new RoomCode()
+		this.code = new GameCode()
 		this.players = []
 		this.minPlayers = 1//2 // testing ... should probably be 4
 		this.maxPlayers = 20
@@ -45,8 +45,8 @@ class WolfGame extends Game {
 		else if (typeof data.create === 'string') this.created = new Date(data.created)
 		else this.created = new Date()
 		// Set Code
-		if (data.code instanceof RoomCode) this.code = data.code
-		else if (typeof data.code === 'string') this.code = new RoomCode(data.code)
+		if (data.code instanceof GameCode) this.code = data.code
+		else if (typeof data.code === 'string') this.code = new GameCode(data.code)
 		// Set Players
 		if (data.players instanceof Array) {
 			data.players.forEach((player) => {

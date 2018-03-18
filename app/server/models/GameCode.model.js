@@ -1,13 +1,13 @@
-class RoomCode {
+class GameCode {
 	
 	// private disallowed
 	
-	constructor(code) {
-		this.length = 4
-		this.code = code ? code.toUpperCase() : RoomCode.generate(this.length)
+	constructor(length) {
+		this.length = length
+		this.code = this.generate()
 	}
 
-	static generate(length) {
+	generate(length) {
 		let code = ''
 		let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 		chars = [
@@ -42,7 +42,7 @@ class RoomCode {
 			'LUPO', // Esperanto
 			'KURT' // Turkish
 		]
-		while (code.length < length) {
+		while (code.length < this.length) {
 			code = code + chars[Math.floor(Math.random() * chars.length)]
 		}
 		return code
@@ -66,4 +66,4 @@ class RoomCode {
 
 }
 
-module.exports = RoomCode
+module.exports = GameCode
