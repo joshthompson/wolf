@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 config.entry = {
-	'bundle.prod': './app/client/index.js'
+	'bundle': './app/client/index.js'
 }
 config.plugins = [
 	new UglifyJsPlugin(),
