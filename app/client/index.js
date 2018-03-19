@@ -133,6 +133,15 @@ let WolfGameController = {
 		gameError: error => {
 			console.log(error)
 			WolfGameController.message(error.message)
+			if (error.error === 'NO_GAME') {
+				WolfGameController.mode = null
+				WolfGameController.game = null
+			}
+			if (error.error === 'NO_PLAYER') {
+				WolfGameController.mode = null
+				WolfGameController.game = null
+				WolfGameController.player = null
+			}
 		},
 		gameEnded: () => {
 			if (WolfGameController.player) {

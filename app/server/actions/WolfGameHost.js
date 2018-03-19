@@ -22,7 +22,7 @@ class WolfGameHost {
 			// TODO: VALIDATE MDOE
 		}
 		if (!this.server.game) { // Validate game exists
-			return this.server.socket.emit('gameError', {message: 'Couldn\'t find game'})
+			return this.server.socket.emit('gameError', {message: 'Couldn\'t find game', error: 'NO_GAME'})
 		}
 		if (state !== 'common' && this.server.game.state !== state.toUpperCase()) { // Validate state is correct
 			return this.server.socket.emit('action', {message: 'Action not permitted'})

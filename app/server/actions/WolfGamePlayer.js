@@ -22,16 +22,16 @@ class WolfGamePlayer {
 			// TODO: VALIDATE MDOE
 		}
 		if (!this.server.game) { // Validate game exists
-			return this.server.socket.emit('gameError', {message: 'Couldn\'t find game'})
+			return this.server.socket.emit('gameError', {message: 'Couldn\'t find game', error: 'NO_GAME'})
 		}
 		if (!this.server.player) { // Validate player exists
-			return this.server.socket.emit('gameError', {message: 'Couldn\'t find player'})
+			return this.server.socket.emit('gameError', {message: 'Couldn\'t find player', error: 'NO_PLAYER'})
 		}
 		if (state !== 'common' && this.server.game.state !== state.toUpperCase()) { // Validate state is correct
-			return this.server.socket.emit('action', {message: 'Action not permitted'})
+			return this.server.socket.emit('action', {message: 'Action not permitted', error: 'ACTION_NOT_PERMITTED'})
 		}
 		if (!this[state] || !this[state][action]) { // Validate action exists
-			return this.server.socket.emit('action', {message: 'Action not found'})
+			return this.server.socket.emit('action', {message: 'Action not found', error: 'ACTION_NOT_FOUND'})
 		}
 		// Do action
 		this[state][action](...data)

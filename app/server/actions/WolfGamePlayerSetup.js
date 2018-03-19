@@ -6,10 +6,10 @@ class WolfGamePlayerSetup {
 
 	changeName(name) {
 		if (name.length < 2) {
-			return this.server.socket.emit('gameError', {message: 'Name can\'t be at least 2 characters'})
+			return this.server.socket.emit('gameError', {message: 'Name can\'t be at least 2 characters', error: 'INVALID_INPUT'})
 		}
 		if (name.length > 20) {
-			return this.server.socket.emit('gameError', {message: 'Name can\'t be longer than 20 characters'})
+			return this.server.socket.emit('gameError', {message: 'Name can\'t be longer than 20 characters', error: 'INVALID_INPUT'})
 		}
 		this.server.player.setName(name)
 		this.server.game.update()
@@ -17,7 +17,7 @@ class WolfGamePlayerSetup {
 
 	selectAvatar(avatar) {
 		if (this.server.game.players.filter(player => this.server.player.avatar === avatar).length) {
-			return this.server.socket.emit('gameError', {message: 'Please select a different avatar'})
+			return this.server.socket.emit('gameError', {message: 'Please select a different avatar', error: 'INVALID_INPUT'})
 		}
 		this.server.player.setAvatar(avatar)
 		this.server.player.setState('READY')

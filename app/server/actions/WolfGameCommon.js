@@ -44,22 +44,22 @@ class WolfGameCommon {
 	joinGame(data) {
 		this.server.game = this.server.games[data.game.toUpperCase()]
 		if (!this.server.game) {
-			return this.server.socket.emit('gameError', {message: 'Couldn\'t find game'})
+			return this.server.socket.emit('gameError', {message: 'Couldn\'t find game', error: 'NO_GAME'})
 		}
 		if (this.server.game.players.length >= this.server.game.maxPlayers) {
-			return this.server.socket.emit('gameError', {message: 'Cannot join game, too many players'})
+			return this.server.socket.emit('gameError', {message: 'Cannot join game, too many players', error: 'TOO_MANY_PLAYERS'})
 		}
 		if (this.server.game.state !== 'SETUP') {
-			return this.server.socket.emit('gameError', {message: 'Game has already started'})
+			return this.server.socket.emit('gameError', {message: 'Game has already started', error: 'GAME_STARTED'})
 		}
 		if (data.player.length < 2) {
-			return this.server.socket.emit('gameError', {message: 'Name can\'t be at least 2 characters'})
+			return this.server.socket.emit('gameError', {message: 'Name can\'t be at least 2 characters', error: 'INVALID_INPUT'})
 		}
 		if (data.player.length > 20) {
-			return this.server.socket.emit('gameError', {message: 'Name can\'t be longer than 20 characters'})
+			return this.server.socket.emit('gameError', {message: 'Name can\'t be longer than 20 characters', error: 'INVALID_INPUT'})
 		}
 		if (this.server.game.findPlayerByName(data.player)) {
-			return this.server.socket.emit('gameError', {message: 'Choose a different name'})
+			return this.server.socket.emit('gameError', {message: 'Choose a different name', error: 'INVALID_INPUT'})
 		}
 		this.server.player = new Player({
 			name: data.player,
