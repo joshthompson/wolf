@@ -1,6 +1,8 @@
 <script>
+	import PlayerAvatar from '../../common/PlayerAvatar.vue'
 	export default {
 		name: 'PlayerIntro',
+		components: { PlayerAvatar },
 		methods: {
 			gotIt() {
 				this.game.client.playerReady()
@@ -24,6 +26,7 @@
 	<div id="PlayerIntro" class="view">
 		<h1>{{ game.player.name }}</h1>
 		<div v-if="game.player.state !== 'READY'">
+
 			<h2>You are...</h2>
 			<h2 class="role">{{ game.player.character.title }}</h2>
 			<div class="icon">
@@ -33,7 +36,21 @@
 			<ul class="description">
 				<li v-for="desc in description">{{ desc }}</li>
 			</ul>
+
+			<div v-if="game.player.character.type === 'wolf'">
+				<p v-if="game.player.data.wolves.length === 1">You are the only wolf</p>
+				<div v-if="game.player.data.wolves.length > 1">
+					<p>The wolf pack:</p>
+					<PlayerAvatar
+						v-for="player in game.player.data.wolves"
+						:key="player.id"
+						:player="player"
+					/>
+				</div>
+			</div>
+
 			<button @click="gotIt()" class="btn">Got it!</button>
+
 		</div>
 		<div v-if="game.player.state === 'READY'">
 			<p>Waiting for other players</p>

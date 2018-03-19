@@ -14,7 +14,7 @@ class Player {
 		this.game = null
 		this.socket = null
 
-		// Generic object
+		// Generic Object
 		data = typeof data === 'string' ? {name: data} : (typeof data === 'object' ? data : {})
 		// Set Name
 		if (typeof data.id === 'number') this.id = data.id
@@ -69,12 +69,17 @@ class Player {
 		return this.game.players.map(player => player.name).indexOf(this.name)
 	}
 
+	addData(key, value) {
+		this.data[key] = value
+	}
+
 	toPrivateJSON() {
 		return {
 			id: this.id,
 			name: this.name,
 			avatar: this.avatar,
 			character: this.character ? this.character.toPublicJSON() : null,
+			data: this.data,
 			alive: this.alive,
 			state: this.state,
 			token: this.token

@@ -106,10 +106,20 @@ class WolfGame extends Game {
 	}
 
 	setupPlayerIdentities() {
-		// Todo: replace with team balancer algorithm
-		let wolf = Math.floor(Math.random() * this.players.length)
+		// TODO: replace with team balancer algorithm
 		this.players.forEach((player, index) => {
-			player.setCharacter(index === wolf ? new Wolf() : new Villager())
+			player.setCharacter(index < 2 ? new Wolf() : new Villager())
+		})
+		// Add custom data for roles
+		this.players.forEach(player => {
+			if (player.character.type === 'wolf') {
+				player.addData(
+					'wolves',
+					this.players
+						.filter(player => player.character.type === 'wolf')
+						.map(player => player.toPublicJSON())
+				)
+			}
 		})
 	}
 
