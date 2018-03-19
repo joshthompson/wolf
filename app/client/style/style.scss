@@ -79,10 +79,23 @@ input {
 	text-transform: uppercase;
 	background-color: rgba(0, 0, 0, 0.45);
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.85);
 	border: none;
 	cursor: pointer;
     border-radius: 0px;
     -webkit-appearance: none;
+	outline: none !important;
+
+    &.blue, &.green {
+    	box-shadow: none;
+    	&:active {
+    		transform: none;
+    	}
+    }
+    &:active {
+		box-shadow: none;
+		transform: translate(2px, 2px);
+	}
     
 	&:hover { background: rgba(0, 0, 0, 0.65); }
 	&.blue { background-color: #008DD4; }
@@ -92,4 +105,6 @@ input {
 
 	&.block { display: block; }
 }
+
+
 

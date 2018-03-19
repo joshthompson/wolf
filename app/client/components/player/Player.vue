@@ -35,9 +35,10 @@
 </template>
 
 <style lang="scss" scoped>
-	#Player[colour='0'] { background: #35D835; }
-	#Player[colour='1'] { background: #2BA8CE; }
-	#Player[colour='2'] { background: #DBDE2C; }
-	#Player[colour='3'] { background: #CA5321; }
-	#Player[colour='4'] { background: #8D21CA; }
+	#Player[colour='0'] { background: #2BA8CE; }
+	#Player[colour='1'] { background: #DBDE2C; }
+	#Player[colour='2'] { background: #CA5321; }
+	#Player[colour='3'] { background: #8D21CA; }
+	#Player[colour='4'] { background: #35D835; }
+	#Player[colour='5'] { background: #D89722; }
 </style>

@@ -4,10 +4,17 @@
 		name: 'PlayerNightWolf',
 		components: { PlayerList },
 		computed: {
+			game() {
+				return this.$root.game.game
+			},
+			player() {
+				return this.$root.game.player
+			},
 			potentialVictims() {
 				return this.$root.game.game.players.filter(player => {
-					return player.id !== this.$root.game.player.id
-					// TODO: Remove other wolves
+					const isSelf = player.id === this.player.id
+					const isWolf = this.player.data.wolves.filter(wolf => wolf.id === player.id).length === 1
+					return !isSelf && !isWolf
 				})
 			}
 		}
@@ -17,7 +24,7 @@
 <template>
 	<div id="PlayerNightWolf" class="view">
 		<h1>Night {{ $root.game.game.day + 1 }}</h1>
-		<h2>Select your target</h2>
+		<p>Select your target</p>
 		<PlayerList :players="potentialVictims" />
 	</div>
 </template>
