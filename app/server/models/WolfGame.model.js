@@ -100,8 +100,13 @@ class WolfGame extends Game {
 		this.update()
 	}
 
-	findPlayerByName(name) {
-		let filtered = this.players.filter(player => player.name === name)
+	getPlayerById(id) {
+		const filtered = this.players.filter(player => player.id === id)
+		return filtered ? filtered[0] : null
+	}
+
+	getPlayerByName(name) {
+		const filtered = this.players.filter(player => player.name === name)
 		return filtered ? filtered[0] : null
 	}
 
@@ -133,6 +138,26 @@ class WolfGame extends Game {
 		return result
 	}
 
+	vote(voter, vote) {
+		this.votes.push(new Vote({
+			voter: voter,
+			vote: vote
+		}))
+	}
+
+	withdrawVote(voter) {
+		this.votes = this.votes.filter(vote => vote.voter.id !== voter.id)
+	}
+
+	voteTally(applyVotePower = false) {
+		let tally = {}
+		this.votes.forEach(v => {
+			tally[v.vote.id] = tally[v.vote.id] || 0
+			tally[v.vote.id] += applyVotePower ? v.voter.character.votePower : 1
+		})
+		return tally
+	}
+
 	end() {
 		console.log(`Game ended: ${this.code}`)
 		this.socket.emit('gameEnded')
@@ -140,6 +165,8 @@ class WolfGame extends Game {
 	}
 
 	setState(state) {
+		this.votes = []
+		this.accusations = []
 		this.state = state
 		this.players.forEach(player => player.setState(null))
 	}

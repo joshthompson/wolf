@@ -112,7 +112,9 @@ let WolfGameController = {
 		// Voting and accusations
 		vote: player => WolfGameController.socket.emit('vote', player),
 		accuse: player => WolfGameController.socket.emit('accuse', player),
-		withdrawAccusation: () => WolfGameController.socket.emit('withdrawAccusation')
+		withdrawAccusation: () => WolfGameController.socket.emit('withdrawAccusation'),
+		// Night
+		wolfKill: id => WolfGameController.socket.emit('wolfKill', id)
 	},
 
 	common: {

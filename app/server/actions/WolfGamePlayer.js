@@ -1,7 +1,7 @@
 // var WolfGamePlayerCommon = require('./WolfGamePlayerCommon')
 var WolfGamePlayerSetup = require('./WolfGamePlayerSetup')
 var WolfGamePlayerIntro = require('./WolfGamePlayerIntro')
-// var WolfGamePlayerNight = require('./WolfGamePlayerNight')
+var WolfGamePlayerNight = require('./WolfGamePlayerNight')
 var WolfGamePlayerDay = require('./WolfGamePlayerDay')
 // var WolfGamePlayerPost = require('./WolfGamePlayerPost')
 
@@ -12,7 +12,7 @@ class WolfGamePlayer {
 		// this.common = new WolfGamePlayerCommon(server)
 		this.setup = new WolfGamePlayerSetup(server)
 		this.intro = new WolfGamePlayerIntro(server)
-		// this.night = new WolfGamePlayerNight(server)
+		this.night = new WolfGamePlayerNight(server)
 		this.day = new WolfGamePlayerDay(server)
 		// this.post = new WolfGamePlayerPost(server)
 	}

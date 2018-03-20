@@ -28,11 +28,11 @@
 <template>
 	<div id="PlayerNight">
 		<TitleCard :text="`Night ${game.game.day + 1}`" />
-		<PlayerNightCupid    v-if="game.player.character.type === 'cupid'" />
-		<PlayerNightDevil    v-if="game.player.character.type === 'devil'" />
-		<PlayerNightElder    v-if="game.player.character.type === 'elder'" />
-		<PlayerNightSeer     v-if="game.player.character.type === 'seer'" />
+		<PlayerNightCupid v-if="game.player.character.type === 'cupid'" />
+		<PlayerNightDevil v-if="game.player.character.type === 'devil'" />
+		<PlayerNightElder v-if="game.player.character.type === 'elder'" />
+		<PlayerNightSeer v-if="game.player.character.type === 'seer'" />
 		<PlayerNightVillager v-if="game.player.character.type === 'villager'" />
-		<PlayerNightWolf     v-if="game.player.character.type === 'wolf'" />
+		<PlayerNightWolf v-if="game.player.character.type === 'wolf'" />
 	</div>
 </template>

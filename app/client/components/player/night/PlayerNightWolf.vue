@@ -5,17 +5,25 @@
 		components: { PlayerList },
 		computed: {
 			game() {
-				return this.$root.game.game
+				return this.$root.game
 			},
 			player() {
-				return this.$root.game.player
+				return this.game.player
+			},
+			wolves() {
+				return this.player.data.wolves
 			},
 			potentialVictims() {
-				return this.$root.game.game.players.filter(player => {
-					const isSelf = player.id === this.player.id
-					const isWolf = this.player.data.wolves.filter(wolf => wolf.id === player.id).length === 1
+				return this.game.game.players.filter(p => {
+					const isSelf = p.id === this.player.id
+					const isWolf = this.wolves.filter(w => w.id === p.id).length
 					return !isSelf && !isWolf
 				})
+			}
+		},
+		methods: {
+			wolfKill(player) {
+				this.game.client.wolfKill(player.id)
 			}
 		}
 	}
@@ -25,6 +33,9 @@
 	<div id="PlayerNightWolf" class="view">
 		<h1>Night {{ $root.game.game.day + 1 }}</h1>
 		<p>Select your target</p>
-		<PlayerList :players="potentialVictims" />
+		<PlayerList
+			@select="wolfKill($event)"
+			:players="potentialVictims"
+		/>
 	</div>
 </template>

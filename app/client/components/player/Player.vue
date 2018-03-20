@@ -21,7 +21,7 @@
 </script>
 
 <template>
-	<div id="Player" :colour="game.player.id % 5">
+	<div id="Player" :colour="game.player.id % 6">
 		<PlayerSetup v-if="game.game.state === 'SETUP'" />
 		<PlayerIntro v-if="game.game.state === 'INTRO'" />
 		<PlayerNight v-if="game.game.state === 'NIGHT'" />

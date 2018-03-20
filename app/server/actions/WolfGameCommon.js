@@ -58,7 +58,7 @@ class WolfGameCommon {
 		if (data.player.length > 20) {
 			return this.server.socket.emit('gameError', {message: 'Name can\'t be longer than 20 characters', error: 'INVALID_INPUT'})
 		}
-		if (this.server.game.findPlayerByName(data.player)) {
+		if (this.server.game.getPlayerByName(data.player)) {
 			return this.server.socket.emit('gameError', {message: 'Choose a different name', error: 'INVALID_INPUT'})
 		}
 		this.server.player = new Player({
