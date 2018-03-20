@@ -28,11 +28,14 @@ class WolfGamePlayerNight {
 		this.server.game.withdrawVote(wolf)
 		this.server.game.vote(wolf, victim)
 
-		const votes = this.server.game.voteTally()[victim.id]
-		const wolves = this.server.game.players.filter(player => player.character.type === 'wolf' && player.alive).length
-		if (votes === wolves) { // There has been a unanimous decision
-			// TODO: Target selected
-			console.log('WOLF TARGET AGREED: ', victim.name)
+		const votes = this.server.game.voteTally()
+		const wolves = this.server.game.players.filter(player => player.character.type === 'wolf' && player.alive)
+		wolves.forEach(wolf => wolf.socket.emit('wolfKillVotes', votes))
+		if (votes[victim.id] === wolves.length) { // There has been a unanimous decision
+			this.server.game.addData('wolfTarget', victim.id)
+			wolves.forEach(wolf => wolf.setState('READY'))
+			let temp = this.server.game.checkPlayersReady()
+			console.log('debug temp', temp)
 		}
 	}
 

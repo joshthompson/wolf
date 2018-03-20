@@ -1,8 +1,8 @@
 <script>
-	import PlayerList from '../../common/PlayerList.vue'
+	import ButtonList from '../../common/ButtonList.vue'
 	export default {
 		name: 'PlayerNightWolf',
-		components: { PlayerList },
+		components: { ButtonList },
 		computed: {
 			game() {
 				return this.$root.game
@@ -19,11 +19,18 @@
 					const isWolf = this.wolves.filter(w => w.id === p.id).length
 					return !isSelf && !isWolf
 				})
+			},
+			potentialVictimsButton() {
+				return this.potentialVictims.map(victim => ({
+					value: victim.id,
+					text: victim.name,
+					badge: this.game.votes ? this.game.votes[victim.id] || null : null
+				}))
 			}
 		},
 		methods: {
 			wolfKill(player) {
-				this.game.client.wolfKill(player.id)
+				this.game.client.wolfKill(player)
 			}
 		}
 	}
@@ -33,9 +40,9 @@
 	<div id="PlayerNightWolf" class="view">
 		<h1>Night {{ $root.game.game.day + 1 }}</h1>
 		<p>Select your target</p>
-		<PlayerList
+		<ButtonList
 			@select="wolfKill($event)"
-			:players="potentialVictims"
+			:options="potentialVictimsButton"
 		/>
 	</div>
 </template>

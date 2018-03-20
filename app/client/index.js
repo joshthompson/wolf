@@ -15,6 +15,7 @@ let WolfGameController = {
 	player: null,
 	stats: null,
 	recoverable: null,
+	votes: null,
 
 	time: 8,
 	timeStep: 1 / 60 / 10 *10, // 6 seconds per game hour
@@ -114,7 +115,8 @@ let WolfGameController = {
 		accuse: player => WolfGameController.socket.emit('accuse', player),
 		withdrawAccusation: () => WolfGameController.socket.emit('withdrawAccusation'),
 		// Night
-		wolfKill: id => WolfGameController.socket.emit('wolfKill', id)
+		wolfKill: id => WolfGameController.socket.emit('wolfKill', id),
+		wolfKillVotes: votes => WolfGameController.votes = votes
 	},
 
 	common: {

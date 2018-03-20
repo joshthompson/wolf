@@ -158,6 +158,12 @@ class WolfGame extends Game {
 		return tally
 	}
 
+	checkPlayersReady() {
+		const all = this.players.filter(player => player.alive).length
+		const ready = this.players.filter(player => player.alive && player.state === 'READY').length
+		return all === ready
+	}
+
 	end() {
 		console.log(`Game ended: ${this.code}`)
 		this.socket.emit('gameEnded')
@@ -175,6 +181,10 @@ class WolfGame extends Game {
 		let activeSockets = this.socket.connected ? 1 : 0
 		this.players.forEach(player => activeSockets += player.socket.connected ? 1 : 0)
 		return activeSockets
+	}
+
+	addData(key, value) {
+		this.data[key] = value
 	}
 
 	toPublicJSON() {
