@@ -40,7 +40,8 @@ class GameCode {
 			'LLOP', // Catalan
 			'HUNT', // Estonian
 			'LUPO', // Esperanto
-			'KURT' // Turkish
+			'KURT', // Turkish
+			'LOUP' // French
 		]
 		while (code.length < this.length) {
 			code = code + chars[Math.floor(Math.random() * chars.length)]
