@@ -18,6 +18,7 @@
 		<p>Paulo Borges</p>
 		<p>Eduardo Terroso</p>
 
+		<p>Lawrence Murray</p>
 		<p>Martina Štrpkvová</p>
 		<p>Rafa Salti</p>
 		<p>Leigh Fitzjames</p>
