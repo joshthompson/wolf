@@ -36,6 +36,7 @@
     "build:prod": "webpack --config ./webpack.config.prod.js",
     "aws-zip": "npm run build:prod && zip ./wolf.zip -r * .[^.]* -x node_modules/\\* design/\\* *.DS_Store *.git* README.md",
     "db": "mongod",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "start:prod": "node app.js"
   }
 }
