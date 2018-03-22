@@ -3,9 +3,3 @@ public/js/bundle.js
 public/js/bundle.prod.js
 npm-debug.log
 wolf.zip
-
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
