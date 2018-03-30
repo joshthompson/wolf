@@ -42,6 +42,7 @@ class WolfGameServer {
 		// Player Intro
 		this.socket.on('playerReady', (...args) => this.actions.player.do('intro', 'playerReady', ...args))
 		// Night
+		this.socket.on('villagerNight', (...args) => this.actions.player.do('night', 'villager', ...args))
 		this.socket.on('wolfKill', (...args) => this.actions.player.do('night', 'wolfKill', ...args))
 		// Day
 		this.socket.on('vote', (...args) => this.actions.player.do('day', 'vote', ...args))

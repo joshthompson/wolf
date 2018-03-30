@@ -9,7 +9,8 @@
 				selected: false,
 				question: null,
 				trivia: null,
-				next: null
+				next: null,
+				thing: null
 			}
 		},
 		created() {
@@ -29,9 +30,9 @@
 			this.getQuestion()
 		},
 		methods: {
-			vote() {
+			vote(player) {
 				this.selected = true
-				// this.$root.client.random(thing, player),
+				this.$root.game.client.villagerNight(player.id, this.thing),
 				this.getQuestion()
 			},
 			getQuestion() {

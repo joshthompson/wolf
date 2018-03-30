@@ -3,15 +3,15 @@
 	import TitleCard from '../common/TitleCard.vue'
 	import Shadow from './village/Shadow.vue'
 	export default {
-		name: 'HostNight',
+		name: 'HostDay',
 		components: { PlayerAvatar, TitleCard, Shadow }
 	}
 </script>
 
 <template>
-	<div id="host-night">
-		<!-- <TitleCard :text="`Night ${$root.game.game.day + 1}`" /> -->
-		<h1>Night {{ $root.game.game.day + 1 }}</h1>
+	<div id="host-day">
+		<!-- <TitleCard :text="`Day ${$root.game.game.day + 1}`" /> -->
+		<h1>Day {{ $root.game.game.day + 1 }}</h1>
 		<div class="players">
 			<PlayerAvatar
 				v-for="player in $root.game.game.players"

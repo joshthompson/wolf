@@ -4,6 +4,22 @@ class WolfGamePlayerNight {
 		this.server = server
 	}
 
+	villager(id, thing) {
+		const player = this.server.game.getPlayerById(id)
+		if (!player) {
+			return this.server.socket.emit('gameError', {message: 'Player not found', error: 'INVALID_INPUT'})
+		}
+		this.server.game.data.opinions = this.server.game.data.opinions || []
+		this.server.game.data.opinions.push({
+			from: this.server.player.id,
+			about: id,
+			thing: thing
+		})
+		this.server.player.setState('READY')
+		this.server.player.update()
+		this.checkGameState()
+	}
+
 	wolfKill(id) {
 
 		const wolf = this.server.player
@@ -34,8 +50,15 @@ class WolfGamePlayerNight {
 		if (votes[victim.id] === wolves.length) { // There has been a unanimous decision
 			this.server.game.addData('wolfTarget', victim.id)
 			wolves.forEach(wolf => wolf.setState('READY'))
-			let temp = this.server.game.checkPlayersReady()
-			console.log('debug temp', temp)
+			this.checkGameState()
+		}
+	}
+
+	checkGameState() {
+		if (this.server.game.checkPlayersReady()) {
+			this.server.game.setState('DAY', 'MORNING')
+			this.server.game.update()
+			this.server.game.socket.emit('setTimeTarget', {time: 08, timestamp: new Date().getTime() + 2000})
 		}
 	}
 

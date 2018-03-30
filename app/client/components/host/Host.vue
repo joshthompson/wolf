@@ -3,13 +3,14 @@
 	import HostSetup from './HostSetup.vue'
 	import HostIntro from './HostIntro.vue'
 	import HostNight from './HostNight.vue'
+	import HostDay from './HostDay.vue'
 	import MessageView from '../common/MessageView.vue'
 	export default {
 		name: 'host',
-		components: { Village, HostSetup, HostIntro, HostNight, MessageView },
+		components: { Village, HostSetup, HostIntro, HostNight, HostDay, MessageView },
 		data() {
 			return {
-				states: ['SETUP', 'INTRO', 'NIGHT']
+				states: ['SETUP', 'INTRO', 'NIGHT', 'DAY']
 			}
 		}
 	}
@@ -22,6 +23,7 @@
 			<HostSetup v-if="$root.game.game.state === 'SETUP'" />
 			<HostIntro v-if="$root.game.game.state === 'INTRO'" />
 			<HostNight v-if="$root.game.game.state === 'NIGHT'" />
+			<HostDay v-if="$root.game.game.state === 'DAY'" />
 			<MessageView
 				v-if="!states.includes($root.game.game.state)"
 				:title="'Error'"

@@ -173,10 +173,11 @@ class WolfGame extends Game {
 		this.players.forEach(player => player.socket.emit('gameEnded'))
 	}
 
-	setState(state) {
+	setState(state, subState = null) {
 		this.votes = []
 		this.accusations = []
 		this.state = state
+		this.subState = subState
 		this.players.forEach(player => player.setState(null))
 	}
 

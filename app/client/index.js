@@ -22,7 +22,6 @@ let WolfGameController = {
 	refresh: 50,
 	timeTargetTimeout: null,
 
-
 	init: () => {
 		WolfGameController.setupSocket()
 		WolfGameController.recoverActiveGame()
@@ -115,6 +114,7 @@ let WolfGameController = {
 		accuse: player => WolfGameController.socket.emit('accuse', player),
 		withdrawAccusation: () => WolfGameController.socket.emit('withdrawAccusation'),
 		// Night
+		villagerNight: (id, thing) => WolfGameController.socket.emit('villagerNight', id, thing),
 		wolfKill: id => WolfGameController.socket.emit('wolfKill', id),
 		wolfKillVotes: votes => WolfGameController.votes = votes
 	},
