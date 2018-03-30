@@ -1,12 +1,12 @@
 branch-defaults:
   master:
     environment: wolf-uat
+deploy:
+  artifact: wolf.zip
 environment-defaults:
   wolf-uat:
     branch: null
     repository: null
-deploy:
-  artifact: wolf.zip
 global:
   application_name: wolf
   default_ec2_keyname: null

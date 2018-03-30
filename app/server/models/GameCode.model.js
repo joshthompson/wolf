@@ -10,39 +10,39 @@ class GameCode {
 	generate(length) {
 		let code = ''
 		let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-		chars = [
-			'KEWL',
-			'WOLF',
-			'MOON',
-			'BITE',
-			'NICE',
-			'WERE',
-			'EYES',
-			'SEER',
-			'FOOL',
-			'YOYO',
-			'KNUT',
-			'MARI',
-			'ANAC',
-			'CARA',
-			'ANJO',
-			'DOOM',
-			'MIST',
-			'WOOO',
-			'BOOO',
-			'WEST',
-			'EAST',
-			'FOUL',
-			'HUND',
-			'EVIL',
-			'VARG', // Swedish
-			'LOBO', // Portuguese
-			'LLOP', // Catalan
-			'HUNT', // Estonian
-			'LUPO', // Esperanto
-			'KURT', // Turkish
-			'LOUP' // French
-		]
+		// chars = [
+		// 	'KEWL',
+		// 	'WOLF',
+		// 	'MOON',
+		// 	'BITE',
+		// 	'NICE',
+		// 	'WERE',
+		// 	'EYES',
+		// 	'SEER',
+		// 	'FOOL',
+		// 	'YOYO',
+		// 	'KNUT',
+		// 	'MARI',
+		// 	'ANAC',
+		// 	'CARA',
+		// 	'ANJO',
+		// 	'DOOM',
+		// 	'MIST',
+		// 	'WOOO',
+		// 	'BOOO',
+		// 	'WEST',
+		// 	'EAST',
+		// 	'FOUL',
+		// 	'HUND',
+		// 	'EVIL',
+		// 	'VARG', // Swedish
+		// 	'LOBO', // Portuguese
+		// 	'LLOP', // Catalan
+		// 	'HUNT', // Estonian
+		// 	'LUPO', // Esperanto
+		// 	'KURT', // Turkish
+		// 	'LOUP' // French
+		// ]
 		while (code.length < this.length) {
 			code = code + chars[Math.floor(Math.random() * chars.length)]
 		}

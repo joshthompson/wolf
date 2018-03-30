@@ -56,12 +56,12 @@
 				return a
 			},
 			answer(answer) {
-				this.getQuestion()
 				if (this.trivia.correct_answer === answer) {
 					alert('Correct')
 				} else {
 					alert('Incorrect')
 				}
+				this.getQuestion()
 			}
 		}
 	}

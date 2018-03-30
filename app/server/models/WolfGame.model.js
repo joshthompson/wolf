@@ -29,6 +29,7 @@ class WolfGame extends Game {
 		this.state = null // 'SETUP' | 'INTRO' | 'DAY' | 'NIGHT' | 'END' | null = 'SETUP'
 		this.day = 0 // First night (before game starts) is Night 0. Then Day X / Night X use this value
 		this.subState = null
+		this.data = {}
 		this.accusations = []
 		this.votes = []
 		this.token = null
@@ -58,6 +59,8 @@ class WolfGame extends Game {
 		if (typeof data.state === 'string') this.state = data.state
 		// Set Sub State
 		if (typeof data.subState === 'string') this.subState = data.subState
+		// Set Data
+		if (typeof data.data === 'object') this.data = data.data
 		// Set Accusations
 		if (data.accusations instanceof Array) {
 			data.accusations.forEach((accusation) => {
