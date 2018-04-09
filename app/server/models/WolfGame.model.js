@@ -179,6 +179,23 @@ class WolfGame extends Game {
 		this.state = state
 		this.subState = subState
 		this.players.forEach(player => player.setState(null))
+		this.setStateTime()
+	}
+
+	setStateTime(state, subState) {
+		const times = {
+			INTRO: 22,
+			NIGHT: 0,
+			DAY_MORNING: 8,
+			DAY: 9
+		}
+		const time = times[`${this.state}_${this.subState}`] || times[this.state] || null
+		if (time) {
+			this.socket.emit('setTimeTarget', {
+				time: time,
+				timestamp: new Date().getTime() + 800
+			})
+		}
 	}
 
 	activeSockets() {

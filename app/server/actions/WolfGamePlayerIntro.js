@@ -7,8 +7,12 @@ class WolfGamePlayerIntro {
 	playerReady() {
 		this.server.player.setState('READY')
 		if (this.server.game.checkPlayersState('READY')) {
-			this.server.game.setState('NIGHT')
-			this.server.game.socket.emit('setTimeTarget', {time: 0, timestamp: new Date().getTime() + 800})
+			const firstNightAction = this.server.game.players.filter(player => player.character.firstNightAction === true).length ? true : false
+			if (firstNightAction) {
+				this.server.game.setState('NIGHT')
+			} else {
+				this.server.game.setState('DAY', 'MORNING')
+			}
 		}
 		this.server.game.update()
 	}

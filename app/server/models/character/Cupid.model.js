@@ -9,6 +9,7 @@ class Cupid extends Character {
 		this.icon = '/imgs/characters/cupid.png'
 		this.team = 'Villagers'
 		this.max = 1
+		this.firstNightAction = true
 		this.description = [
 			'You will choose two players to become lovers on the first night',
 			'If either of the lovers dies the other will die immediatly of a broken heart',

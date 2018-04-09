@@ -8,6 +8,7 @@ class Character {
 		this.hp = 1
 		this.max = null
 		this.votePower = 1
+		this.firstNightAction = false
 	}
 
 	dayStart() {

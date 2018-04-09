@@ -58,7 +58,6 @@ class WolfGamePlayerNight {
 		if (this.server.game.checkPlayersReady()) {
 			this.server.game.setState('DAY', 'MORNING')
 			this.server.game.update()
-			this.server.game.socket.emit('setTimeTarget', {time: 08, timestamp: new Date().getTime() + 2000})
 		}
 	}
 
