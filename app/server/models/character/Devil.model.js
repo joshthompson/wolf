@@ -12,7 +12,7 @@ class Devil extends Character {
 		this.description = [
 			'You on the side of the Werewolves',
 			'You know who they are... but they don\'t know who you are',
-			'You must attempt to help without getting killed yourself'
+			'You must attempt to help the wolves by diverting attention away from them'
 		]
 	}
 	

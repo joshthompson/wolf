@@ -198,6 +198,15 @@ class WolfGame extends Game {
 		}
 	}
 
+	accuse(voter, vote) {
+		this.withdrawAccusation(voter)
+		this.accusations.push(new Vote(voter, vote))
+	}
+
+	withdrawAccusation(voter) {
+		this.accusations = this.accusations.filter(accusation => accusation.voter !== voter)
+	}
+
 	activeSockets() {
 		let activeSockets = this.socket.connected ? 1 : 0
 		this.players.forEach(player => activeSockets += player.socket.connected ? 1 : 0)
