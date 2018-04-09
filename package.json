@@ -34,8 +34,7 @@
   "scripts": {
     "build": "webpack --watch",
     "build:prod": "webpack --config ./webpack.config.prod.js",
-    "aws": "npm run artifact && npm run deploy",
-    "artifact_old": "npm run build:prod && zip ./wolf.zip -r * .[^.]* -x node_modules/\\* .elasticbeanstalk/\\* design/\\* *.DS_Store *.git* README.md .nvmrc webpack.config.js webpack.config.prod.js",
+    "deploy": "npm run artifact && npm run deploy",
     "artifact": "npm run build:prod && zip ./wolf.zip app public app.js package-lock.json package.json -r -x *.DS_Store",
     "deploy": "eb deploy",
     "db": "mongod",
