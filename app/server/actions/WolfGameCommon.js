@@ -76,6 +76,7 @@ class WolfGameCommon {
 			socket: this.server.socket,
 			state: 'SETUP'
 		})
+		this.testData()
 		let length = 4
 		do {
 			this.server.game.code = new GameCode(length++)
@@ -83,6 +84,18 @@ class WolfGameCommon {
 		this.server.games[this.server.game.code] = this.server.game
 		this.server.socket.emit('gameCreated', {game: this.server.game.toPrivateJSON()})
 		console.log(`Game created: ${this.server.game.code}`)
+	}
+
+	testData() {
+		// this.server.game.players = [
+		// 	new Player({name: 'Mariana', game: this.server.game, avatar: '1'}),
+		// 	new Player({name: 'Josh', game: this.server.game, avatar: '2'}),
+		// 	new Player({name: 'Africa', game: this.server.game, avatar: '3'})
+		// ]
+		// this.server.game.setupPlayerIdentities()
+		// this.server.game.setState('DAY', 'MORNING')
+		// this.server.game.accuse(0, 2)
+		// this.server.game.accuse(1, 2)
 	}
 
 	requestStats() {
