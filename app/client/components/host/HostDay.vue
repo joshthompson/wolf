@@ -1,10 +1,11 @@
 <script>
 	import PlayerAvatar from '../common/PlayerAvatar.vue'
+	import PlayerGroup from '../common/PlayerGroup.vue'
 	import TitleCard from '../common/TitleCard.vue'
 	import Shadow from './village/Shadow.vue'
 	export default {
 		name: 'HostDay',
-		components: { PlayerAvatar, TitleCard, Shadow },
+		components: { PlayerAvatar, PlayerGroup, TitleCard, Shadow },
 		computed: {
 			game() {
 				return this.$root.game.game
@@ -41,10 +42,8 @@
 <template>
 	<div id="host-day">
 		<!-- <TitleCard :text="`Day ${game.day + 1}`" /> -->
-		<h1>Day {{ game.day + 1 }}</h1>
-
+		<h1>Day {{ $root.game.game.day + 1 }}</h1>
 		<div class="avatar-group">
-
 			<div v-for="accusation in accusations">
 				<div class="sign">
 					<PlayerAvatar
@@ -53,25 +52,12 @@
 						mode="icon"
 					/>
 				</div>
-				<PlayerAvatar
-					v-for="player in accusation.accusers"
-					:key="player.id"
-					:player="player"
-					class="village-object"
-				/>
+				<PlayerGroup :players="accusation.accusers" />
 			</div>
-
 			<div class="players">
-				<PlayerAvatar
-					v-for="player in neutralPlayers"
-					:key="player.id"
-					:player="player"
-					class="village-object"
-				/>
+				<PlayerGroup :players="neutralPlayers" />
 			</div>
-
 		</div>
-
 	</div>
 </template>
 

@@ -12,18 +12,28 @@
 			return {
 				states: ['SETUP', 'INTRO', 'NIGHT', 'DAY']
 			}
+		},
+		computed: {
+			game() {
+				return this.$root.game.game
+			}
+		},
+		methods: {
+			endGame() {
+				this.$root.game.endGame()
+			}
 		}
 	}
 </script>
 
 <template>
 	<div id="host">
-		<a @click="$root.game.endGame()" class="endGameBtn"></a>
+		<a @click="endGame()" class="endGameBtn"></a>
 		<Village>
-			<HostSetup v-if="$root.game.game.state === 'SETUP'" />
-			<HostIntro v-if="$root.game.game.state === 'INTRO'" />
-			<HostNight v-if="$root.game.game.state === 'NIGHT'" />
-			<HostDay v-if="$root.game.game.state === 'DAY'" />
+			<HostSetup v-if="game.state === 'SETUP'" />
+			<HostIntro v-if="game.state === 'INTRO'" />
+			<HostNight v-if="game.state === 'NIGHT'" />
+			<HostDay v-if="game.state === 'DAY'" />
 			<MessageView
 				v-if="!states.includes($root.game.game.state)"
 				:title="'Error'"
@@ -50,5 +60,9 @@
 		&:hover {
 			opacity: 0.85;
 		}
+	}
+	.sky-text {
+		z-index: 10000;
+		position: relative;
 	}
 </style>

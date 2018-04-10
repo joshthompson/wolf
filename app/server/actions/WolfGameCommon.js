@@ -87,12 +87,20 @@ class WolfGameCommon {
 	}
 
 	testData() {
+		// const socket = {
+		// 	connected() {},
+		// 	on() {},
+		// 	emit() {}
+		// }
 		// this.server.game.players = [
-		// 	new Player({name: 'Mariana', game: this.server.game, avatar: '1'}),
-		// 	new Player({name: 'Josh', game: this.server.game, avatar: '2'}),
-		// 	new Player({name: 'Africa', game: this.server.game, avatar: '3'})
+		// 	new Player({name: 'Mariana', game: this.server.game, avatar: '1', socket: socket}),
+		// 	new Player({name: 'Josh', game: this.server.game, avatar: '2', socket: socket}),
+		// 	new Player({name: 'Africa', game: this.server.game, avatar: '3', socket: socket}),
+		// 	new Player({name: 'Stockholm', game: this.server.game, avatar: '4', socket: socket}),
+		// 	new Player({name: 'Copenhagen', game: this.server.game, avatar: '5', socket: socket})
 		// ]
 		// this.server.game.setupPlayerIdentities()
+		// // this.server.game.setState('SETUP')
 		// this.server.game.setState('DAY', 'MORNING')
 		// this.server.game.accuse(0, 2)
 		// this.server.game.accuse(1, 2)

@@ -119,6 +119,7 @@
 			<div class="moon"></div>
 		</div>
 		<div class="darknessOverlaySky"></div>
+		<slot></slot>
 	</div>
 </template>
 

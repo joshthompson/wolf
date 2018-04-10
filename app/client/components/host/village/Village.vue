@@ -63,12 +63,14 @@
 	$transition: 5s;
 
 	#village {
-		transition: color $transition linear;
 		display: flex;
 		flex-direction: column;
 		height: 100vh;
 		overflow: hidden;
+	}
 
+	#village, .sky .slot {
+		transition: color $transition linear;
 		&[phase="day"],
 		&[phase="sunset"] {
 			color: #000000;
@@ -104,6 +106,9 @@
 			.tree {
 				height: 100px;
 			}
+		}
+		h1 {
+			margin: 10px 0px 0px;
 		}
 	}
 

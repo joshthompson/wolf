@@ -1,9 +1,9 @@
 <script>
-	import PlayerAvatar from '../common/PlayerAvatar.vue'
+	import PlayerGroup from '../common/PlayerGroup.vue'
 	import CountdownTimer from '../common/CountdownTimer.vue'
 	export default {
 		name: 'HostSetup',
-		components: { PlayerAvatar, CountdownTimer },
+		components: { PlayerGroup, CountdownTimer },
 		data() {
 			return {
 				startCountdown: false
@@ -41,12 +41,7 @@
 		</h1>
 		
 		<div class="players">
-			<PlayerAvatar
-				v-for="player in game.game.players"
-				:key="player.id"
-				:player="player"
-				class="village-object"
-			/>
+			<PlayerGroup :players="game.game.players" />
 		</div>
 		<p v-if="readyPlayers < game.game.minPlayers">You need at least {{ game.game.minPlayers }} players to join</p>
 		<div v-if="readyPlayers >= game.game.minPlayers">
@@ -56,15 +51,3 @@
 		
 	</div>
 </template>
-
-<style lang="scss" scoped>
-	.forest {
-		margin-top: 80px;
-		.trees {
-			font-size: 72px;
-			&:nth-child(2) {
-				margin-top: -80px;
-			}
-		}
-	}
-</style>

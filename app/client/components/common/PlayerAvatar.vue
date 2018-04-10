@@ -31,7 +31,6 @@
 <style lang="scss" scoped>
 	.avatar {
 		display: inline-block;
-		padding: 20px;
 		font-size: small;
 		text-transform: uppercase;
 		&.ghost img {
@@ -40,7 +39,6 @@
 		}
 
 		&.icon {
-			padding: 0px;
 			.name {
 				display: none;
 			}
