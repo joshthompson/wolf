@@ -3,7 +3,7 @@
 	export default {
 		name: 'PlayerGroup',
 		props: {
-			players: Object
+			players: Array
 		},
 		components: { PlayerAvatar }
 	}

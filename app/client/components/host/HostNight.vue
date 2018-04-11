@@ -11,7 +11,7 @@
 <template>
 	<div id="host-night">
 		<!-- <TitleCard :text="`Night ${$root.game.game.day + 1}`" /> -->
-		<h1>Night {{ $root.game.game.day + 1 }}</h1>
+		<h1 class="fixed-state-header">Night {{ $root.game.game.day + 1 }}</h1>
 		<div class="players">
 			<PlayerGroup :players="$root.game.game.players" />
 		</div>

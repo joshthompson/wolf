@@ -106,5 +106,17 @@ input {
 	&.block { display: block; }
 }
 
+h1.fixed-state-header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	padding: 13px 20px 7px;
+	font-size: 2rem;
+	background: #FFFFFF;
+	border-radius: 0px 0px 10px 0px;
+	margin: 0px !important;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
 
 

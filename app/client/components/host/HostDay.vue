@@ -42,7 +42,7 @@
 <template>
 	<div id="host-day">
 		<!-- <TitleCard :text="`Day ${game.day + 1}`" /> -->
-		<h1>Day {{ $root.game.game.day + 1 }}</h1>
+		<h1 class="fixed-state-header">Day {{ $root.game.game.day + 1 }}</h1>
 		<div class="avatar-group">
 			<div v-for="accusation in accusations">
 				<div class="sign">
