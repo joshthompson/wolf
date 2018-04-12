@@ -53,7 +53,9 @@
 				<Shadow :offset="25"><img src="/imgs/tree2.png" class="village-object tree" /></Shadow>
 				<Shadow :offset="25"><img src="/imgs/tree3.png" class="village-object tree" /></Shadow>
 			</div>
-			<slot />
+			<div class="village-content">
+				<slot />
+			</div>
 		</div>	
 	</div>
 </template>
@@ -106,6 +108,10 @@
 			.tree {
 				height: 100px;
 			}
+		}
+		.village-content {
+			position: relative;
+			z-index: 4;
 		}
 		h1 {
 			margin: 10px 0px 0px;

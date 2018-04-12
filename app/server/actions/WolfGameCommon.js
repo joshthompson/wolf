@@ -87,23 +87,52 @@ class WolfGameCommon {
 	}
 
 	testData() {
-		// const socket = {
-		// 	connected() {},
-		// 	on() {},
-		// 	emit() {}
-		// }
-		// this.server.game.players = [
-		// 	new Player({name: 'Mariana', game: this.server.game, avatar: '1', socket: socket}),
-		// 	new Player({name: 'Josh', game: this.server.game, avatar: '2', socket: socket}),
-		// 	new Player({name: 'Africa', game: this.server.game, avatar: '3', socket: socket}),
-		// 	new Player({name: 'Stockholm', game: this.server.game, avatar: '4', socket: socket}),
-		// 	new Player({name: 'Copenhagen', game: this.server.game, avatar: '5', socket: socket})
-		// ]
-		// this.server.game.setupPlayerIdentities()
-		// // this.server.game.setState('SETUP')
-		// this.server.game.setState('DAY', 'MORNING')
-		// this.server.game.accuse(0, 2)
-		// this.server.game.accuse(1, 2)
+		// this.server.game.players = this.testPlayers()
+		this.server.game.players = this.testPlayersN(21)
+		console.log(this.server.game.players.length)
+		this.server.game.setupPlayerIdentities()
+		// this.server.game.setState('SETUP')
+		this.server.game.setState('DAY', 'MORNING')
+		this.server.game.accuse(0, 6)
+		// this.server.game.accuse(1, 6)
+		// this.server.game.accuse(4, 3)
+	}
+
+	fakeSocket() {
+		return {
+			connected() {},
+			on() {},
+			emit() {}
+		}
+	}
+
+	testPlayers() {
+		const socket = this.fakeSocket()
+		return [
+			new Player({name: 'Mariana', game: this.server.game, avatar: '4', socket: socket}),
+			new Player({name: 'Josh', game: this.server.game, avatar: '2', socket: socket}),
+			new Player({name: 'Africa', game: this.server.game, avatar: '11', socket: socket}),
+			new Player({name: 'Pepino', game: this.server.game, avatar: '18', socket: socket}),
+			new Player({name: 'Knut', game: this.server.game, avatar: '1', socket: socket}),
+			new Player({name: 'Rafa', game: this.server.game, avatar: '5', socket: socket}),
+			new Player({name: 'Martina', game: this.server.game, avatar: '17', socket: socket}),
+			new Player({name: 'Lawrence', game: this.server.game, avatar: '9', socket: socket})
+		]
+	}
+
+	testPlayersN(n) {
+		const socket = this.fakeSocket()
+		let players = []
+		for (let i = 0; i < n; i++) {
+			players.push(new Player({
+				name: `Player ${(i + 1)}`,
+				game: this.server.game,
+				avatar: `${(i + 1)}`,
+				socket: socket
+			}))
+		}
+		console.log(players.map(p => p.name))
+		return players
 	}
 
 	requestStats() {

@@ -26,7 +26,7 @@
 			vertical-align: top;
 			margin: 0px 0px;
 			&:nth-child(2n) {
-				margin: 30px 0px 0px;
+				margin: -30px 0px 0px;
 			}
 		}
 	}

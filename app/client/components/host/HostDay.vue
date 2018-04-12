@@ -43,7 +43,7 @@
 	<div id="host-day">
 		<!-- <TitleCard :text="`Day ${game.day + 1}`" /> -->
 		<h1 class="fixed-state-header">Day {{ $root.game.game.day + 1 }}</h1>
-		<div class="avatar-group">
+		<div class="accusation-groups">
 			<div v-for="accusation in accusations">
 				<div class="sign">
 					<PlayerAvatar
@@ -54,6 +54,8 @@
 				</div>
 				<PlayerGroup :players="accusation.accusers" />
 			</div>
+		</div>
+		<div class="neutral-players">
 			<div class="players">
 				<PlayerGroup :players="neutralPlayers" />
 			</div>
@@ -62,9 +64,12 @@
 </template>
 
 <style lang="scss" scoped>
-	.avatar-group > * {
-		display: inline-block;
-		margin: 0px 50px;
+	.accusation-groups {
+		margin: -70px 0px 20px;
+		& > * {
+			display: inline-block;
+			margin: 0px 50px;
+		}
 	}
 	.sign {
 		background: #FFFFFF;
