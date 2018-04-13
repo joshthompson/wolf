@@ -19,6 +19,7 @@
 - Chooses a character to heal at night (can be self)
 - If that player is targeted, they are not killed
 - Can not chose same player two nights in a row
+- Can heal a wounded player
 
 ### The Fool
 - Thinks they're the seer but gets random results back
